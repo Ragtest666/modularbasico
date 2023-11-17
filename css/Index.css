@@ -1,0 +1,135 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.con{
+    
+  border-radius: 10px;
+ 
+}
+card-body{
+  list-style: none;
+}
+
+.colo{
+  background-color: rgb(138, 106, 47);
+ border-color: rgb(138, 106, 47);
+}
+
+.fondo{
+  background-color: rgb(255, 186, 107);
+}
+
+
+.imagenradius{
+  border-image-source: 10px;
+}
+.fondo1{
+  background-color: rgb(227, 150, 16);
+}
+.margen{
+ padding-top: 30px;
+}
+.colorletras{
+background-color: black;
+}
+
+
+
+ /*Pagina consultar consultar */
+
+ .fuente{
+  color: rgb(0, 0, 0);
+}
+
+ .conn2{
+  background-color: aqua;
+ }
+ .conn3{
+  background-color: blue;
+ }
+ .conn4{
+ 
+  height: 70px;
+  
+ }
+ .contenedorphoto{
+
+  height: 210px;
+ }
+ .con5{
+  background-color: rgb(219, 40, 255);
+ }
+ .conn6{
+  background-color: bisque;
+  -ms-word-break: break-all;
+     word-break: break-all;
+
+ 
+     word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+    -ms-hyphens: auto;
+        hyphens: auto;
+ }
+ .conn7{
+  
+  height: 100px;
+  margin-top: 50px;
+ }
+ .fondoPC{
+  background-color: rgb(255, 186, 107);
+ }
+
+
+ /*Pagina Agregar producto */
+
+ .containeragregar{
+  background-color: rgb(255, 192, 97);
+ }
+ .conn{
+  background-color: rgb(206, 58, 0);
+  
+  }
+
+ 
+.main{
+ 
+
+height: 280px;
+}
+.main2{
+  
+
+  background: rgb(189, 166, 166);
+}
+form img{
+  width: 200px;
+  border-radius: 50%;
+  border: 6px solid #AAA;
+}
+
+.desactiveFiles{
+  display: none;
+}
+.labell{
+  margin-top: 20px;
+  background: #1F5F74;
+  color: white;
+  padding: 6px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.labell:hover{
+  background-color: #133b48;
+}
+.labell:active{
+  background-color: #399cbc;
+}
+
