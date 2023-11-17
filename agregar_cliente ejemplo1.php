@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php 
+    require_once("control/validarusuario.php");
+    if(!isset($_SESSION['nombre'])){
+        header("Location:signin.php");
+    }
+    $usuario=$_SESSION["nombre"];
+?>
 <html lang="en">
 
 <head>
