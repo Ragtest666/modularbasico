@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php 
     require_once("control/validarusuario.php");
-    if(!isset($_SESSION['nombrer'])){
-        header("Location:login.php");
+    if(!isset($_SESSION['nombre'])){
+        header("Location:signin.php");
     }
     $usuario=$_SESSION["nombre"];
 ?>
@@ -132,7 +132,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">Ajustes</a>
-                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
+                            <a href="control/cerrar.php" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ require_once("conexion.php");
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>');
         }else{    
-        $consulta="SELECT * FROM Usuario WHERE nombre='$usuario'"; 
+        $consulta="SELECT * FROM Usuarios WHERE nombre='$usuario'"; 
         $resultados=mysqli_query($conexion,$consulta) or die (mysqli_error()); 
         $fila=mysqli_fetch_array($resultados);
         if ($fila["contrasena"]==$contra) {
