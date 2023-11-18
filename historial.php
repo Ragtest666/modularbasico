@@ -52,7 +52,7 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar naranja navbar-dark">
-                <a href="index.html" class="mx-4 d-lg-block d-sm-block">
+                <a href="index.php" class="mx-4 d-lg-block d-sm-block">
                     <h3 class="text-primary"> <img src="img/Logo.png" width="200" height="80"></h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-2">
@@ -69,8 +69,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-user-edit me-2"></i>Clientes</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="agregar_cliente.html" class="dropdown-item">Agregar cliente</a>
-                            <a href="ConsultarCliente.html" class="dropdown-item">Ver Clientes</a>
+                            <a href="agregar_cliente.php" class="dropdown-item">Agregar cliente</a>
+                            <a href="ConsultarCliente.php" class="dropdown-item">Ver Clientes</a>
                             <a href="#" class="dropdown-item">Editar cliente</a>
                         </div>
                     </div>
@@ -78,12 +78,12 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Pedidos</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="agregar_pedido.html" class="dropdown-item">Agregar pedido</a>
-                            <a href="consultar_pedido.html" class="dropdown-item">Consultar pedido</a>
-                            <a href="editar_pedido.html" class="dropdown-item">Editar Pedido</a>
+                            <a href="agregar_pedido.php" class="dropdown-item">Agregar pedido</a>
+                            <a href="consultar_pedido.php" class="dropdown-item">Consultar pedido</a>
+                            <a href="editar_pedido.php" class="dropdown-item">Editar Pedido</a>
                         </div>
                     </div>
-                    <a href="historial.html" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Historial</a>
+                    <a href="historial.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Historial</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-bars me-2"></i>Productos</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -102,7 +102,7 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
+                <a href="index.php" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
                     <h2 class="text-primary mb-0"> <img src="img/Logo.png" width="200" height="80"><i class="fa "></i></h2>
                 </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -129,9 +129,9 @@
             <!-- Container Start -->
             <div class="container-fluid pt-3 px-3">
                 <div class="cafeclaro rounded p-4">
-                    <a href="index.html" class="link">Pedido</a>
+                    <a href="index.php" class="link">Pedido</a>
                     <label class="gris">></label>
-                    <a href="historial.html" class="link">Historial de Pedidos</a>
+                    <a href="historial.php" class="link">Historial de Pedidos</a>
                     <h5 class="pt-2 px-4">Historial de Pedidos</h5>
                     
                     <!-- Search Bar Start-->

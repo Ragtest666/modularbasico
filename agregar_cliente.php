@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<?php 
-    require_once("control/validarusuario.php");
-    if(!isset($_SESSION['nombre'])){
-        header("Location:signin.php");
-    }
-    $usuario=$_SESSION["nombre"];
+<?php
+require_once("control/validarusuario.php");
+if (!isset($_SESSION['nombre'])) {
+    header("Location:signin.php");
+}
+$usuario = $_SESSION["nombre"];
+include("control/agregarcliente.php")
 ?>
 <html lang="en">
 
@@ -21,8 +22,8 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -51,7 +52,7 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar naranja navbar-dark">
-                <a href="index.html" class="mx-4 d-lg-block d-sm-block">
+                <a href="index.php" class="mx-4 d-lg-block d-sm-block">
                     <h3 class="text-primary"> <img src="img/Logo.png" width="200" height="80"></h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
@@ -65,46 +66,23 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <div class="nav-item dropdown ">
-                        <a href="#" class="nav-link dropdown-toggle active dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user-edit me-2"></i>Clientes</a>
-                        
-                           
-                        
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link active"><i class="fa fa-user-edit me-2"></i>Clientes</a>
                     </div>
 
-                    <div class="">
-                       <div class="nav-item btn-group   dropdown" onclick="showHide()" >
-                        <a type="button" class="  nav-link"><i class="fa fa-user-edit me-2"></i>Clientes</a>
-                        
-                        <a type="button" class="rounded-circle labell2 dropdown dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"   aria-expanded="false"   >
-                          <span class="visually-hidden">Toggle Dropdown</span>
-                        </a>
-                    </div>
-                        
-                        <div class=" barra dropdown-menu bg-transparent "  >
-                            <a href="agregar_cliente.html" class="dropdown-item ">Agregar cliente</a>
-                            <a href="ConsultarCliente.html" class="dropdown-item">Ver Clientes</a>
-                            <a href="#" class="dropdown-item">Editar cliente</a>
-                        </div>
-                      
-                        
-                       
-                      </div>
-                      
-
                     <div class="nav-item dropdown">
-                        <a href="agregar_pedido.html" class="nav-link dropdown-toggle" split data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Pedidos</a>
+                        <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Pedidos</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="agregar_pedido.html" class="dropdown-item">Agregar pedido</a>
-                            <a href="consultar_pedido.html" class="dropdown-item">Consultar pedido</a>
-                            <a href="editar_pedido.html" class="dropdown-item">Editar Pedido</a>
+                            <a href="agregar_pedido.php" class="dropdown-item active">Agregar pedido</a>
+                            <a href="consultar_pedido.php" class="dropdown-item">Consultar pedido</a>
+                            <a href="editar_pedido.php" class="dropdown-item">Editar Pedido</a>
                         </div>
                     </div>
-                    <a href="historial.html" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Historial</a>
+                    <a href="historial.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Historial</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-bars me-2"></i>Productos</a>
+                        <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i class="fa fa-bars me-2"></i>Productos</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="AgregarProducto.html" class="dropdown-item">Agregar Producto</a>
+                            <a href="AgregarProducto.php" class="dropdown-item">Agregar Producto</a>
                             <a href="" class="dropdown-item">Ver Producto</a>
                             <a href="" class="dropdown-item">Editar Producto</a>
                         </div>
@@ -118,8 +96,8 @@
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
-            <nav class="navbar  rojizo navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
+            <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
+                <a href="index.php" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
                     <h2 class="text-primary mb-0"> <img src="img/Logo.png" width="200" height="80"><i class="fa "></i></h2>
                 </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -136,7 +114,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">Ajustes</a>
-                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
+                            <a href="control/cerrar.php" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </div>
                 </div>
@@ -146,228 +124,98 @@
             <!-- Container Start -->
             <div class="container-fluid pt-3 px-3">
                 <div class="cafeclaro rounded p-4">
-                    <a href="index.html" class="link">Cliente</a>
+                    <a href="index.php" class="link">Cliente</a>
                     <label class="gris">></label>
-                    <a href="agregar_cliente.html" class="link">Agregar cliente</a>
+                    <a href="agregar_cliente.php" class="link">Agregar cliente</a>
                     <h5 class="pt-2 px-4">Agregar cliente</h5>
-            
-            <!-- Form Start -->
-            <div class="container-fluid pt-2 px-4">
-                <div class="cafeoscuro rounded h-100 p-4 w-100 ">
 
-                    <!--Formulario star-->
-                    <form class="row" action="" method="post">
-                       
-                        <div class="col-sm-12 col-xl-6  ">
-                           
-                            <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
-                            <input class="form-control mb-3" type="text" required placeholder="">
-                            <label for="floatingTextarea" class="Text">Numero de telefono *</label>
-                            <input class="form-control p_input mb-3"  type="number" required  placeholder="">
-                        
+                    <!-- Form Start -->
+                    <div class="container-fluid pt-2 px-4">
+                        <div class="cafeoscuro rounded h-100 p-4 w-100 ">
 
-                            <label for="floatingTextarea" class="Text">Correo Electrónico</label>
-                            <input class="form-control mb-3" type="email" placeholder="">
-                            <label for="floatingTextarea" class="Text">Direccion</label>
-                            <input class="form-control mb-3" type="text" placeholder="">
-                            <label for="floatingTextarea" class="Text">Colonia</label>
-                            <input class="form-control mb-3" type="text" placeholder="">
-                        </div>
-                           
-                            <div class="col-sm-12 col-xl-6  row">
-                                <div class="col-sm-12 col-xl-6 ">
-                                    <label for="floatingTextarea" class="Text">Tipo Local *</label>
-                                    <input class="form-control mb-3" type="text" required placeholder="">
-                                    <label for="floatingTextarea" class="Text">Codigo Postal</label>
-                                    <input class="form-control mb-3" type="text" placeholder="">
+                            <!--Formulario star-->
+                            <form class="row" action="#" method="post" enctype="multipart/form-data">
+
+                                <div class="col-sm-12 col-xl-6  ">
+
+                                    <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
+                                    <input class="form-control mb-3" type="text" name="nombre" required placeholder="">
+                                    <label for="floatingTextarea" class="Text">Numero de telefono *</label>
+                                    <input class="form-control p_input mb-3" type="number" name="telefono" required placeholder="">
+
+
+                                    <label for="floatingTextarea" class="Text">Correo Electrónico</label>
+                                    <input class="form-control mb-3" type="email" name="correo" placeholder="">
+                                    <label for="floatingTextarea" class="Text">Direccion</label>
+                                    <input class="form-control mb-3" type="text" name="direccion" placeholder="">
+                                    <label for="floatingTextarea" class="Text">Colonia</label>
+                                    <input class="form-control mb-3" type="text" name="colonia" placeholder="">
                                 </div>
+
+                                <div class="col-sm-12 col-xl-6  row">
                                     <div class="col-sm-12 col-xl-6 ">
-                                    <label for="floatingTextarea" class="Text">Número Interior</label>
-                                    <input class="form-control mb-3" type="text" placeholder="">
-                                    <label for="floatingTextarea" class="Text">Numero Exterior</label>
-                                    <input class="form-control mb-3" type="text" placeholder="">
-                               </div>
+                                        <label for="floatingTextarea" class="Text">Tipo Local *</label>
+                                        <input class="form-control mb-3" type="text" name="tipo_local" required placeholder="">
+                                        <label for="floatingTextarea" class="Text">Codigo Postal</label>
+                                        <input class="form-control mb-3" type="text" name="codigo_postal" placeholder="">
+                                    </div>
+                                    <div class="col-sm-12 col-xl-6 ">
+                                        <label for="floatingTextarea" class="Text">Número Interior</label>
+                                        <input class="form-control mb-3" type="text" name="num_interior" placeholder="">
+                                        <label for="floatingTextarea" class="Text">Numero Exterior</label>
+                                        <input class="form-control mb-3" type="text" name="num_exterior" placeholder="">
+                                    </div>
 
                                     <div class="h-230 ">
                                         <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                        <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                        </div> 
+                                            <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                        </div>
                                     </div>
                                 </div>
 
-                             <div class="col-sm-12 col-lg-12 mt-3">
-                                <div class=" row ">
-                                <div class="col-6"><button type="submit" class="btn col-sm-12 col-lg-12" >Agregar Cliente</button></div>
-                                 <div class="text-center col-6"><input class="desactiveFiles" type="file" name="foto" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div> 
-                                </div>     
-                            </div>
-                         </form>
-                     </div>
-                 </div>
-                        
-                  
-                <!--Formulario end-->
-                </div>
-            <!-- Container End -->  
-            </div>  
-        <!-- Content End -->
-
-
-
-
-
-                    <!-- 
-                    <div class="row g-4">
-                        <div class="col-sm-12 col-xl-6">
-                        <div class="cafeoscuro rounded h-100 p-4 w-100">
-                            <h6 class="mb-3">Datos del cliente</h6>
-                            <form>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Nombre del cliente</label>
-                                    <input class="form-control mb-3" type="text" placeholder="Miguel Angel Patroquio Hernandez">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Dirección</label>
-                                    <input class="form-control mb-3" type="text" placeholder="C. Delfín Contreras">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Número de Teléfono</label>
-                                    <input class="form-control mb-3" type="text" placeholder="3226985940">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Tipo de Local</label>
-                                    <input class="form-control mb-3" type="text" placeholder="Escuela">
+                                <div class="col-sm-12 col-lg-12 mt-3">
+                                    <div class=" row ">
+                                        <div class="col-6"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
+                                        <div class="text-center col-6"><input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-xl-6">
-                        <div class="cafeoscuro rounded h-100 p-4 w-100">
-                            <h6 class="mb-3">Pedido</h6>
-                            <div>
-                                <label class="Text">Producto</label>
-                                <table class="table table-bordered table-hover p-4">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Producto</th>
-                                            <th scope="col">Cantidad</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Concha</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cuernito</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Telera</td>
-                                            <td>7</td>
-                                        </tr>
-                                        <tr>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="mb-2">
-                                <label for="floatingTextarea"  class="Text">Descripción</label>
-                                <textarea class="form-control grispan" placeholder="Poner 30 teleras en una bolsa y otras 30 en otra."
-                                id="floatingTextarea" style="height: 50px;"></textarea>
-                            </div>
-                            <div class="pt-2">
-                                <div class="row">
-                                    <label class="Text col-6">Fecha Realizado</label>
-                                    <label class="Text col-6">Fecha Entrega</label>
-                                    
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <input type="date" class="date col-6">
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="datetime-local" class="date col-9">
-                                    </div>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
+
+
+                    <!--Formulario end-->
                 </div>
+                <!-- Container End -->
             </div>
-        -->
-            <!-- Form End 
-                </div>
-            
-            <div class="col-sm-12 col-xl-6">
-                        <h6 class="mb-3">Datos del cliente</h6>
-                        <form>
-                            <div class="mb-3">
-                                <label for="floatingTextarea" class="Text">Nombre del cliente</label>
-                                <input class="form-control mb-3" type="text" placeholder="Miguel Angel Patroquio Hernandez">
-                            </div>
-                            <div class="mb-3">
-                                <label for="floatingTextarea" class="Text">Dirección</label>
-                                <input class="form-control mb-3" type="text" placeholder="C. Delfín Contreras">
-                            </div>
-                            <div class="mb-3">
-                                <label for="floatingTextarea" class="Text">Número de Teléfono</label>
-                                <input class="form-control mb-3" type="text" placeholder="3226985940">
-                            </div>
-                            <div class="mb-3">
-                                <label for="floatingTextarea" class="Text">Tipo de Local</label>
-                                <input class="form-control mb-3" type="text" placeholder="Escuela">
-                            </div>
-                        </form>
-                    </div>
+            <!-- Content End -->
 
-                    <div class="col-sm-12 col-xl-6">
-                        <h6 class="mb-3">Datos del cliente</h6>
-                            <form>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Nombre del cliente</label>
-                                    <input class="form-control mb-3" type="text" placeholder="Miguel Angel Patroquio Hernandez">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Dirección</label>
-                                    <input class="form-control mb-3" type="text" placeholder="C. Delfín Contreras">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Número de Teléfono</label>
-                                    <input class="form-control mb-3" type="text" placeholder="3226985940">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Tipo de Local</label>
-                                    <input class="form-control mb-3" type="text" placeholder="Escuela">
-                                </div>
-                            </form>
-                    </div>
-            -->
-            
-            <!-- Container End -->
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
 
-        <!-- Content End -->
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/chart/chart.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    <script src="script/script.js"></script>
-    <script src="script/showHide.js"></script>
+        <!-- Template Javascript -->
+        <script>
+            window.setTimeout(function() {
+                $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                    $(this).remove();
+                });
+            }, 2000);
+        </script>
+        <script src="js/main.js"></script>
+        <script src="script/script.js"></script>
+        <script src="script/showHide.js"></script>
 </body>
 
 </html>
