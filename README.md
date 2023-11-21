@@ -1,6 +1,6 @@
 # modularbasico
 
-## Sistema de Gestión de Pedidos para la Panadería Luna
+## Sistema de Gestión de Pedidos para la Panadería Luna
 
 ### Proyecto Modular “Arquitectura y Programación de Sistemas” Ingeniería en Computación
 
