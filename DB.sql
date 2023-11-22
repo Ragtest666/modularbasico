@@ -61,3 +61,23 @@ CREATE TABLE Trabajadores (
     direccion VARCHAR(255) NOT NULL,
     curp VARCHAR(18) NOT NULL
 );
+
+,
+                                                $fila["imagen"],
+                                                $fila["nombre"],
+                                                $fila["direccion"],
+                                                $fila["telefono"],
+                                                $fila["id"],
+                                                $fila["id"],
+                                                $fila["id"],
+                                                $fila["id"],
+                                                $fila["nombre"],
+                                                $fila["telefono"],
+                                                $fila["correo"],
+                                                $fila["direccion"],
+                                                $fila["colonia"],
+                                                $fila["tipo_local"],
+                                                $fila["codigo_postal"],
+                                                $fila["num_interior"],
+                                                $fila["num_exterior"],
+                                                $fila["id"]

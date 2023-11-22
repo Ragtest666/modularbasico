@@ -4,6 +4,7 @@ require_once("control/validarusuario.php");
 if (!isset($_SESSION['nombre'])) {
     header("Location:signin.php");
 }
+include("control/eliminarcliente.php");
 $usuario = $_SESSION["nombre"];
 ?>
 <html lang="es">
@@ -154,42 +155,114 @@ $usuario = $_SESSION["nombre"];
                         <div class=" text-center rounded p-4 row  ">
 
                             <!--card de clientes-->
-                            <div class="card-body px-1 py-0  ">
-                                <div class="row g-0 text-center fs--1">
-                                    <?php
-                                    require("control/conexion.php");
-                                    $sqlcliente = "SELECT nombre ,direccion,telefono,imagen FROM Clientes;";
-                                    $consulta = mysqli_query($conexion, $sqlcliente);
-                                    while ($fila = mysqli_fetch_array($consulta)) {
-                                        printf(
-                                            '<div class="col-6  col-md-4 col-lg-3 col-xxl-2 mb-1">
-                                                    <div class="con p-3 h-100"><a href="ConsultarCliente.php"><img class="img-thumbnail img-fluid rounded-circle mb-3 bordercolor shadow-sm" src="%s" alt="" width="150" height="150" /></a>
+                            <form action="" method="POST">
+                                <div class="card-body px-1 py-0  ">
+                                    <div class="row g-0 text-center fs--1">
+                                        <?php
+                                        require("control/conexion.php");
+                                        $sqlcliente = "SELECT * FROM Clientes;";
+                                        $consulta = mysqli_query($conexion, $sqlcliente);
+                                        while ($fila = mysqli_fetch_array($consulta)) {
+                                            printf(
+                                                '
+                                            <div class="col-6  col-md-4 col-lg-3 col-xxl-2 mb-1">
+                                                    <div class="con p-3 h-100"><a href="ConsultarCliente.php"><img class="img-thumbnail img-fluid rounded-circle mb-3 bordercolor shadow-sm" src="%s" alt=""style="width:150px; height:150px;" /></a>
                                                         <h5 class=" mb-1"><a class="fuente" class="fuente" href="#"><b>%s</b></a></h5>
                                                         <h6 class=" mb-1"><a class="fuente" class="fuente" href="#">%s</a></h6>
 
                                                         <p class=" fs--2 mb-1"><a class="fuente" href="#">Tel: %s</a></p>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col"><button class="btn"><span class="material-symbols-outlined">
-                                                        edit
-                                                        </span></button></div>
-                                                        <div class="col"><button class="btn"><span class="material-symbols-outlined">
-                                                        visibility
-                                                        </span></button></div>
-                                                        <div class="col"><button class="btn"><span class="material-symbols-outlined">
-                                                        delete
-                                                        </span></button></div>
+                                                    <div class="d-inline">
+                                                        <button class="btn " data-bs-toggle="modal" data-bs-target="#editModal%s"><span class="material-symbols-outlined">edit</span></button>
+                                                        <button class="btn " name="ver" value=%s><span class="material-symbols-outlined">visibility</span></button>
+                                                        <button class="btn " name="eliminar" value=%s><span class="material-symbols-outlined">delete</span></button>
                                                     </div>
-                                            </div>',
-                                            $fila["imagen"],
-                                            $fila["nombre"],
-                                            $fila["direccion"],
-                                            $fila["telefono"]
-                                        );
-                                    }
-                                    ?>
+                                            </div>
+                                            <!-- Modal de edición -->
+                                            <div class="modal fade" id="editModal%s" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header naranja">
+                                                            <h5 class="modal-title" id="editModalLabel">Editar Cliente</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body cafeoscuro">
+                                                            
+
+                                                                <div class="col-sm-12 col-xl-6  ">
+                                
+                                                                    <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
+                                                                    <input class="form-control mb-3" type="text" name="nombre"  value="%s" required placeholder="">
+                                                                    <label for="floatingTextarea" class="Text">Numero de telefono *</label>
+                                                                    <input class="form-control p_input mb-3" type="number" name="telefono" value="%s" required placeholder="">
+                                
+                                
+                                                                    <label for="floatingTextarea" class="Text">Correo Electrónico</label>
+                                                                    <input class="form-control mb-3" type="email" name="correo" value="%s" placeholder="">
+                                                                    <label for="floatingTextarea" class="Text">Direccion</label>
+                                                                    <input class="form-control mb-3" type="text" name="direccion" value="%s" placeholder="">
+                                                                    <label for="floatingTextarea" class="Text">Colonia</label>
+                                                                    <input class="form-control mb-3" type="text" name="colonia" value="%s" placeholder="">
+                                                                </div>
+                                
+                                                                <div class="col-sm-12 col-xl-6  row">
+                                                                    <div class="col-sm-12 col-xl-6 ">
+                                                                        <label for="floatingTextarea" class="Text">Tipo Local *</label>
+                                                                        <input class="form-control mb-3" type="text" name="tipo_local" value="%s" required placeholder="">
+                                                                        <label for="floatingTextarea" class="Text">Codigo Postal</label>
+                                                                        <input class="form-control mb-3" type="text" name="codigo_postal" placeholder="">
+                                                                    </div>
+                                                                    <div class="col-sm-12 col-xl-6 ">
+                                                                        <label for="floatingTextarea" class="Text">Número Interior</label>
+                                                                        <input class="form-control mb-3" type="text" name="num_interior" placeholder="">
+                                                                        <label for="floatingTextarea" class="Text">Numero Exterior</label>
+                                                                        <input class="form-control mb-3" type="text" name="num_exterior" placeholder="">
+                                                                    </div>
+                                
+                                                                    <div class="h-230 ">
+                                                                        <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
+                                                                            <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                
+                                                                <div class="col-sm-12 col-lg-12 mt-3">
+                                                                    <div class=" row ">
+                                                                        <div class="text-center col-6"><input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div>
+                                                                    </div>
+                                                                </div>
+                                                            
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="button" class="btn btn-primary" name="update">Guardar cambios</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            ',
+                                                $fila["imagen"],
+                                                $fila["nombre"],
+                                                $fila["direccion"],
+                                                $fila["telefono"],
+                                                $fila["id"],
+                                                $fila["id"],
+                                                $fila["id"],
+                                                $fila["id"],
+                                                $fila["nombre"],
+                                                $fila["telefono"],
+                                                $fila["correo"],
+                                                $fila["direccion"],
+                                                $fila["colonia"],
+                                                $fila["tipo_local"],
+                                            );
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -221,8 +294,15 @@ $usuario = $_SESSION["nombre"];
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
-    
+
     <script src="js/main.js"></script>
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 1000);
+    </script>
 </body>
 
 </html>
