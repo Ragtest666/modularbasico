@@ -10,17 +10,17 @@ require_once("conexion.php");
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>');
         }else{    
-        $consulta="SELECT * FROM Usuarios WHERE nombre='$usuario'"; 
+        $consulta="SELECT * FROM Usuarios WHERE nombre_usuario='$usuario'"; 
         $resultados=mysqli_query($conexion,$consulta) or die (mysqli_error()); 
         $fila=mysqli_fetch_array($resultados);
         if ($fila["contrasena"]==$contra) {
             
-            $_SESSION["nombre"]=$usuario;
+            $_SESSION["nombre_usuario"]=$usuario;
             session_start();
             header("Location:index.php");
         } 
         else{
-            header("Location:signin.php");
+            header("Location:login.php");
         }
         }  
     }

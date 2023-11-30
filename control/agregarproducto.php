@@ -1,17 +1,12 @@
 <?php
 require_once("conexion.php");
 if (isset($_POST['agregar'])) {
-    $nombre = $_POST["nombre"];
-    $telefono = $_POST["telefono"];
-    $correo = $_POST["correo"];
-    $direccion = $_POST["direccion"];
-    $colonia = $_POST["colonia"];
-    $tipo_local = $_POST["tipo_local"];
-    $codigo_postal = $_POST["codigo_postal"];
-    $num_interior = $_POST["num_interior"];
-    $num_exterior = $_POST["num_exterior"];
+    $nombre_producto = $_POST["nombre_producto"];
+    $precio_menudeo = $_POST["precio_menudeo"];
+    $precio_mayoreo = $_POST["precio_mayoreo"];
+    $descripcion = $_POST["descripcion"];
 
-    $carpeta_imagenes = "img/clientes/";
+    $carpeta_imagenes = "img/productos/";
 
     if ($_FILES["imagen"]["name"] !== "") {
         $nombre_imagen = $_FILES["imagen"]["name"];
@@ -21,21 +16,21 @@ if (isset($_POST['agregar'])) {
         $nombre_imagen = $conexion->insert_id . "_" . $nombre . ".jpg";
         $ruta_imagen = $carpeta_imagenes . $nombre_imagen;
         copy("https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg", $ruta_imagen);
-    }
+    } 
 
-    $sql = "INSERT INTO Clientes (nombre, telefono, correo, direccion, colonia, tipo_local, codigo_postal, num_interior, num_exterior, imagen)
-            VALUES ('$nombre', '$telefono', '$correo', '$direccion', '$colonia', '$tipo_local', '$codigo_postal', '$num_interior', '$num_exterior', '$ruta_imagen')";
+    $sql = "INSERT INTO Productos (nombre_producto, precio_menudeo, precio_mayoreo, descripcion, imagen)
+            VALUES ('$nombre_producto', $precio_menudeo, $precio_mayoreo, '$descripcion', '$ruta_imagen')";
 
     if ($conexion->query($sql) === TRUE) {
         printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
        <div>
-         Cliente agregado correctamente
+         Producto agregado correctamente
        </div>
        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-     </div>
-     ');
+     </div>');
     } else {
         echo "Error: " . $sql . "<br>" . $conexion->error;
     }
 }
+?>

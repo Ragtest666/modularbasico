@@ -523,3 +523,117 @@ Rojizo #66260b;
     background: var(--dark);
     border-color: var(--primary);
 }
+
+/*Pagina menu principal star */
+
+.TablaStatus{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 0px ;
+    
+    border-radius: 5px;
+  }
+
+.CursorPointerTabla{
+    cursor: pointer;
+  }
+ 
+.PosicionAgregar{
+  margin-top: 7px;
+ float: right;
+}
+
+.AgregarP{
+  width: 130px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: #cb8034;
+  color: white;
+  padding: 7px ;
+  
+  border-radius: 5px;
+}
+/*Tamaño de buscador star */
+
+.searchSize
+{
+  height: 35px;
+  margin-bottom: 10px;
+
+}
+/*Tamaño de buscador End */
+
+
+  .BtnStatus{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: #cb8034;
+    color: white;
+    padding: 6px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .BtnStatus:hover{
+    background-color: #8e5924;
+  }
+  .BtnStatus:active{
+    background-color: #f3a023;
+  }
+
+.labeltablaProgreso{
+    background-color: rgb(247, 255, 12);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .labeltablaProgreso:hover{
+    background-color: #decf00;
+  }
+  .labeltablaProgreso:active{
+    background-color: rgb(169, 157, 28);
+  }
+
+  .labeltablaEntregado{
+    background-color: rgb(22, 220, 18);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .labeltablaEntregado:hover{
+    background-color: #3ab800;
+  }
+  .labeltablaEntregado:active{
+    background-color: rgb(28, 169, 28);
+  }
+
+  .labeltablaCancelar{
+    background-color: rgb(220, 18, 18);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .labeltablaCancelar:hover{
+    background-color: #b80000;
+  }
+  .labeltablaCancelar:active{
+    background-color: rgb(169, 28, 28);
+  }
+
+
+/*Pagina menu principal end */
+/*Pagina Colaborador star */
+.BarraEtiqueta{
+    margin-left: 24px;
+    margin-right: 24px
+  }
+  .BarraBtn{
+    background-color: #ffd3a5;
+  }
+  .TextoExtendido{
+   word-break: break-all;
+  width: 125px;
+  }
+  .BarraBtnSeparacion{
+    margin-left: 6%;
+  }
+  /*Pagina Colaborador End */

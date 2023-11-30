@@ -11,7 +11,7 @@ $usuario = $_SESSION["nombre_usuario"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Ajuste - Perfil</title>
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,6 @@ $usuario = $_SESSION["nombre_usuario"];
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="img/favicon.ico" rel="icon">
-
 
     <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -61,14 +60,8 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="<?php 
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
-                    $imagen=mysqli_query($conexion,$img);
-                    $src=mysqli_fetch_array($imagen);
-                    $url=$src['imagen'];
-                    echo $url;?>" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
+                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex"><?php echo $usuario;?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">Ajustes</a>
@@ -80,54 +73,12 @@ $usuario = $_SESSION["nombre_usuario"];
             <div class="container-fluid pt-4 px-4">
                 <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
                     <div class="col-md-6  text-center">
-                        <!-- Recent Sales Start -->
-                        <div class="container-fluid pt-3 px-4">
-                            <div class="cafeoscuro text-center rounded p-4">
-                                <div class="table-responsive">
-                                    <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                        <thead>
-                                            <tr class="text-white">
-                                                <th scope="col">Fecha Realizada</th>
-                                                <th scope="col">Fecha Entrega</th>
-                                                <th scope="col">Cliente</th>
-                                                <th scope="col">Productos</th>
-                                                <th scope="col">Costo Total</th>
-                                                <th scope="col">Observaciones</th>
-                                                <th scope="col">Estatus</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="CursorPointerTabla">
-                                            <tr class="">
-                                                <td>9/10/23</td>
-                                                <td>10/10/23</td>
-                                                <td>Alan Brito</td>
-                                                <td>5 Teleras, 3 conchas</td>
-                                                <td>$123</td>
-                                                <td>Observaciones</td>
-                                                <td>
-                                                    <div>
-                                                        <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
-                                                        <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
-                                                            <a class="labeltablaProgreso dropdown-item">En proceso</a>
-                                                            <a class="labeltablaEntregado dropdown-item">Entregado</a>
-                                                            <a class="labeltablaCancelar dropdown-item">Cancelar</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Recent Sales End -->
+                        <h3>This is blank page</h3>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/chart/chart.min.js"></script>
@@ -148,6 +99,9 @@ $usuario = $_SESSION["nombre_usuario"];
             });
         }, 1000);
     </script>
+    <script src="js/main.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/showHide.js"></script>
 </body>
 
 </html>
