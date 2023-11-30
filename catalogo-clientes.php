@@ -81,7 +81,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     <div class="col-md-6  text-center">
                         <form class="row cafeoscuro rounded p-5 w-100" action="#" method="post" enctype="multipart/form-data">
                             <div class="col-sm-12 col-xl-6">
-                                <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
+                                <label for="floatingTextarea" class="Text">Nombr del cliente *</label>
                                 <input class="form-control mb-3" list="clientesnombre" name="nombre" autocomplete="off" required placeholder="" id="clienteInput" oninput="seleccionarCliente()">
                                 <datalist id="clientesnombre">
                                     <?php
