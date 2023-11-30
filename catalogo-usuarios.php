@@ -75,11 +75,17 @@ $usuario = $_SESSION["nombre_usuario"];
                         </div>
                     </div>
                 </div>
-            </nav>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
-                    <div class="col-md-6  text-center">
-                        <div class="cafeoscuro rounded h-100 p-3 pt-3 w-100 ">
+            </nav> 
+
+        <div class="container-fluid pt-4 px-4">
+            <div class="cafeclaro rounded p-4" >
+                
+            <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+                        <h5 class=" pt-2 text-center ">COLABORADOR</h5>
+                 </div>
+                   
+                 <div class="container-fluid px-4">
+                        <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
 
                             <!--Formulario star-->
                             <form class="row" action="#" method="post" enctype="multipart/form-data">
