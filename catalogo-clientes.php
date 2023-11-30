@@ -59,7 +59,7 @@ $usuario = $_SESSION["nombre_usuario"];
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <a href="#"class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="<?php 
                     $usuario = $_SESSION['nombre_usuario'];
                     $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
@@ -81,7 +81,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     <div class="col-md-6  text-center">
                         <form class="row cafeoscuro rounded p-5 w-100" action="#" method="post" enctype="multipart/form-data">
                             <div class="col-sm-12 col-xl-6">
-                                <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
+                                <label for="floatingTextarea" class="Text">Nombr del cliente *</label>
                                 <input class="form-control mb-3" list="clientesnombre" name="nombre" autocomplete="off" required placeholder="" id="clienteInput" oninput="seleccionarCliente()">
                                 <datalist id="clientesnombre">
                                     <?php
