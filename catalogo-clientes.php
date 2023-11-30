@@ -50,7 +50,7 @@ $usuario = $_SESSION["nombre_usuario"];
         }
         ?>
         <div class="content">
-            <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
+             <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
                 <a href="index.php" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
                     <h2 class="text-primary mb-0"> <img src="img/Logo.png" width="200" height="80"><i class="fa "></i></h2>
                 </a>
@@ -59,7 +59,7 @@ $usuario = $_SESSION["nombre_usuario"];
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#"class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="<?php 
                     $usuario = $_SESSION['nombre_usuario'];
                     $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";

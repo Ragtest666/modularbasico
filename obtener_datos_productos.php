@@ -1,4 +1,8 @@
 <?php
+require_once("control/validarusuario.php");
+if (!isset($_SESSION['nombre_usuario'])) {
+    header("Location:login.php");
+}
 require_once('control/conexion.php');
 if (isset($_GET['nombre_producto'])) {
     $nombreProducto = $_GET['nombre_producto'];
