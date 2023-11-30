@@ -78,7 +78,7 @@ $usuario = $_SESSION["nombre_usuario"];
             </nav> 
 
         <div class="container-fluid pt-4 px-4">
-            <div class="cafeclaro rounded p-4" >
+            <div class="cafeclaro rounded p-4" style="height:85vh;" >
                 
             <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
                         <h5 class=" pt-2 text-center ">COLABORADOR</h5>
