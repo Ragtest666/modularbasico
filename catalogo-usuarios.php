@@ -160,11 +160,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                     <div class="col-sm-6 col-xl-6 ">
                                         <label for="contrasena" class="Text">Tipo de Usuario *</label>
-                                        <input class="form-control mb-3" list="tipo_usuario" name="tipo_usuario" autocomplete="off" required placeholder="">
-                                        <datalist id="tipo_usuario">
+                                        <select class="form-control mb-3" name="tipo_usuario" required>
+                                            <option value=""></option>
                                             <option value="Admin">Admin</option>
                                             <option value="Colaborador">Colaborador</option>
-                                        </datalist>
+                                        </select>
                                     </div>
                                     <div class="col-sm-6 col-xl-6 ">
                                         <label for="confirmar_contrasena" class="Text">Contraseña *</label>
@@ -212,7 +212,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("nombre_usuario")[0].value = datosColaborador.nombre_usuario || "";
                                                         document.getElementsByName("tipo_usuario")[0].value = datosColaborador.tipo_usuario || "";
                                                         document.getElementsByName("contrasena")[0].value = datosColaborador.contrasena || "";
-                                                        document.getElementById("img").src = datosColaborador.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"; 
+                                                        document.getElementById("img").src = datosColaborador.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
                                                         document.getElementsByName("eliminar")[0].value = datosColaborador.id_trabajador || "";
                                                         document.getElementsByName("update")[0].value = datosColaborador.id_trabajador || "";
                                                     } else {
@@ -228,7 +228,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("nombre_usuario")[0].value = "";
                                                         document.getElementsByName("tipo_usuario")[0].value = "";
                                                         document.getElementsByName("contrasena")[0].value = "";
-                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"; 
+                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
                                                         document.getElementsByName("eliminar")[0].value = "";
                                                         document.getElementsByName("update")[0].value = "";
                                                     }
