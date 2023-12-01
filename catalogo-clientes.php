@@ -217,7 +217,7 @@ $usuario = $_SESSION["nombre_usuario"];
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
-                location.reload();
+                window.location.href = 'catalogo-clientes.php';
             });
         }, 3000);
         

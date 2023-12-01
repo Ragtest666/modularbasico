@@ -145,9 +145,10 @@ $usuario = $_SESSION["nombre_usuario"];
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
+                window.location.href = 'index.php';
             });
         }, 3000);
-        location.reload();
+       
     </script>
 </body>
 
