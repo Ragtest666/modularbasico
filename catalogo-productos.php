@@ -77,14 +77,15 @@ $usuario = $_SESSION["nombre_usuario"];
                 </div>
             </nav>
             <div class="container-fluid pt-4 px-4">
-                <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
-                    <div class="col-md-6  text-center">
-                        <div class="naranja rounded h-100 p-2 row">
-                            <div class="col d-flex ">
-                                <h6 class="text-center  mb-0">Datos del producto</h6>
-                            </div>
-                        </div>
-                        <div class="cafeoscuro rounded h-100 p-4  row ">
+            <div class="cafeclaro rounded P-4" style="height:85vh;">
+
+                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+                        <h5 class=" pt-2 text-center ">CATALOGO DE PRODUCTOS</h5>
+                     </div>
+
+                <div class="container-fluid px-4">
+                     <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                        
                         <form class="row" action="#" method="post" enctype="multipart/form-data">
 
                                 <div class="col-lg-8 col-sm-10 m-auto pd-2">
@@ -119,14 +120,17 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="col-lg-4 col-sm-10 pt-2 ">
                                     <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                        <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                        <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label>
+                                    <label for="foto">
+                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img"/>
+                                          </label>
+                                          <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*"/>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-lg-12 mt-3">
                                     <div class=" row ">
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Producto</button></div>
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Producto</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar Producto</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar cambios</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Producto</button></div>
 
                                     </div>
