@@ -66,7 +66,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     $imagen=mysqli_query($conexion,$img);
                     $src=mysqli_fetch_array($imagen);
                     $url=$src['imagen'];
-                    echo $url;?>" alt="" style="width: 40px; height: 40px;">
+                     echo $url;?>" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
@@ -78,7 +78,7 @@ $usuario = $_SESSION["nombre_usuario"];
             </nav> 
 
         <div class="container-fluid pt-4 px-4">
-            <div class="cafeclaro rounded p-4" >
+            <div class="cafeclaro rounded p-4" style="height:85vh;" >
                 
             <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
                         <h5 class=" pt-2 text-center ">COLABORADOR</h5>
@@ -89,7 +89,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                             <!--Formulario star-->
                             <form class="row" action="#" method="post" enctype="multipart/form-data">
-                                <div class="col-sm-12 col-xl-6  ">
+                                <div class="col-sm-12 col-lg-6  ">
                                     <label for="nombre" class="Text">Nombre del Colaborador *</label>
                                     <input class="form-control mb-3" list="Colaboradorsnombre" name="nombre" autocomplete="off" required placeholder="" id="ColaboradorInput" oninput="seleccionarColaborador()">
                                     <datalist id="Colaboradorsnombre">
@@ -153,8 +153,8 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 col-xl-6 row">
-                                    <div class="col-sm-12 col-xl-12 ">
+                                <div class="col-sm-12 col-xl-6  row">
+                                    <div class="col-sm-12 col-xl-12  ">
                                         <label for="nombre_usuario" class="Text">Nombre de usuario *</label>
                                         <input class="form-control mb-3" type="text" name="nombre_usuario" autocomplete="off" required placeholder="">
                                     </div>
@@ -174,13 +174,13 @@ $usuario = $_SESSION["nombre_usuario"];
                                     <div class="h-230 ">
                                         <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
                                             <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                            <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label>
+                                            <div class="col-sm-12 mt-3 text-center col-6"><input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="BarraBtn rounded border col-sm-12 col-lg-12 ">
-                                    <div class="row BarraBtnSeparacion">
+                                <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
+                                    <div class="row ">
                                     <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar</button></div>
                                     <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar</button></div>
                                     <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar</button></div>
