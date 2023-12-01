@@ -9,8 +9,8 @@ CREATE TABLE Usuarios (
     nombre VARCHAR(50) NOT NULL,
     correo VARCHAR(100) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
-    id_trabajador INT,
-    FOREIGN KEY (id_trabajador) REFERENCES Trabajadores(id)
+    id_colaborador INT,
+    FOREIGN KEY (id_colaborador) REFERENCES Colaboradores(id)
 );
 
 -- Tabla para Clientes
@@ -51,8 +51,8 @@ CREATE TABLE Pedidos (
     FOREIGN KEY (id_producto) REFERENCES Productos(id)
 );
 
--- Tabla para Trabajadores
-CREATE TABLE Trabajadores (
+-- Tabla para Colaboradores
+CREATE TABLE Colaboradores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     telefono VARCHAR(15) NOT NULL,
@@ -61,23 +61,3 @@ CREATE TABLE Trabajadores (
     direccion VARCHAR(255) NOT NULL,
     curp VARCHAR(18) NOT NULL
 );
-
-,
-                                                $fila["imagen"],
-                                                $fila["nombre"],
-                                                $fila["direccion"],
-                                                $fila["telefono"],
-                                                $fila["id"],
-                                                $fila["id"],
-                                                $fila["id"],
-                                                $fila["id"],
-                                                $fila["nombre"],
-                                                $fila["telefono"],
-                                                $fila["correo"],
-                                                $fila["direccion"],
-                                                $fila["colonia"],
-                                                $fila["tipo_local"],
-                                                $fila["codigo_postal"],
-                                                $fila["num_interior"],
-                                                $fila["num_exterior"],
-                                                $fila["id"]

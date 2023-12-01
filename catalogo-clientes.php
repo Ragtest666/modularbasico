@@ -50,7 +50,7 @@ $usuario = $_SESSION["nombre_usuario"];
         }
         ?>
         <div class="content">
-             <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
+            <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
                 <a href="index.php" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
                     <h2 class="text-primary mb-0"> <img src="img/Logo.png" width="200" height="80"><i class="fa "></i></h2>
                 </a>
@@ -60,13 +60,13 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="<?php 
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
-                    $imagen=mysqli_query($conexion,$img);
-                    $src=mysqli_fetch_array($imagen);
-                    $url=$src['imagen'];
-                    echo $url;?>" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="<?php
+                                                                        $usuario = $_SESSION['nombre_usuario'];
+                                                                        $img = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                        $imagen = mysqli_query($conexion, $img);
+                                                                        $src = mysqli_fetch_array($imagen);
+                                                                        $url = $src['imagen'];
+                                                                        echo $url; ?>" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
@@ -76,103 +76,122 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </nav>
-            
+
             <div class="container-fluid pt-4 px-4">
                 <div class="cafeclaro rounded p-4" style="height:85vh;">
-                
-                <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+
+                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
                         <h5 class=" pt-2 text-center ">Cliente</h5>
-                 </div>
+                    </div>
 
-                <div class="container-fluid px-4">
-                 <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
-                    <form class="row  rounded" action="#" method="post" enctype="multipart/form-data">
-                            
-                         <div class="col-sm-12 col-xl-6">
-                                <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
-                                <input class="form-control mb-3" list="clientesnombre" name="nombre" autocomplete="off" required placeholder="" id="clienteInput" oninput="seleccionarCliente()">
-                                <datalist id="clientesnombre">
-                                    <?php
-                                    $nomCliente = "SELECT nombre, tipo_local FROM Clientes;";
-                                    $conNom = mysqli_query($conexion, $nomCliente);
-                                    while ($fila = mysqli_fetch_array($conNom)) {
-                                        printf('<option class="naranja" value="%s">%s</option>', $fila['nombre'], $fila['tipo_local']);
-                                    }
-                                    ?>
-                                </datalist>
-                                <label for="floatingTextarea" class="Text">Numero de telefono *</label>
-                                <input class="form-control p_input mb-3" type="number" name="telefono" autocomplete="off" required placeholder="">
-                                <label for="floatingTextarea" class="Text">Correo Electrónico</label>
-                                <input class="form-control mb-3" type="email" name="correo" autocomplete="off" placeholder="">
-                                <label for="floatingTextarea" class="Text">Direccion</label>
-                                <input class="form-control mb-3" type="text" name="direccion" autocomplete="off" placeholder="">
-                                <label for="floatingTextarea" class="Text">Colonia</label>
-                                <input class="form-control mb-3" type="text" name="colonia" autocomplete="off" placeholder="">
-                            </div>
+                    <div class="container-fluid px-4">
+                        <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                            <form class="row  rounded" action="#" method="post" enctype="multipart/form-data">
 
-                            <div class="col-sm-12 col-xl-6  row">
-                                <div class="col-sm-12 col-xl-6 ">
-                                    <label for="floatingTextarea" class="Text">Tipo Local *</label>
-                                    <input class="form-control mb-3" type="text" name="tipo_local" autocomplete="off" required placeholder="">
-                                    <label for="floatingTextarea" class="Text">Codigo Postal</label>
-                                    <input class="form-control mb-3" type="text" name="codigo_postal" autocomplete="off" placeholder="">
-                                </div>
-                                <div class="col-sm-12 col-xl-6 ">
-                                    <label for="floatingTextarea" class="Text">Número Interior</label>
-                                    <input class="form-control mb-3" type="text" name="num_interior" autocomplete="off" placeholder="">
-                                    <label for="floatingTextarea" class="Text">Numero Exterior</label>
-                                    <input class="form-control mb-3" type="text" name="num_exterior" autocomplete="off" placeholder="">
+                                <div class="col-sm-12 col-xl-6">
+                                    <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
+                                    <input class="form-control mb-3" list="clientesnombre" name="nombre" autocomplete="off" required placeholder="" id="clienteInput" oninput="seleccionarCliente()">
+                                    <datalist id="clientesnombre">
+                                        <?php
+                                        $nomCliente = "SELECT nombre, tipo_local FROM Clientes;";
+                                        $conNom = mysqli_query($conexion, $nomCliente);
+                                        while ($fila = mysqli_fetch_array($conNom)) {
+                                            printf('<option class="naranja" value="%s">%s</option>', $fila['nombre'], $fila['tipo_local']);
+                                        }
+                                        ?>
+                                    </datalist>
+                                    <label for="floatingTextarea" class="Text">Numero de telefono *</label>
+                                    <input class="form-control p_input mb-3" type="number" name="telefono" autocomplete="off" required placeholder="">
+                                    <label for="floatingTextarea" class="Text">Correo Electrónico</label>
+                                    <input class="form-control mb-3" type="email" name="correo" autocomplete="off" placeholder="">
+                                    <label for="floatingTextarea" class="Text">Direccion</label>
+                                    <input class="form-control mb-3" type="text" name="direccion" autocomplete="off" placeholder="">
+                                    <label for="floatingTextarea" class="Text">Colonia</label>
+                                    <input class="form-control mb-3" type="text" name="colonia" autocomplete="off" placeholder="">
                                 </div>
 
-                                <div class="h-230 ">
-                                    <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                        <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                        <div class="col-sm-12 mt-3 text-center col-6"><input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div>
+                                <div class="col-sm-12 col-xl-6  row">
+                                    <div class="col-sm-12 col-xl-6 ">
+                                        <label for="floatingTextarea" class="Text">Tipo Local *</label>
+                                        <input class="form-control mb-3" type="text" name="tipo_local" autocomplete="off" required placeholder="">
+                                        <label for="floatingTextarea" class="Text">Codigo Postal</label>
+                                        <input class="form-control mb-3" type="text" name="codigo_postal" autocomplete="off" placeholder="">
+                                    </div>
+                                    <div class="col-sm-12 col-xl-6 ">
+                                        <label for="floatingTextarea" class="Text">Número Interior</label>
+                                        <input class="form-control mb-3" type="text" name="num_interior" autocomplete="off" placeholder="">
+                                        <label for="floatingTextarea" class="Text">Numero Exterior</label>
+                                        <input class="form-control mb-3" type="text" name="num_exterior" autocomplete="off" placeholder="">
+                                    </div>
+
+                                    <div class="h-230 ">
+                                        <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
+                                            <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                            <div class="col-sm-12 mt-3 text-center col-6"><input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
-                                <div class=" row ">
-                                    <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
-                                    <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar Cliente</button></div>
-                                    <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Cliente</button></div>
+                                <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
+                                    <div class=" row ">
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar Cliente</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Cliente</button></div>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <script>
-                                function seleccionarCliente() {
-                                    var clienteSeleccionado = document.getElementById("clienteInput").value;
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.onreadystatechange = function() {
-                                        if (xhr.readyState == 4 && xhr.status == 200) {
-                                            var datosCliente = JSON.parse(xhr.responseText);
-                                            document.getElementsByName("tipo_local")[0].value = datosCliente.tipo_local;
-                                            document.getElementsByName("telefono")[0].value = datosCliente.telefono;
-                                            document.getElementsByName("correo")[0].value = datosCliente.correo;
-                                            document.getElementsByName("direccion")[0].value = datosCliente.direccion;
-                                            document.getElementsByName("colonia")[0].value = datosCliente.colonia;
-                                            document.getElementsByName("codigo_postal")[0].value = datosCliente.codigo_postal;
-                                            document.getElementsByName("num_interior")[0].value = datosCliente.num_interior;
-                                            document.getElementsByName("num_exterior")[0].value = datosCliente.num_exterior;
-                                            document.getElementById("img").src = datosCliente.imagen;
-                                            document.getElementsByName("agregar")[0].value = datosCliente.id;
-                                            document.getElementsByName("update")[0].value = datosCliente.id;
-                                            document.getElementsByName("eliminar")[0].value = datosCliente.id;
-                                        }
-                                    };
-                                    xhr.open("GET", "obtener_datos_cliente.php?nombre=" + encodeURIComponent(clienteSeleccionado), true);
-                                    xhr.send();
-                                }
-                            </script>
-                            <?php
+                                <script>
+                                    function seleccionarCliente() {
+                                        var clienteSeleccionado = document.getElementById("clienteInput").value;
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState == 4) {
+                                                if (xhr.status == 200) {
+                                                    var datosCliente = JSON.parse(xhr.responseText);
+                                                    if (datosCliente !== null && datosCliente !== undefined) {
+                                                        document.getElementsByName("tipo_local")[0].value = datosCliente.tipo_local || "";
+                                                        document.getElementsByName("telefono")[0].value = datosCliente.telefono || "";
+                                                        document.getElementsByName("correo")[0].value = datosCliente.correo || "";
+                                                        document.getElementsByName("direccion")[0].value = datosCliente.direccion || "";
+                                                        document.getElementsByName("colonia")[0].value = datosCliente.colonia || "";
+                                                        document.getElementsByName("codigo_postal")[0].value = datosCliente.codigo_postal || "";
+                                                        document.getElementsByName("num_interior")[0].value = datosCliente.num_interior || "";
+                                                        document.getElementsByName("num_exterior")[0].value = datosCliente.num_exterior || "";
+                                                        document.getElementById("img").src = datosCliente.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                                        document.getElementsByName("agregar")[0].value = datosCliente.id;
+                                                        document.getElementsByName("update")[0].value = datosCliente.id;
+                                                        document.getElementsByName("eliminar")[0].value = datosCliente.id;
+                                                    } else {
+                                                        document.getElementsByName("tipo_local")[0].value = "";
+                                                        document.getElementsByName("telefono")[0].value = "";
+                                                        document.getElementsByName("correo")[0].value = "";
+                                                        document.getElementsByName("direccion")[0].value = "";
+                                                        document.getElementsByName("colonia")[0].value = "";
+                                                        document.getElementsByName("codigo_postal")[0].value = "";
+                                                        document.getElementsByName("num_interior")[0].value = "";
+                                                        document.getElementsByName("num_exterior")[0].value = "";
+                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                                        document.getElementsByName("agregar")[0].value = "";
+                                                        document.getElementsByName("update")[0].value = "";
+                                                        document.getElementsByName("eliminar")[0].value = "";
+                                                    }
+                                                } else {
+                                                    console.error("Error al obtener datos del cliente");
+                                                }
+                                            }
+                                        };
+                                        xhr.open("GET", "obtener_datos_cliente.php?nombre=" + encodeURIComponent(clienteSeleccionado), true);
+                                        xhr.send();
+                                    }
+                                </script>
+                                <?php
                                 include('control/agregarcliente.php');
                                 include('control/editarcliente.php');
                                 include('control/eliminarcliente.php');
-                            ?>
-                        </form>
+                                ?>
+                            </form>
+                        </div>
                     </div>
-                 </div>
                 </div>
             </div>
         </div>
