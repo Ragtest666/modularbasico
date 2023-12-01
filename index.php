@@ -77,14 +77,33 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </nav>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
-                    <div class="col-md-6  text-center">
-                        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+                <div class="cafeclaro rounded p-4" style="height:85vh;">
+                    
+                <div class="BarraSizeMenu naranja  pb-1 mt-2 rounded">
+                        <h5 class=" pt-2 text-center ">PEDIDOS PENDIENTES</h5>
+                    </div>
+
+                <div class="container-fluid  px-4 ">
+                         <div class="cafeoscuro  flex rounded p-1 row ">
+                         
+                                <div class=" col-sm-6 container-fluid pt-2 ">
+                                        <form class=" d-md-flex ">
+                                            <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" placeholder="Buscar un pedido">
+                                        </form>
+                                </div>
+                                    <div class=" col-sm-6  "><a href="#" type="submit" class=" PosicionAgregar btn text-white" aria-current="page">+</a></div>
+                        </div>
+
+                 </div>
+                        
+                    <!-- Recent Sales Start -->
                         <div class="container-fluid pt-3 px-4">
-                            <div class="cafeoscuro text-center rounded p-4">
-                                <div class="table-responsive">
-                                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                              
+                            <div class="table-responsive">
+                                    
+                                <table class="table text-start align-middle table-bordered table-hover mb-0">
                                         <thead>
                                             <tr class="text-white">
                                                 <th scope="col">Fecha Realizada</th>
@@ -121,7 +140,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             </div>
                         </div>
                         <!-- Recent Sales End -->
-                    </div>
+                    
                 </div>
             </div>
         </div>
