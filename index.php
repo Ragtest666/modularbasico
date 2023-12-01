@@ -146,7 +146,8 @@ $usuario = $_SESSION["nombre_usuario"];
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
             });
-        }, 1000);
+        }, 3000);
+        location.reload();
     </script>
 </body>
 

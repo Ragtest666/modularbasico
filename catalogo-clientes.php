@@ -214,8 +214,11 @@ $usuario = $_SESSION["nombre_usuario"];
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
                 $(this).remove();
+                location.reload();
             });
-        }, 1000);
+        }, 3000);
+        
+        
     </script>
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>

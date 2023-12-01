@@ -18,8 +18,9 @@
 
 <?php
 require_once("conexion.php");
+
 if (isset($_POST['update'])) {
-    $id=$_POST['update'];
+    $id = $_POST['update'];
     $nombre = $_POST["nombre"];
     $telefono = $_POST["telefono"];
     $correo = $_POST["correo"];
@@ -34,53 +35,61 @@ if (isset($_POST['update'])) {
     $tipo_usuario = $_POST["tipo_usuario"];
     $contrasena = $_POST["contrasena"];
 
-    // Verifica si se cargó una nueva imagen
-    if ($_FILES["imagen"]["name"] !== "") {
-        $carpeta_imagenes = "img/colaboradores/";
-        $nombre_imagen = $_FILES["imagen"]["name"];
-        $ruta_imagen = $carpeta_imagenes . $nombre_imagen;
+    // Verifica si el trabajador existe
+    $trabajadorExistente = $conexion->query("SELECT * FROM Trabajadores WHERE id = '$id'");
+    if ($trabajadorExistente->num_rows > 0) {
+        // Actualiza la tabla Trabajadores
+        $sqlTrabajadores = "UPDATE Trabajadores SET
+            telefono = '$telefono',
+            correo = '$correo',
+            nss = '$nss',
+            curp = '$curp',
+            calle = '$calle',
+            colonia = '$colonia',
+            cp = '$cp',
+            numero_interior = '$num_interior',
+            numero_exterior = '$num_exterior'
+            WHERE id='$id';";
 
-        // Mueve la nueva imagen al directorio de imágenes
-        move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta_imagen);
+        if ($conexion->query($sqlTrabajadores) === TRUE) {
+            $usuarioExistente = $conexion->query("SELECT * FROM Usuarios WHERE id_trabajador = '$id'");
+            if ($usuarioExistente->num_rows > 0) {
+                $sqlUsuarios = "UPDATE Usuarios SET nombre_usuario ='$nombre_usuario',
+                    tipo_usuario = '$tipo_usuario',
+                    contrasena = '$contrasena'
+                    WHERE id_trabajador = '$id';";
 
-        // Actualiza la base de datos con la nueva ruta de la imagen
-        $sqlImagen = "UPDATE Trabajadores SET imagen = '$ruta_imagen' WHERE id = '$id';";
-        $conexion->query($sqlImagen);
-    }
-
-    // Actualiza la tabla Trabajadores
-    $sqlTrabajadores = "UPDATE Trabajadores SET
-        telefono = '$telefono',
-        correo = '$correo',
-        nss = '$nss',
-        curp = '$curp',
-        calle = '$calle',
-        colonia = '$colonia',
-        cp = '$cp',
-        numero_interior = '$num_interior',
-        numero_exterior = '$num_exterior'
-        WHERE id='$id';";
-
-    if ($conexion->query($sqlTrabajadores) === TRUE) {
-        // Actualiza la tabla Usuarios
-        $sqlUsuarios = "UPDATE Usuarios SET nombre_usuario ='$nombre_usuario',
-            tipo_usuario = '$tipo_usuario',
-            contrasena = '$contrasena'
-            WHERE id_trabajador = '$id';";
-
-        if ($conexion->query($sqlUsuarios) === TRUE) {
-            printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                    <div>
-                        Datos de trabajador y usuario actualizados correctamente
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>');
+                if ($conexion->query($sqlUsuarios) === TRUE) {
+                    printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                                Datos de trabajador y usuario actualizados correctamente
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>');
+                } else {
+                    printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                                No se pudo actualizar la información del usuario: ' . $conexion->error . '
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>');
+                }
+            } else {
+                printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <div>
+                            El usuario no existe.
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+            }
         } else {
             printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
                     <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                     <div>
-                        No se pudo actualizar la información del usuario: ' . $conexion->error . '
+                        No se pudo actualizar la información del trabajador: ' . $conexion->error . '
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>');
@@ -89,7 +98,7 @@ if (isset($_POST['update'])) {
         printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
                 <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                 <div>
-                    No se pudo actualizar la información del trabajador: ' . $conexion->error . '
+                    El trabajador no existe.
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>');

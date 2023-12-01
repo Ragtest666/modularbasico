@@ -88,7 +88,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
 
                             <!--Formulario star-->
-                            <form class="row" action="#" method="post" enctype="multipart/form-data">
+                            <form class="row" action="" method="post" enctype="multipart/form-data">
                                 <div class="col-sm-12 col-lg-6  ">
                                     <label for="nombre" class="Text">Nombre del Colaborador *</label>
                                     <input class="form-control mb-3" list="Colaboradorsnombre" name="nombre" autocomplete="off" required placeholder="" id="ColaboradorInput" oninput="seleccionarColaborador()">
@@ -266,8 +266,10 @@ $usuario = $_SESSION["nombre_usuario"];
             window.setTimeout(function() {
                 $(".alert").fadeTo(500, 0).slideUp(500, function() {
                     $(this).remove();
+                    window.location.href = 'catalogo-usuarios.php';
                 });
-            }, 1000);
+            }, 3000);
+        
         </script>
         <script src="js/main.js"></script>
         <script src="script/script.js"></script>
