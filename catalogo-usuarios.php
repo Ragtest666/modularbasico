@@ -60,13 +60,13 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="<?php 
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
-                    $imagen=mysqli_query($conexion,$img);
-                    $src=mysqli_fetch_array($imagen);
-                    $url=$src['imagen'];
-                     echo $url;?>" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="<?php
+                                                                        $usuario = $_SESSION['nombre_usuario'];
+                                                                        $img = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                        $imagen = mysqli_query($conexion, $img);
+                                                                        $src = mysqli_fetch_array($imagen);
+                                                                        $url = $src['imagen'];
+                                                                        echo $url; ?>" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
@@ -75,16 +75,16 @@ $usuario = $_SESSION["nombre_usuario"];
                         </div>
                     </div>
                 </div>
-            </nav> 
+            </nav>
 
-        <div class="container-fluid pt-4 px-4">
-            <div class="cafeclaro rounded p-4" style="height:85vh;" >
-                
-            <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+            <div class="container-fluid pt-4 px-4">
+                <div class="cafeclaro rounded p-4" style="height:85vh;">
+
+                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
                         <h5 class=" pt-2 text-center ">COLABORADOR</h5>
-                 </div>
-                   
-                 <div class="container-fluid px-4">
+                    </div>
+
+                    <div class="container-fluid px-4">
                         <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
 
                             <!--Formulario star-->
@@ -160,11 +160,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                     <div class="col-sm-6 col-xl-6 ">
                                         <label for="contrasena" class="Text">Tipo de Usuario *</label>
-                                        <input class="form-control mb-3" list="tipo_usuario" name="tipo_usuario" autocomplete="off" required placeholder="">
-                                        <datalist id="tipo_usuario">
+                                        <select class="form-control mb-3" name="tipo_usuario" required>
+                                            <option value=""></option>
                                             <option value="Admin">Admin</option>
                                             <option value="Colaborador">Colaborador</option>
-                                        </datalist>
+                                        </select>
                                     </div>
                                     <div class="col-sm-6 col-xl-6 ">
                                         <label for="confirmar_contrasena" class="Text">Contraseña *</label>
@@ -181,9 +181,9 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class="row ">
-                                    <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar</button></div>
-                                    <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar</button></div>
-                                    <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar</button></div>
                                     </div>
                                 </div>
                                 <?php
@@ -193,33 +193,55 @@ $usuario = $_SESSION["nombre_usuario"];
                                 ?>
                                 <script>
                                     function seleccionarColaborador() {
-                                        var ColaboradorSeleccionado = document.getElementById("ColaboradorInput").value;
+                                        var colaboradorSeleccionado = document.getElementById("ColaboradorInput").value;
                                         var xhr = new XMLHttpRequest();
                                         xhr.onreadystatechange = function() {
-                                            if (xhr.readyState == 4 && xhr.status == 200) {
-                                                var datosColaborador = JSON.parse(xhr.responseText);
-                                                document.getElementsByName("telefono")[0].value = datosColaborador.telefono;
-                                                document.getElementsByName("correo")[0].value = datosColaborador.correo;
-                                                document.getElementsByName("nss")[0].value = datosColaborador.nss;
-                                                document.getElementsByName("curp")[0].value = datosColaborador.curp;
-                                                document.getElementsByName("calle")[0].value = datosColaborador.calle;
-                                                document.getElementsByName("colonia")[0].value = datosColaborador.colonia;
-                                                document.getElementsByName("codigo_postal")[0].value = datosColaborador.cp;
-                                                document.getElementsByName("num_interior")[0].value = datosColaborador.numero_interior;
-                                                document.getElementsByName("num_exterior")[0].value = datosColaborador.numero_exterior;
-                                                document.getElementsByName("nombre_usuario")[0].value = datosColaborador.nombre_usuario;
-                                                document.getElementsByName("tipo_usuario")[0].value = datosColaborador.tipo_usuario;
-                                                document.getElementsByName("contrasena")[0].value = datosColaborador.contrasena;
-                                                document.getElementById("img").src = datosColaborador.imagen;
-                                                document.getElementsByName("eliminar")[0].value = datosColaborador.id_trabajador;
-                                                document.getElementsByName("update")[0].value = datosColaborador.id_trabajador;
+                                            if (xhr.readyState == 4) {
+                                                if (xhr.status == 200) {
+                                                    var datosColaborador = JSON.parse(xhr.responseText);
+                                                    if (datosColaborador !== null && datosColaborador !== undefined) {
+                                                        document.getElementsByName("telefono")[0].value = datosColaborador.telefono || "";
+                                                        document.getElementsByName("correo")[0].value = datosColaborador.correo || "";
+                                                        document.getElementsByName("nss")[0].value = datosColaborador.nss || "";
+                                                        document.getElementsByName("curp")[0].value = datosColaborador.curp || "";
+                                                        document.getElementsByName("calle")[0].value = datosColaborador.calle || "";
+                                                        document.getElementsByName("colonia")[0].value = datosColaborador.colonia || "";
+                                                        document.getElementsByName("codigo_postal")[0].value = datosColaborador.cp || "";
+                                                        document.getElementsByName("num_interior")[0].value = datosColaborador.numero_interior || "";
+                                                        document.getElementsByName("num_exterior")[0].value = datosColaborador.numero_exterior || "";
+                                                        document.getElementsByName("nombre_usuario")[0].value = datosColaborador.nombre_usuario || "";
+                                                        document.getElementsByName("tipo_usuario")[0].value = datosColaborador.tipo_usuario || "";
+                                                        document.getElementsByName("contrasena")[0].value = datosColaborador.contrasena || "";
+                                                        document.getElementById("img").src = datosColaborador.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                                        document.getElementsByName("eliminar")[0].value = datosColaborador.id_trabajador || "";
+                                                        document.getElementsByName("update")[0].value = datosColaborador.id_trabajador || "";
+                                                    } else {
+                                                        document.getElementsByName("telefono")[0].value = "";
+                                                        document.getElementsByName("correo")[0].value = "";
+                                                        document.getElementsByName("nss")[0].value = "";
+                                                        document.getElementsByName("curp")[0].value = "";
+                                                        document.getElementsByName("calle")[0].value = "";
+                                                        document.getElementsByName("colonia")[0].value = "";
+                                                        document.getElementsByName("codigo_postal")[0].value = "";
+                                                        document.getElementsByName("num_interior")[0].value = "";
+                                                        document.getElementsByName("num_exterior")[0].value = "";
+                                                        document.getElementsByName("nombre_usuario")[0].value = "";
+                                                        document.getElementsByName("tipo_usuario")[0].value = "";
+                                                        document.getElementsByName("contrasena")[0].value = "";
+                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                                        document.getElementsByName("eliminar")[0].value = "";
+                                                        document.getElementsByName("update")[0].value = "";
+                                                    }
+                                                } else {
+                                                    console.error("Error al obtener datos del colaborador");
+                                                }
                                             }
                                         };
-                                        xhr.open("GET", "obtener_datos_colaboradores.php?nombre=" + encodeURIComponent(ColaboradorSeleccionado), true);
+                                        xhr.open("GET", "obtener_datos_colaboradores.php?nombre=" + encodeURIComponent(colaboradorSeleccionado), true);
                                         xhr.send();
                                     }
                                 </script>
-                                
+
                             </form>
                         </div>
                     </div>

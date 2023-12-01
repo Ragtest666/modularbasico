@@ -60,13 +60,13 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="<?php 
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
-                    $imagen=mysqli_query($conexion,$img);
-                    $src=mysqli_fetch_array($imagen);
-                    $url=$src['imagen'];
-                    echo $url;?>" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="<?php
+                                                                        $usuario = $_SESSION['nombre_usuario'];
+                                                                        $img = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                        $imagen = mysqli_query($conexion, $img);
+                                                                        $src = mysqli_fetch_array($imagen);
+                                                                        $url = $src['imagen'];
+                                                                        echo $url; ?>" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
@@ -77,29 +77,29 @@ $usuario = $_SESSION["nombre_usuario"];
                 </div>
             </nav>
             <div class="container-fluid pt-4 px-4">
-            <div class="cafeclaro rounded P-4" style="height:85vh;">
+                <div class="cafeclaro rounded P-4" style="height:85vh;">
 
                     <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
                         <h5 class=" pt-2 text-center ">CATALOGO DE PRODUCTOS</h5>
-                     </div>
+                    </div>
 
-                <div class="container-fluid px-4">
-                     <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
-                        
-                        <form class="row" action="#" method="post" enctype="multipart/form-data">
+                    <div class="container-fluid px-4">
+                        <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+
+                            <form class="row" action="#" method="post" enctype="multipart/form-data">
 
                                 <div class="col-lg-8 col-sm-10 m-auto pd-2">
                                     <div class="row">
                                         <label for="floatingTextarea" class="Text">Nombre del producto</label>
-                                       <input class="form-control mb-3" list="productosnombre" name="nombre_producto" autocomplete="off" required placeholder="Nombre del producto" id="productoInput" oninput="seleccionarProducto()">
-                                <datalist id="productosnombre">
-                                    <?php
-                                    $nomProducto = "SELECT nombre_producto FROM Productos;";
-                                    $conNom = mysqli_query($conexion, $nomProducto);
-                                    while ($fila = mysqli_fetch_array($conNom)) {
-                                        printf('<option class="naranja" value="%s">%s</option>', $fila['nombre_producto'], $fila['nombre_producto']);
-                                    }
-                                    ?>
+                                        <input class="form-control mb-3" list="productosnombre" name="nombre_producto" autocomplete="off" required placeholder="Nombre del producto" id="productoInput" oninput="seleccionarProducto()">
+                                        <datalist id="productosnombre">
+                                            <?php
+                                            $nomProducto = "SELECT nombre_producto FROM Productos;";
+                                            $conNom = mysqli_query($conexion, $nomProducto);
+                                            while ($fila = mysqli_fetch_array($conNom)) {
+                                                printf('<option class="naranja" value="%s">%s</option>', $fila['nombre_producto'], $fila['nombre_producto']);
+                                            }
+                                            ?>
                                     </div>
                                     <div class="row">
                                         <div class="col">
@@ -120,10 +120,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="col-lg-4 col-sm-10 pt-2 ">
                                     <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                    <label for="foto">
-                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img"/>
-                                          </label>
-                                          <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*"/>
+                                        <label for="foto">
+                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                        </label>
+                                        <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-lg-12 mt-3">
@@ -136,25 +136,39 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                 </div>
                                 <script>
-                                function seleccionarProducto() {
-                                    var productoSeleccionado = document.getElementById("productoInput").value;
-                                    var xhr = new XMLHttpRequest();
-                                    xhr.onreadystatechange = function() {
-                                        if (xhr.readyState == 4 && xhr.status == 200) {
-                                            var datosProducto = JSON.parse(xhr.responseText);
-                                            document.getElementsByName("precio_menudeo")[0].value = datosProducto.precio_menudeo;
-                                            document.getElementsByName("precio_mayoreo")[0].value = datosProducto.precio_mayoreo;
-                                            document.getElementsByName("descripcion")[0].value = datosProducto.descripcion;
-                                            document.getElementById("img").src = datosProducto.imagen;
-                                            document.getElementsByName("agregar")[0].value = datosProducto.id;
-                                            document.getElementsByName("update")[0].value = datosProducto.id;
-                                            document.getElementsByName("eliminar")[0].value = datosProducto.id;
-                                        }
-                                    };
-                                    xhr.open("GET", "obtener_datos_productos.php?nombre_producto=" + encodeURIComponent(productoSeleccionado), true);
-                                    xhr.send();
-                                }
-                            </script>
+                                    function seleccionarProducto() {
+                                        var productoSeleccionado = document.getElementById("productoInput").value;
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState == 4) {
+                                                if (xhr.status == 200) {
+                                                    var datosProducto = JSON.parse(xhr.responseText);
+                                                    if (datosProducto !== null && datosProducto !== undefined) {
+                                                        document.getElementsByName("precio_menudeo")[0].value = datosProducto.precio_menudeo || "";
+                                                        document.getElementsByName("precio_mayoreo")[0].value = datosProducto.precio_mayoreo || "";
+                                                        document.getElementsByName("descripcion")[0].value = datosProducto.descripcion || "";
+                                                        document.getElementById("img").src = datosProducto.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"; 
+                                                        document.getElementsByName("agregar")[0].value = datosProducto.id;
+                                                        document.getElementsByName("update")[0].value = datosProducto.id;
+                                                        document.getElementsByName("eliminar")[0].value = datosProducto.id;
+                                                    } else {
+                                                        document.getElementsByName("precio_menudeo")[0].value = "";
+                                                        document.getElementsByName("precio_mayoreo")[0].value = "";
+                                                        document.getElementsByName("descripcion")[0].value = "";
+                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"; 
+                                                        document.getElementsByName("agregar")[0].value = "";
+                                                        document.getElementsByName("update")[0].value = "";
+                                                        document.getElementsByName("eliminar")[0].value = "";
+                                                    }
+                                                } else {
+                                                    console.error("Error al obtener datos del producto");
+                                                }
+                                            }
+                                        };
+                                        xhr.open("GET", "obtener_datos_productos.php?nombre_producto=" + encodeURIComponent(productoSeleccionado), true);
+                                        xhr.send();
+                                    }
+                                </script>
                                 <?php
                                 include('control/agregarproducto.php');
                                 include('control/editarproducto.php');
