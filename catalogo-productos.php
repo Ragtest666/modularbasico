@@ -77,10 +77,10 @@ $usuario = $_SESSION["nombre_usuario"];
                 </div>
             </nav>
             <div class="container-fluid pt-4 px-4">
-                <div class="cafeclaro rounded P-4" style="height:85vh;">
+                <div class="cafeclaro rounded pt-4" style="height:85vh;">
 
-                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
-                        <h5 class=" pt-2 text-center ">CATALOGO DE PRODUCTOS</h5>
+                    <div class="naranja BarraEtiqueta pb-1 mt-2  rounded">
+                        <h5 class=" pt-2 text-center ">CATALOGO PRODUCTOS</h5>
                     </div>
 
                     <div class="container-fluid px-4">
@@ -90,7 +90,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                 <div class="col-lg-8 col-sm-10 m-auto pd-2">
                                     <div class="row">
-                                        <label for="floatingTextarea" class="Text">Nombre del producto</label>
+                                        <label for="floatingTextarea" class="Text">Nombre del Producto</label>
                                         <input class="form-control mb-3" list="productosnombre" name="nombre_producto" autocomplete="off" required placeholder="Nombre del producto" id="productoInput" oninput="seleccionarProducto()">
                                         <datalist id="productosnombre">
                                             <?php
