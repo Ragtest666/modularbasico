@@ -81,7 +81,7 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="cafeclaro rounded p-4" style="height:85vh;">
 
                     <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
-                        <h5 class=" pt-2 text-center ">Cliente</h5>
+                        <h5 class=" pt-2 text-center ">CATALOGO CLIENTES</h5>
                     </div>
 
                     <div class="container-fluid px-4">
@@ -89,7 +89,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             <form class="row  rounded" action="#" method="post" enctype="multipart/form-data">
 
                                 <div class="col-sm-12 col-xl-6">
-                                    <label for="floatingTextarea" class="Text">Nombre del cliente *</label>
+                                    <label for="floatingTextarea" class="Text">Nombre del Cliente *</label>
                                     <input class="form-control mb-3" list="clientesnombre" name="nombre" autocomplete="off" required placeholder="" id="clienteInput" oninput="seleccionarCliente()">
                                     <datalist id="clientesnombre">
                                         <?php
@@ -100,11 +100,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                         }
                                         ?>
                                     </datalist>
-                                    <label for="floatingTextarea" class="Text">Numero de telefono *</label>
+                                    <label for="floatingTextarea" class="Text">Teléfono *</label>
                                     <input class="form-control p_input mb-3" type="number" name="telefono" autocomplete="off" required placeholder="">
                                     <label for="floatingTextarea" class="Text">Correo Electrónico</label>
                                     <input class="form-control mb-3" type="email" name="correo" autocomplete="off" placeholder="">
-                                    <label for="floatingTextarea" class="Text">Direccion</label>
+                                    <label for="floatingTextarea" class="Text">Calle</label>
                                     <input class="form-control mb-3" type="text" name="direccion" autocomplete="off" placeholder="">
                                     <label for="floatingTextarea" class="Text">Colonia</label>
                                     <input class="form-control mb-3" type="text" name="colonia" autocomplete="off" placeholder="">
@@ -118,24 +118,27 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <input class="form-control mb-3" type="text" name="codigo_postal" autocomplete="off" placeholder="">
                                     </div>
                                     <div class="col-sm-12 col-xl-6 ">
-                                        <label for="floatingTextarea" class="Text">Número Interior</label>
+                                        <label for="floatingTextarea" class="Text">No. Int.</label>
                                         <input class="form-control mb-3" type="text" name="num_interior" autocomplete="off" placeholder="">
-                                        <label for="floatingTextarea" class="Text">Numero Exterior</label>
+                                        <label for="floatingTextarea" class="Text">No. Ext.</label>
                                         <input class="form-control mb-3" type="text" name="num_exterior" autocomplete="off" placeholder="">
                                     </div>
 
-                                    <div class="h-230 ">
-                                        <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                            <img class=" bg-white img-thumbnail shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                            <div class="col-sm-12 mt-3 text-center col-6"><input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" /><label class="labell" for="foto">Seleccionar foto</label></div>
-                                        </div>
+                                 <div class="col-lg-12 col-sm-12 pt-2 ">
+                                    <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
+                                        <label for="foto">
+                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                        </label>
+                                        <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
                                     </div>
                                 </div>
+                           </div>
 
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Cliente</button></div>
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Editar Cliente</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Cliente</button></div>
 
                                     </div>
