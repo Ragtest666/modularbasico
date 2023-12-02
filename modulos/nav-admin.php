@@ -11,7 +11,7 @@ if($url=="/modularbasico/index.php"){
                 <a href="index.php" class="nav-link active"><i class="fa fa-home me-2"></i>Inicio</a>
             </div>
             <div class="nav-item">
-                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Usuarios</a>
+                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Colaboradores</a>
             </div>
             <div class="nav-item">
                 <a href="catalogo-clientes.php" class="nav-link"><i class="fa fa-user-edit me-2"></i>Catalogo Clientes</a>
@@ -40,7 +40,7 @@ if($url=="/modularbasico/index.php"){
                 <a href="index.php" class="nav-link"><i class="fa fa-home me-2"></i>Inicio</a>
             </div>
             <div class="nav-item">
-                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Usuarios</a>
+                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Colaboradores</a>
             </div>
             <div class="nav-item">
                 <a href="catalogo-clientes.php" class="nav-link active"><i class="fa fa-user-edit me-2"></i>Catalogo Clientes</a>
@@ -69,7 +69,7 @@ if($url=="/modularbasico/index.php"){
                 <a href="index.php" class="nav-link"><i class="fa fa-home me-2"></i>Inicio</a>
             </div>
             <div class="nav-item">
-                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Usuarios</a>
+                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Colaboradores</a>
             </div>
             <div class="nav-item">
                 <a href="catalogo-clientes.php" class="nav-link"><i class="fa fa-user-edit me-2"></i>Catalogo Clientes</a>
@@ -98,7 +98,7 @@ if($url=="/modularbasico/index.php"){
                 <a href="index.php" class="nav-link"><i class="fa fa-home me-2"></i>Inicio</a>
             </div>
             <div class="nav-item">
-                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Usuarios</a>
+                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Colaboradores</a>
             </div>
             <div class="nav-item">
                 <a href="catalogo-clientes.php" class="nav-link"><i class="fa fa-user-edit me-2"></i>Catalogo Clientes</a>
@@ -127,7 +127,7 @@ if($url=="/modularbasico/index.php"){
                 <a href="index.php" class="nav-link"><i class="fa fa-home me-2"></i>Inicio</a>
             </div>
             <div class="nav-item">
-                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Usuarios</a>
+                <a href="catalogo-usuarios.php" class="nav-link"><i class="fa fa-users me-2"></i>Colaboradores</a>
             </div>
             <div class="nav-item">
                 <a href="catalogo-clientes.php" class="nav-link"><i class="fa fa-user-edit me-2"></i>Catalogo Clientes</a>
@@ -156,7 +156,7 @@ if($url=="/modularbasico/index.php"){
                 <a href="index.php" class="nav-link"><i class="fa fa-home me-2"></i>Inicio</a>
             </div>
             <div class="nav-item">
-                <a href="catalogo-usuarios.php" class="nav-link active"><i class="fa fa-users me-2"></i>Usuarios</a>
+                <a href="catalogo-usuarios.php" class="nav-link active"><i class="fa fa-users me-2"></i>Colaboradores</a>
             </div>
             <div class="nav-item">
                 <a href="catalogo-clientes.php" class="nav-link"><i class="fa fa-user-edit me-2"></i>Catalogo Clientes</a>

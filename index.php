@@ -77,52 +77,49 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </nav>
-        <div class="container-fluid pt-4 px-4">
+            <div class="container-fluid pt-4 px-4">
                 <div class="cafeclaro rounded p-4" style="height:85vh;">
                     
-                <div class="BarraSizeMenu naranja  pb-1 mt-2 rounded">
-                        <h5 class=" pt-2 text-center ">PEDIDOS PENDIENTES</h5>
-                    </div>
+                <div class="container-fluid pt-3 px-4 ">
 
-                <div class="container-fluid  px-4 ">
-                         <div class="cafeoscuro  flex rounded p-1 row ">
-                         
-                                <div class=" col-sm-6 container-fluid pt-2 ">
+                    <div class=" naranja rounded p-1 text-center ">
+                                <h5 class="text-center pt-2 px-4">PEDIDOS PENDIENTES</h5>
+                            </div>
+                            <div class="cafeoscuro   rounded p-1  ">
+                                <div class=" col-sm-6 container-fluid text-center pt-2 ">
                                         <form class=" d-md-flex ">
-                                            <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" placeholder="Buscar un pedido">
+                                            <input class="col-sm-12 col-lg-12 searchSize search grispan border-0 rounded" type="search" placeholder="Buscar un pedido">
                                         </form>
                                 </div>
-                                    <div class=" col-sm-6  "><a href="#" type="submit" class=" PosicionAgregar btn text-white" aria-current="page">+</a></div>
                         </div>
-
-                 </div>
+                    </div>
                         
                     <!-- Recent Sales Start -->
                         <div class="container-fluid pt-3 px-4">
-                            <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                            <div class="cafeoscuro rounded h-100 p-3 w-100">
                               
-                            <div class="table-responsive">
+                            <div class="table-responsive rounded">
                                     
-                                <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                        <thead>
-                                            <tr class="text-white">
-                                                <th scope="col">Fecha Realizada</th>
+                                <table class="table text-start align-middle table-bordered table-hover mb-0 ">
+                                        <thead class="text-center naranja text-white ">
+                                            <tr>
+                                                <th scope="col">Fecha Registro</th>
                                                 <th scope="col">Fecha Entrega</th>
                                                 <th scope="col">Cliente</th>
                                                 <th scope="col">Productos</th>
+                                                <th scope="col">Descripcion</th>
                                                 <th scope="col">Costo Total</th>
-                                                <th scope="col">Observaciones</th>
-                                                <th scope="col">Estatus</th>
+                                                <th scope="col">Estatus Pedido</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="CursorPointerTabla">
+                                        <tbody class="CursorPointerTabla text-center">
                                             <tr class="">
                                                 <td>9/10/23</td>
                                                 <td>10/10/23</td>
                                                 <td>Alan Brito</td>
                                                 <td>5 Teleras, 3 conchas</td>
+                                                <td>Descripciones</td>
                                                 <td>$123</td>
-                                                <td>Observaciones</td>
                                                 <td>
                                                     <div>
                                                         <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
