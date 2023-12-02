@@ -71,7 +71,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">Ajustes</a>
+                            <a href="ajustes.php" class="dropdown-item">Ajustes</a>
                             <a href="control/cerrar.php" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </div>
