@@ -128,7 +128,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="col-sm-12 col-lg-12 mt-3">
                                     <div class=" row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Producto</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoProducto()">Nuevo Producto</button></div>
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Producto</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar cambios</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Producto</button></div>
@@ -147,7 +147,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("precio_menudeo")[0].value = datosProducto.precio_menudeo || "";
                                                         document.getElementsByName("precio_mayoreo")[0].value = datosProducto.precio_mayoreo || "";
                                                         document.getElementsByName("descripcion")[0].value = datosProducto.descripcion || "";
-                                                        document.getElementById("img").src = datosProducto.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"; 
+                                                        document.getElementById("img").src = datosProducto.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
                                                         document.getElementsByName("agregar")[0].value = datosProducto.id;
                                                         document.getElementsByName("update")[0].value = datosProducto.id;
                                                         document.getElementsByName("eliminar")[0].value = datosProducto.id;
@@ -155,7 +155,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("precio_menudeo")[0].value = "";
                                                         document.getElementsByName("precio_mayoreo")[0].value = "";
                                                         document.getElementsByName("descripcion")[0].value = "";
-                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"; 
+                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
                                                         document.getElementsByName("agregar")[0].value = "";
                                                         document.getElementsByName("update")[0].value = "";
                                                         document.getElementsByName("eliminar")[0].value = "";
@@ -167,6 +167,17 @@ $usuario = $_SESSION["nombre_usuario"];
                                         };
                                         xhr.open("GET", "obtener_datos_productos.php?nombre_producto=" + encodeURIComponent(productoSeleccionado), true);
                                         xhr.send();
+                                    }
+
+                                    function nuevoProducto() {
+                                        document.getElementsByName("nombre_producto")[0].value = "";
+                                        document.getElementsByName("precio_menudeo")[0].value = "";
+                                        document.getElementsByName("precio_mayoreo")[0].value = "";
+                                        document.getElementsByName("descripcion")[0].value = "";
+                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                        document.getElementsByName("agregar")[0].value = "";
+                                        document.getElementsByName("update")[0].value = "";
+                                        document.getElementsByName("eliminar")[0].value = "";
                                     }
                                 </script>
                                 <?php
@@ -204,7 +215,6 @@ $usuario = $_SESSION["nombre_usuario"];
                 window.location.href = 'catalogo-productos.php';
             });
         }, 3000);
-        
     </script>
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>

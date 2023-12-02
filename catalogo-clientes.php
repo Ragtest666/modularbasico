@@ -124,19 +124,19 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <input class="form-control mb-3" type="text" name="num_exterior" autocomplete="off" placeholder="">
                                     </div>
 
-                                 <div class="col-lg-12 col-sm-12 pt-2 ">
-                                    <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                        <label for="foto">
-                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                        </label>
-                                        <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
+                                    <div class="col-lg-12 col-sm-12 pt-2 ">
+                                        <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
+                                            <label for="foto">
+                                                <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                            </label>
+                                            <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
+                                        </div>
                                     </div>
                                 </div>
-                           </div>
 
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Cliente</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoCliente()">Nuevo Cliente</button></div>
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Cliente</button></div>
@@ -186,6 +186,22 @@ $usuario = $_SESSION["nombre_usuario"];
                                         xhr.open("GET", "obtener_datos_cliente.php?nombre=" + encodeURIComponent(clienteSeleccionado), true);
                                         xhr.send();
                                     }
+
+                                    function nuevoCliente() {
+                                        document.getElementsByName("nombre")[0].value = "";
+                                        document.getElementsByName("tipo_local")[0].value = "";
+                                        document.getElementsByName("telefono")[0].value = "";
+                                        document.getElementsByName("correo")[0].value = "";
+                                        document.getElementsByName("direccion")[0].value = "";
+                                        document.getElementsByName("colonia")[0].value = "";
+                                        document.getElementsByName("codigo_postal")[0].value = "";
+                                        document.getElementsByName("num_interior")[0].value = "";
+                                        document.getElementsByName("num_exterior")[0].value = "";
+                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                        document.getElementsByName("agregar")[0].value = "";
+                                        document.getElementsByName("update")[0].value = "";
+                                        document.getElementsByName("eliminar")[0].value = "";
+                                    }
                                 </script>
                                 <?php
                                 include('control/agregarcliente.php');
@@ -220,8 +236,6 @@ $usuario = $_SESSION["nombre_usuario"];
                 window.location.href = 'catalogo-clientes.php';
             });
         }, 3000);
-        
-        
     </script>
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>

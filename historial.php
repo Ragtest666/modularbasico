@@ -60,8 +60,14 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex"><?php echo $usuario;?></span>
+                            <img class="rounded-circle me-lg-2" src="<?php
+                                                                        $usuario = $_SESSION['nombre_usuario'];
+                                                                        $img = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                        $imagen = mysqli_query($conexion, $img);
+                                                                        $src = mysqli_fetch_array($imagen);
+                                                                        $url = $src['imagen'];
+                                                                        echo $url; ?>" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
                             <a href="ajustes.php" class="dropdown-item">Ajustes</a>
@@ -99,7 +105,6 @@ $usuario = $_SESSION["nombre_usuario"];
                 window.location.href = 'historial.php';
             });
         }, 3000);
-       
     </script>
 </body>
 

@@ -156,11 +156,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="col-sm-12 col-xl-6  row">
                                     <div class="col-sm-12 col-xl-12  ">
                                         <label for="nombre_usuario" class="Text">Nombre de Usuario</label>
-                                        <input class="form-control mb-3" type="text" name="nombre_usuario" autocomplete="off"  placeholder="">
+                                        <input class="form-control mb-3" type="text" name="nombre_usuario" autocomplete="off" placeholder="">
                                     </div>
                                     <div class="col-sm-6 col-xl-6 ">
                                         <label for="contrasena" class="Text">Tipo de Usuario</label>
-                                        <select class="form-control mb-3" name="tipo_usuario" >
+                                        <select class="form-control mb-3" name="tipo_usuario">
                                             <option value=""></option>
                                             <option value="Admin">Admin</option>
                                             <option value="Colaborador">Colaborador</option>
@@ -168,22 +168,22 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                     <div class="col-sm-6 col-xl-6 ">
                                         <label for="confirmar_contrasena" class="Text">Contraseña</label>
-                                        <input class="form-control mb-3" type="password" name="contrasena" autocomplete="off"  placeholder="">
+                                        <input class="form-control mb-3" type="password" name="contrasena" autocomplete="off" placeholder="">
                                     </div>
 
                                     <div class="col-lg-12 col-sm-12 pt-2 ">
-                                    <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
-                                        <label for="foto">
-                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
-                                        </label>
-                                        <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
+                                        <div class=" text-center col-sm-12 col-lg-12 hoverbox feed-profile ">
+                                            <label for="foto">
+                                                <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 230px " alt="avatar" id="img" />
+                                            </label>
+                                            <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
 
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class="row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Usuario</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoColaborador()">Nuevo Usuario</button></div>
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Usuario</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
                                         <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Usuario</button></div>
@@ -194,6 +194,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 include('control/editarusuario.php');
                                 include('control/eliminarusuario.php');
                                 ?>
+
                                 <script>
                                     function seleccionarColaborador() {
                                         var colaboradorSeleccionado = document.getElementById("ColaboradorInput").value;
@@ -243,6 +244,25 @@ $usuario = $_SESSION["nombre_usuario"];
                                         xhr.open("GET", "obtener_datos_colaboradores.php?nombre=" + encodeURIComponent(colaboradorSeleccionado), true);
                                         xhr.send();
                                     }
+
+                                    function nuevoColaborador() {
+                                        document.getElementsByName("nombre")[0].value = "";
+                                        document.getElementsByName("telefono")[0].value = "";
+                                        document.getElementsByName("correo")[0].value = "";
+                                        document.getElementsByName("nss")[0].value = "";
+                                        document.getElementsByName("curp")[0].value = "";
+                                        document.getElementsByName("calle")[0].value = "";
+                                        document.getElementsByName("colonia")[0].value = "";
+                                        document.getElementsByName("codigo_postal")[0].value = "";
+                                        document.getElementsByName("num_interior")[0].value = "";
+                                        document.getElementsByName("num_exterior")[0].value = "";
+                                        document.getElementsByName("nombre_usuario")[0].value = "";
+                                        document.getElementsByName("tipo_usuario")[0].value = "";
+                                        document.getElementsByName("contrasena")[0].value = "";
+                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                        document.getElementsByName("eliminar")[0].value = "";
+                                        document.getElementsByName("update")[0].value = "";
+                                    }
                                 </script>
 
                             </form>
@@ -272,7 +292,6 @@ $usuario = $_SESSION["nombre_usuario"];
                     window.location.href = 'catalogo-usuarios.php';
                 });
             }, 3000);
-        
         </script>
         <script src="js/main.js"></script>
         <script src="script/script.js"></script>
