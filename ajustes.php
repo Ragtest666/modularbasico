@@ -50,7 +50,7 @@ $usuario = $_SESSION["nombre_usuario"];
         }
         ?>
         <div class="content">
-        <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
+            <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
                 <a href="index.php" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
                     <h2 class="text-primary mb-0"> <img src="img/Logo.png" width="200" height="80"><i class="fa "></i></h2>
                 </a>
@@ -67,7 +67,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                         $src = mysqli_fetch_array($imagen);
                                                                         $url = $src['imagen'];
                                                                         echo $url; ?>" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex"id="colaboradorajustes"><?php echo $usuario; ?></span>
+                            <span class="d-none d-lg-inline-flex" id="colaboradorajustes" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT nombre FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['nombre']; ?>"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
                             <a href="ajustes.php" class="dropdown-item">Ajustes</a>
@@ -79,154 +83,148 @@ $usuario = $_SESSION["nombre_usuario"];
 
             <div class="container-fluid pt-3 px-3">
                 <div class="cafeclaro rounded p-4">
-                    
-                
-                <div class="naranja BarraEtiqueta pb-1 mt-2 rounded   ">
+
+
+                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded   ">
                         <h5 class=" pt-2 text-center ">AJUSTES</h5>
-                 </div>
+                    </div>
 
-            <!-- Form Start -->
-            <div class="container-fluid  px-4">
-                <div class="cafeoscuro rounded h-100 p-3 pt-3 w-100 ">
-                    
-                    <!--Formulario star-->
-                    
-                <form class="row" action="" method="post" enctype="multipart/form-data">
+                    <!-- Form Start -->
+                    <div class="container-fluid  px-4">
+                        <div class="cafeoscuro rounded h-100 p-3 pt-3 w-100 ">
 
-                       
-                    <div class="col-sm-12 col-xl-6  ">
-                           
-                           
+                            <!--Formulario star-->
 
-                         <div class="col-sm-12 col-lg-12  row">
+                            <form class="row" action="" method="post" enctype="multipart/form-data">
 
-                            <div class="col-sm-6 col-lg-6">
-                                <label for="floatingTextarea" class="Text">Numero de telefono *</label>
-                                <input class="form-control p_input mb-3"  type="text"  name="telefono" autocomplete="off" required  placeholder="">
-                            
-                         </div>
 
-                         <div class="col-sm-6 col-lg-6">
-                            <label for="floatingTextarea" class="Text">Correo Electrónico *</label>
-                            <input class="form-control mb-3" type="email"  name="correo" autocomplete="off" required placeholder="">
-                          </div>
+                                <div class="col-sm-12 col-xl-6  ">
 
-                        </div>
 
-                        <div class="col-sm-12 col-xl-12  row">
-                            
-                            <div class="col-sm-6 col-xl-6 ">
-                                <label for="floatingTextarea" class="Text">Calle *</label>
-                        <input class="form-control mb-3" type="text"  name="calle" autocomplete="off" required placeholder="">         
-                            </div>
 
-                            <div class="col-sm-6 col-xl-6 ">
-                                <label for="floatingTextarea" class="Text">Colonia *</label>
-                        <input class="form-control mb-3" type="text"  name="colonia" autocomplete="off" required placeholder="">      
-                            </div>
-                     </div>
+                                    <div class="col-sm-12 col-lg-12  row">
 
-                            <div class=" col-sm-12 col-xl-12 row">
-                                <div class="col-sm-4 col-lg-4">
-                                <label for="floatingTextarea" class="Text">C.P. *</label>
-                                <input class="form-control mb-3" type="text"  name="codigo_postal" autocomplete="off" required placeholder="">
-                            </div>
-                               
-                                <div class="col-sm-4 col-lg-4">
-                                    <label for="floatingTextarea" class="Text pl-3  TextoExtendido">No. Int. *</label>
-                                    <input class="form-control mb-3" type="text"  name="num_interior" autocomplete="off" required placeholder="">
+                                        <div class="col-sm-6 col-lg-6">
+                                            <label for="floatingTextarea" class="Text">Numero de telefono *</label>
+                                            <input class="form-control p_input mb-3" type="text" name="telefono" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT telefono FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['telefono']; ?>"autocomplete="off" required placeholder="">
+
+                                        </div>
+
+                                        <div class="col-sm-6 col-lg-6">
+                                            <label for="floatingTextarea" class="Text">Correo Electrónico *</label>
+                                            <input class="form-control mb-3" type="email" name="correo"  autocomplete="off"  required placeholder="">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-12 col-xl-12  row">
+
+                                        <div class="col-sm-6 col-xl-6 ">
+                                            <label for="floatingTextarea" class="Text">Calle *</label>
+                                            <input class="form-control mb-3" type="text" name="calle" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT calle FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['calle']; ?>"autocomplete="off" required placeholder="">
+                                        </div>
+
+                                        <div class="col-sm-6 col-xl-6 ">
+                                            <label for="floatingTextarea" class="Text">Colonia *</label>
+                                            <input class="form-control mb-3" type="text" name="colonia" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT colonia FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['colonia']; ?>"autocomplete="off" required placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-sm-12 col-xl-12 row">
+                                        <div class="col-sm-4 col-lg-4">
+                                            <label for="floatingTextarea" class="Text">C.P. *</label>
+                                            <input class="form-control mb-3" type="text" name="codigo_postal" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT cp FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['cp']; ?>" autocomplete="off" required placeholder="">
+                                        </div>
+
+                                        <div class="col-sm-4 col-lg-4">
+                                            <label for="floatingTextarea" class="Text pl-3  TextoExtendido">No. Int. *</label>
+                                            <input class="form-control mb-3" type="text" name="num_interior" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT numero_interior FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['numero_interior']; ?>" autocomplete="off" required placeholder="">
+                                        </div>
+
+                                        <div class="col-sm-4 col-lg-4">
+                                            <label for="floatingTextarea" class="Text TextoExtendido">No. Ext. *</label>
+                                            <input class="form-control  mb-3" type="text" name="num_exterior" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT numero_exterior FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['numero_exterior']; ?>" autocomplete="off" required placeholder="">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-xl-12 row">
+                                        <div class="col-sm-12 col-xl-6 ">
+                                            <label for="floatingTextarea" class="Text">Nombre de usuario *</label>
+                                            <input class="form-control mb-3" type="text" name="nombre_usuario" value="<?php echo $usuario; ?>" autocomplete="off" required placeholder="">
+                                        </div>
+
+                                        <div class="col-sm-12 col-xl-5  ">
+                                            <label for="floatingTextarea" class="Text">Contraseña *</label>
+                                            <input type="password" id="txtPassword" name="contrasena" autocomplete="off" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT contrasena FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['contrasena']; ?>"class="form-control" />
+                                        </div>
+
+                                        <div class="col-lg-1 PadPassword">
+                                            <span id="imgContrasena" data-activo=false class="BtnShow rounded">(ó)</span>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                                
-                                <div class="col-sm-4 col-lg-4">
-                                    <label for="floatingTextarea" class="Text TextoExtendido">No. Ext. *</label>
-                                <input class="form-control  mb-3" type="text"  name="num_exterior" autocomplete="off" required placeholder="">
+
+                                <div class="col-sm-12 col-xl-6 ">
+                                    <div class="text-center col-sm-12 col-lg-12 pt-4 hoverbox feed-profile" aling="center">
+                                        <label for="foto">
+                                            <img class="bg-white img-thumbnail CursorPunto shadow-sm" src="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['imagen']; ?>" style="width: 300px; height: 250px " alt="avatar" id="img" />
+                                        </label>
+                                        <input class="desactiveFiles" type="file" name="foto" id="foto" accept="image/*" />
+                                    </div>
                                 </div>
-                           </div>
 
-                           <div class="col-sm-12 col-xl-12 row">
-                                <div class="col-sm-12 col-xl-6 ">   
-                                    <label for="floatingTextarea" class="Text">Nombre de usuario *</label>
-                            <input class="form-control mb-3" type="text"  name="nombre_usuario" autocomplete="off" required placeholder="">
+
+
+                                <div class="BarraBtn rounded p-2 text-center mt-2">
+                                    <button type="submit" class="btn col-sm-16 col-lg-6" value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT id_trabajador FROM  Usuarios WHERE  Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['id_trabajador'];?>"name="update">Guardar cambios</button>
                                 </div>
-
-                             <div class="col-sm-12 col-xl-5  ">
-                                <label for="floatingTextarea" class="Text">Contraseña *</label> 
-                                            <input type="password" id="txtPassword" name="contrasena" autocomplete="off" class="form-control" />  
-                             </div>
-
-                                     <div class="col-lg-1 PadPassword">    
-                                             <span id="imgContrasena" data-activo=false class="BtnShow rounded">(ó)</span>
-                                     </div>
-                        </div>
-                    
-
-                        </div>
-                           
-                            <div class="col-sm-12 col-xl-6 ">
-                                     <div class="text-center col-sm-12 col-lg-12 pt-4 hoverbox feed-profile" align="center">
-                                          <label for="foto">
-                                            <img class="bg-white img-thumbnail CursorPunto shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 250px " alt="avatar" id="img"/>
-                                          </label>
-                                          <input class="desactiveFiles" type="file" name="foto" id="foto" accept="image/*"/>
-                                        </div>   
-                                </div> 
-                                    
-                         
-                             
-                             <div class="BarraBtn rounded p-2 text-center mt-2">
-                                <button type="submit" class="btn col-sm-16 col-lg-6" name="update">Guardar cambios</button> 
-                            </div>
-                            <?php
+                                <?php
                                 include('control/editarcolaboradorajustes.php');
                                 ?>
-                                <script type="text/javascript">
-                                ventana.onload = función() {
-                                var colaboradorSeleccionado = document.getElementById("colaboradorajustes").value;
-                                        var xhr = new XMLHttpRequest();
-                                        xhr.onreadystatechange = function() {
-                                            if (xhr.readyState == 4) {
-                                                if (xhr.status == 200) {
-                                                    var datosColaborador = JSON.parse(xhr.responseText);
-                                                    if (datosColaborador !== null && datosColaborador !== undefined) {
-                                                        document.getElementsByName("telefono")[0].value = datosColaborador.telefono || "";
-                                                        document.getElementsByName("correo")[0].value = datosColaborador.correo || "";
-                                                        document.getElementsByName("calle")[0].value = datosColaborador.calle || "";
-                                                        document.getElementsByName("colonia")[0].value = datosColaborador.colonia || "";
-                                                        document.getElementsByName("codigo_postal")[0].value = datosColaborador.cp || "";
-                                                        document.getElementsByName("num_interior")[0].value = datosColaborador.numero_interior || "";
-                                                        document.getElementsByName("num_exterior")[0].value = datosColaborador.numero_exterior || "";
-                                                        document.getElementsByName("nombre_usuario")[0].value = datosColaborador.nombre_usuario || "";
-                                                        document.getElementsByName("contrasena")[0].value = datosColaborador.contrasena || "";
-                                                        document.getElementById("img").src = datosColaborador.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
-                                                        document.getElementsByName("update")[0].value = datosColaborador.id_trabajador || "";
-                                                    } else {
-                                                        document.getElementsByName("telefono")[0].value = "";
-                                                        document.getElementsByName("correo")[0].value = "";
-                                                        document.getElementsByName("calle")[0].value = "";
-                                                        document.getElementsByName("colonia")[0].value = "";
-                                                        document.getElementsByName("codigo_postal")[0].value = "";
-                                                        document.getElementsByName("num_interior")[0].value = "";
-                                                        document.getElementsByName("num_exterior")[0].value = "";
-                                                        document.getElementsByName("nombre_usuario")[0].value = "";
-                                                        document.getElementsByName("contrasena")[0].value = "";
-                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
-                                                        document.getElementsByName("update")[0].value = "";
-                                                    }
-                                                } else {
-                                                    console.error("Error al obtener datos del colaborador");
-                                                }
-                                            }
-                                        };
-                                        xhr.open("GET", "obtener_datos_colaboradores.php?nombre=" + encodeURIComponent(colaboradorSeleccionado), true);
-                                        xhr.send();
-                                };
-                            </script>
-                    </form>  
+                            </form>
 
-                 </div>   
-             </div>
+                        </div>
+                    </div>
 
-                <!--Formulario end-->
+                    <!--Formulario end-->
                 </div>
             </div>
 
@@ -252,9 +250,8 @@ $usuario = $_SESSION["nombre_usuario"];
                 window.location.href = 'ajustes.php';
             });
         }, 3000);
-        
     </script>
-     <script src="script/show.js"></script>
+    <script src="script/show.js"></script>
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>
     <script src="script/showHide.js"></script>

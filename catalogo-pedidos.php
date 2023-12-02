@@ -60,13 +60,13 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="<?php 
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
-                    $imagen=mysqli_query($conexion,$img);
-                    $src=mysqli_fetch_array($imagen);
-                    $url=$src['imagen'];
-                    echo $url;?>" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="<?php
+                                                                        $usuario = $_SESSION['nombre_usuario'];
+                                                                        $img = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                        $imagen = mysqli_query($conexion, $img);
+                                                                        $src = mysqli_fetch_array($imagen);
+                                                                        $url = $src['imagen'];
+                                                                        echo $url; ?>" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
@@ -79,148 +79,235 @@ $usuario = $_SESSION["nombre_usuario"];
             <div class="container-fluid pt-3 px-3">
                 <div class="cafeclaro rounded p-4">
 
-                     <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
                         <h5 class=" pt-2 text-center ">CATALOGO PEDIDOS</h5>
                     </div>
-            <!-- Form Start -->
-            <div class="container-fluid px-4">
+                    <!-- Form Start -->
+                    <div class="container-fluid px-4">
                         <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
                             <form class="row" method="post">
-                            <div class="col-sm-12 col-xl-12">
-                                <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Nombre del cliente</label>
-                                    <select class="form-select mb-3 grispan" aria-label="Default select example">
-                                        <option selected>Seleccionar cliente</option>
-                                        <option value="1">Miguel Hernandez</option>
-                                        <option value="2">Pedro Alfonzo</option>
-                                        <option value="3">Maria del Gomez</option>
-                                    </select>
-                                    
-                                </div>
-                                <div>
-                                <label class="Text">Producto</label>
-                                <table class="table table-bordered table-hover p-4">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Producto</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Costo Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <select class="form-select grispan">
-                                                    <option selected>Seleccionar producto</option>
-                                                    <option value="1">Concha</option>
-                                                    <option value="2">Cuernito</option>
-                                                    <option value="3">Telera</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" type="number">
-                                            </td>
-                                            <td>
-                                                 <select class="form-select grispan">
-                                                    <option selected>Selecciona Precio</option>
-                                                    <option value="1">Mayoreo</option>
-                                                    <option value="2">Menudeo</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input class="form-control" >
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div>
-                                <button class="btn">Agregar producto</button>
-                            </div>
+                                <div class="col-sm-12 col-xl-12">
+                                    <div class="mb-3">
+                                        <label for="floatingTextarea" class="Text">Nombre del cliente</label>
+                                        <select class="form-select mb-3 grispan" aria-label="Default select example" oninput="obtenerPrecios()">
+                                            <option selected>Seleccionar cliente</option>
+                                            <?php
+                                            $nomCliente = "SELECT nombre FROM Clientes;";
+                                            $conNom = mysqli_query($conexion, $nomCliente);
+                                            while ($fila = mysqli_fetch_array($conNom)) {
+                                                printf('<option class="naranja" value="%s">%s</option>', $fila['nombre'], $fila['nombre']);
+                                            }
+                                            ?>
+                                        </select>
 
-                                
-                            </div>
-                       
-                    
-                    <div class="col-sm-12 col-xl-12">               
+                                    </div>
+                                    <div>
+                                        <label class="Text">Producto</label>
+                                        <table class="table table-bordered table-hover p-4">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Producto</th>
+                                                    <th scope="col">Cantidad</th>
+                                                    <th scope="col">Precio</th>
+                                                    <th scope="col">Costo Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-select grispan" name="producto" id="productoInput">
+                                                            <option selected>Seleccionar producto</option>
+                                                            <?php
+                                                            $nomProducto = "SELECT nombre_producto FROM Productos;";
+                                                            $conNom = mysqli_query($conexion, $nomProducto);
+                                                            while ($fila = mysqli_fetch_array($conNom)) {
+                                                                printf('<option class="naranja" value="%s">%s</option>', $fila['nombre_producto'], $fila['nombre_producto']);
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control" id="cantidad" name="cantidad" type="number">
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-select grispan" id="costo" name="costo" oninput="obtenerPrecios()">
+                                                            <option selected>Selecciona Precio</option>
+                                                            <option value="1">Mayoreo</option>
+                                                            <option value="2">Menudeo</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control" name="total">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+
+                                        <button class="btn" type="button" onclick="agregarProductos()">Agregar producto</button>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function agregarProductos() {
+                                        // Captura de valores de la primera tabla
+                                        var producto = document.getElementById('productoInput').value;
+                                        var cantidad = document.getElementById('cantidad').value;
+                                        var costo = document.getElementById('costo').value;
+                                        var total = document.querySelector('[name="total"]').value;
+
+                                        // Referencia a la segunda tabla
+                                        var tablaProductos = document.getElementById('tablaProductos');
+
+                                        // Crear un identificador único para cada fila
+                                        var filaId = 'fila_' + Date.now(); // Utilizamos la marca de tiempo para obtener un identificador único
+
+                                        // Crear nueva fila con los valores capturados y asignarle el identificador único
+                                        var newRow = tablaProductos.insertRow(-1); // -1 inserta la fila al final de la tabla
+                                        newRow.id = filaId;
+
+                                        // Crea celdas y agrega los valores
+                                        var checkCell = newRow.insertCell(0);
+                                        var checkbox = document.createElement('input');
+                                        checkbox.type = 'checkbox';
+                                        checkbox.className = 'form-check-input';
+                                        checkCell.appendChild(checkbox);
+
+                                        var productoCell = newRow.insertCell(1);
+                                        productoCell.textContent = producto;
+
+                                        var cantidadCell = newRow.insertCell(2);
+                                        cantidadCell.textContent = cantidad;
+
+                                        var costoCell = newRow.insertCell(3);
+                                        costoCell.textContent = (costo == 1) ? 'Mayoreo' : (costo == 2) ? 'Menudeo' : 'Otro';
+
+                                        var totalCell = newRow.insertCell(4);
+                                        totalCell.textContent = total;
+                                    }
+                                </script>
+
+                                <script>
+                                    function eliminarProductos() {
+                                        // Referencia a la segunda tabla
+                                        var tablaProductos = document.getElementById('tablaProductos');
+
+                                        // Obtener todas las filas de la tabla
+                                        var filas = tablaProductos.rows;
+
+                                        // Recorrer las filas desde la última hacia la primera (excluyendo el encabezado)
+                                        for (var i = filas.length - 1; i > 0; i--) {
+                                            var fila = filas[i];
+
+                                            // Obtener el checkbox de la primera celda
+                                            var checkbox = fila.cells[0].querySelector('.form-check-input');
+
+                                            // Verificar si el checkbox está marcado
+                                            if (checkbox.checked) {
+                                                // Eliminar la fila si el checkbox está marcado
+                                                tablaProductos.deleteRow(i);
+                                            }
+                                        }
+                                    }
+                                </script>
+
+
+                                <script>
+                                    function obtenerPrecios() {
+                                        var productoSeleccionado = document.getElementById("productoInput").value;
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState == 4) {
+                                                if (xhr.status == 200) {
+                                                    var datosProducto = JSON.parse(xhr.responseText);
+                                                    if (datosProducto !== null && datosProducto !== undefined) {
+                                                        var cantidad = document.getElementById("cantidad").value;
+                                                        var costo = document.getElementById("costo").value;
+                                                        var totalInput = document.getElementsByName("total")[0];
+
+                                                        if (!isNaN(cantidad)) {
+                                                            cantidad = parseFloat(cantidad);
+
+                                                            if (costo == 1) {
+                                                                var may = parseFloat(datosProducto.precio_mayoreo);
+                                                                var result = cantidad * may;
+                                                                totalInput.value = result;
+                                                            } else if (costo == 2) {
+                                                                var men = parseFloat(datosProducto.precio_menudeo);
+                                                                var result = cantidad * men;
+                                                                totalInput.value = result;
+                                                            } else {
+                                                                alert('Selecciona un costo válido (1 para Mayoreo, 2 para Menudeo).');
+                                                            }
+                                                        } else {
+                                                            alert('Ingresa una cantidad válida.');
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        };
+                                        xhr.open("GET", "obtener_precios.php?nombre_producto=" + encodeURIComponent(productoSeleccionado), true);
+                                        xhr.send();
+                                    }
+                                </script>
+                        </div>
+
+
+                        <div class="col-sm-12 col-xl-12">
                             <div class="">
 
-                                <div class="mb-3 " >
-                                    <label for="floatingTextarea"  class="Text">Productos Agregados</label>
-                                 <div class="scrollBarr">
-                                    <table class="table  table-bordered table-hover p-4 scrollBarr"style="height: 55px;">
-                                    <thead class="ssss" style="border-top: 1px;">
-                                        <tr class="">
-                                            <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                                            <th class="" scope="col">Producto</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Precio</th>
-                                            <th scope="col">Costo Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="">
-                                        <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
-                                            <td>Conchas</td>
-                                                <td>5</td>
-                                                <td>Mayoreo</td>
-                                                <td>45</td>
+                                <div class="mb-3 ">
+                                    <label for="floatingTextarea" class="Text">Productos Agregados</label>
+                                    <div class="scrollBarr">
+                                        <table class="table  table-bordered table-hover p-4 scrollBarr" id="tablaProductos" style="height: 55px;">
+                                            <thead class="ssss" style="border-top: 1px;">
+                                                <tr class="">
+                                                    <th scope="col"><input class="form-check-input" type="checkbox" onclick="toggleCheckAll()"></th>
+                                                    <th class="" scope="col">Producto</th>
+                                                    <th scope="col">Cantidad</th>
+                                                    <th scope="col">Precio</th>
+                                                    <th scope="col">Costo Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="">
+                                            </tbody>
+                                        </table>
+                                        <script>
+                                            function toggleCheckAll() {
+                                                // Referencia a la segunda tabla
+                                                var tablaProductos = document.getElementById('tablaProductos');
 
-                                        </tr>
-                                        <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
-                                            <td>Conchas</td>
-                                                <td>5</td>
-                                                <td>Mayoreo</td>
-                                                <td>45</td>
+                                                // Obtener el checkbox del encabezado
+                                                var checkboxEncabezado = tablaProductos.querySelector('thead input[type="checkbox"]');
 
-                                        </tr>
-                                        <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
-                                            <td>Conchas</td>
-                                                <td>5</td>
-                                                <td>Mayoreo</td>
-                                                <td>45</td>
+                                                // Obtener todas las filas de la tabla
+                                                var filas = tablaProductos.rows;
 
-                                        </tr>
-                                        <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
-                                            <td>Conchas</td>
-                                                <td>5</td>
-                                                <td>Mayoreo</td>
-                                                <td>45</td>
+                                                // Obtener el estado actual del checkbox del encabezado
+                                                var isChecked = checkboxEncabezado.checked;
 
-                                        </tr>
-                                        <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
-                                            <td>Conchas</td>
-                                                <td>5</td>
-                                                <td>Mayoreo</td>
-                                                <td>45</td>
+                                                // Iterar sobre las filas y actualizar los checkboxes
+                                                for (var i = 0; i < filas.length; i++) {
+                                                    var checkbox = filas[i].cells[0].querySelector('.form-check-input');
 
-                                        </tr>
-                                        <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
-                                            <td>Conchas</td>
-                                                <td>5</td>
-                                                <td>Mayoreo</td>
-                                                <td>45</td>
+                                                    // Marcar o desmarcar el checkbox según el estado actual del checkbox del encabezado
+                                                    checkbox.checked = isChecked;
+                                                }
+                                            }
+                                        </script>
 
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
+
+                                    </div>
+                                    <div>
+                                        <button class="btn" type="button" onclick="eliminarProductos()">Eliminar Producto</button>
+
+                                    </div>
                                 </div>
-                                <div>
-                                <button class="btn">Eliminar Producto</button>
-                            </div>
-                             </div>
 
                                 <div class="mb-3">
-                                    <label for="floatingTextarea"  class="Text">Descripción</label>
-                                    <textarea class="form-control grispan" placeholder="Descripción"
-                                    id="floatingTextarea" style="height: 100px;"></textarea>
+                                    <label for="floatingTextarea" class="Text">Descripción</label>
+                                    <textarea class="form-control grispan" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
                                 </div>
 
                             </div>
@@ -229,37 +316,37 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="row">
                                     <label class="Text col-6">Fecha Realizado</label>
                                     <label class="Text col-6">Fecha Entrega</label>
-                                    
+
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" class="date col-6">
+                                    <input type="date" id="fechaActual" value="<?php echo date('Y-m-d'); ?>" readonly>
                                     </div>
                                     <div class="col-6">
                                         <input type="datetime-local" class="date col-9">
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
 
+                        </div>
+
+                        <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
+                            <div class=" row ">
+                                <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Pedido</button></div>
+                                <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Pedido</button></div>
+                                <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
+                                <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Pedido</button></div>
+
+                            </div>
+                        </div>
+                        </form>
                     </div>
-                    
-                     <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
-                                    <div class=" row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Pedido</button></div>
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Pedido</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Pedido</button></div>
 
-                                    </div>
-                                </div>
-                    </form>            
-                </div>
-                    
                 </div>
             </div>
             <!-- Form End -->
-                </div>
         </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -281,7 +368,6 @@ $usuario = $_SESSION["nombre_usuario"];
                 location.reload();
             });
         }, 3000);
-        
     </script>
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>
