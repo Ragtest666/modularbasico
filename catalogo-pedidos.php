@@ -76,89 +76,189 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </nav>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
-                    <div class="col-md-6  text-center">
-                        <div class="container-fluid pt-2 px-4">
-                            <div class="row g-4">
-                                <div class="col-sm-12 col-xl-6">
-                                    <div class="cafeoscuro rounded h-100 p-4 w-100">
-                                        <h6 class="mb-3">Datos del cliente</h6>
-                                        <form>
-                                            <div class="mb-3">
-                                                <label for="floatingTextarea" class="Text">Nombre del cliente</label>
-                                                <select class="form-select mb-3 grispan" aria-label="Default select example">
-                                                    <option selected>Seleccionar cliente</option>
-                                                    <option value="1">Miguel Hernandez</option>
-                                                    <option value="2">Pedro Alfonzo</option>
-                                                    <option value="3">Maria del Gomez</option>
-                                                </select>
-                                                <div>
-                                                    <button class="btn">Ver datos del cliente</button>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="floatingTextarea" class="Text">Descripción</label>
-                                                <textarea class="form-control grispan" placeholder="Descripción" id="floatingTextarea" style="height: 200px;"></textarea>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-xl-6">
-                                    <div class="cafeoscuro rounded h-100 p-4 w-100">
-                                        <h6 class="mb-3">Pedido</h6>
-                                        <div>
-                                            <label class="Text">Producto</label>
-                                            <table class="table table-bordered table-hover p-4">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Producto</th>
-                                                        <th scope="col">Cantidad</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <select class="form-select grispan">
-                                                                <option selected>Seleccionar producto</option>
-                                                                <option value="1">Concha</option>
-                                                                <option value="2">Cuernito</option>
-                                                                <option value="3">Telera</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text">
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div>
-                                            <button class="btn">Agregar producto</button>
-                                        </div>
-                                        <div class="pt-4">
-                                            <div class="row">
-                                                <label class="Text col-6">Fecha Realizado</label>
-                                                <label class="Text col-6">Fecha Entrega</label>
+            <div class="container-fluid pt-3 px-3">
+                <div class="cafeclaro rounded p-4">
 
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <input type="date" class="date col-6">
-                                                </div>
-                                                <div class="col-6">
-                                                    <input type="datetime-local" class="date col-9">
-                                                </div>
-                                            </div>
-                                        </div>
+                     <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+                        <h5 class=" pt-2 text-center ">CATALOGO PEDIDOS</h5>
+                    </div>
+            <!-- Form Start -->
+            <div class="container-fluid px-4">
+                        <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                            <form class="row" method="post">
+                            <div class="col-sm-12 col-xl-12">
+                                <div class="mb-3">
+                                    <label for="floatingTextarea" class="Text">Nombre del cliente</label>
+                                    <select class="form-select mb-3 grispan" aria-label="Default select example">
+                                        <option selected>Seleccionar cliente</option>
+                                        <option value="1">Miguel Hernandez</option>
+                                        <option value="2">Pedro Alfonzo</option>
+                                        <option value="3">Maria del Gomez</option>
+                                    </select>
+                                    
+                                </div>
+                                <div>
+                                <label class="Text">Producto</label>
+                                <table class="table table-bordered table-hover p-4">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Costo Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <select class="form-select grispan">
+                                                    <option selected>Seleccionar producto</option>
+                                                    <option value="1">Concha</option>
+                                                    <option value="2">Cuernito</option>
+                                                    <option value="3">Telera</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input class="form-control" type="number">
+                                            </td>
+                                            <td>
+                                                 <select class="form-select grispan">
+                                                    <option selected>Selecciona Precio</option>
+                                                    <option value="1">Mayoreo</option>
+                                                    <option value="2">Menudeo</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input class="form-control" >
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <button class="btn">Agregar producto</button>
+                            </div>
+
+                                
+                            </div>
+                       
+                    
+                    <div class="col-sm-12 col-xl-12">               
+                            <div class="">
+
+                                <div class="mb-3 " >
+                                    <label for="floatingTextarea"  class="Text">Productos Agregados</label>
+                                 <div class="scrollBarr">
+                                    <table class="table  table-bordered table-hover p-4 scrollBarr"style="height: 55px;">
+                                    <thead class="ssss" style="border-top: 1px;">
+                                        <tr class="">
+                                            <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                                            <th class="" scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Costo Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <tr>
+                                            <td><input class="form-check-input" type="checkbox"></td>
+                                            <td>Conchas</td>
+                                                <td>5</td>
+                                                <td>Mayoreo</td>
+                                                <td>45</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-check-input" type="checkbox"></td>
+                                            <td>Conchas</td>
+                                                <td>5</td>
+                                                <td>Mayoreo</td>
+                                                <td>45</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-check-input" type="checkbox"></td>
+                                            <td>Conchas</td>
+                                                <td>5</td>
+                                                <td>Mayoreo</td>
+                                                <td>45</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-check-input" type="checkbox"></td>
+                                            <td>Conchas</td>
+                                                <td>5</td>
+                                                <td>Mayoreo</td>
+                                                <td>45</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-check-input" type="checkbox"></td>
+                                            <td>Conchas</td>
+                                                <td>5</td>
+                                                <td>Mayoreo</td>
+                                                <td>45</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><input class="form-check-input" type="checkbox"></td>
+                                            <td>Conchas</td>
+                                                <td>5</td>
+                                                <td>Mayoreo</td>
+                                                <td>45</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                </div>
+                                <div>
+                                <button class="btn">Eliminar Producto</button>
+                            </div>
+                             </div>
+
+                                <div class="mb-3">
+                                    <label for="floatingTextarea"  class="Text">Descripción</label>
+                                    <textarea class="form-control grispan" placeholder="Descripción"
+                                    id="floatingTextarea" style="height: 100px;"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="row">
+                                    <label class="Text col-6">Fecha Realizado</label>
+                                    <label class="Text col-6">Fecha Entrega</label>
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="date" class="date col-6">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="datetime-local" class="date col-9">
                                     </div>
                                 </div>
-                                <div class=""><button type="submit" class="btn col-3">Agregar Pedido</button></div>
-                            </div>
-                        </div>
+                            </div>  
+
                     </div>
+                    
+                     <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
+                                    <div class=" row ">
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Pedido</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Pedido</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
+                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Pedido</button></div>
+
+                                    </div>
+                                </div>
+                    </form>            
+                </div>
+                    
                 </div>
             </div>
+            <!-- Form End -->
+                </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
