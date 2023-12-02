@@ -50,7 +50,7 @@ $usuario = $_SESSION["nombre_usuario"];
         }
         ?>
         <div class="content">
-        nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand rojizo navbar-dark sticky-top px-4 py-0">
                 <a href="index.php" class="navbar-brand d-flex d-lg-none d-sm-block me-4">
                     <h2 class="text-primary mb-0"> <img src="img/Logo.png" width="200" height="80"><i class="fa "></i></h2>
                 </a>
@@ -76,11 +76,110 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </nav>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
-                    <div class="col-md-6  text-center">
-                        <h3>This is blank page</h3>
-                    </div>
+
+            <div class="container-fluid pt-3 px-3">
+                <div class="cafeclaro rounded p-4">
+                    
+                
+                <div class="naranja BarraEtiqueta pb-1 mt-2 rounded   ">
+                        <h5 class=" pt-2 text-center ">AJUSTES</h5>
+                 </div>
+
+            <!-- Form Start -->
+            <div class="container-fluid  px-4">
+                <div class="cafeoscuro rounded h-100 p-3 pt-3 w-100 ">
+                    
+                    <!--Formulario star-->
+                    
+                <form class="row" action="" method="post">
+                       
+                    <div class="col-sm-12 col-xl-6  ">
+                           
+                           
+
+                         <div class="col-sm-12 col-lg-12  row">
+
+                            <div class="col-sm-6 col-lg-6">
+                                <label for="floatingTextarea" class="Text">Numero de telefono *</label>
+                                <input class="form-control p_input mb-3"  type="text" required  placeholder="">
+                            
+                         </div>
+
+                         <div class="col-sm-6 col-lg-6">
+                            <label for="floatingTextarea" class="Text">Correo Electrónico *</label>
+                            <input class="form-control mb-3" type="email" required placeholder="">
+                          </div>
+
+                        </div>
+
+                        <div class="col-sm-12 col-xl-12  row">
+                            
+                            <div class="col-sm-6 col-xl-6 ">
+                                <label for="floatingTextarea" class="Text">Calle *</label>
+                        <input class="form-control mb-3" type="text" required placeholder="">         
+                            </div>
+
+                            <div class="col-sm-6 col-xl-6 ">
+                                <label for="floatingTextarea" class="Text">Colonia *</label>
+                        <input class="form-control mb-3" type="text" required placeholder="">      
+                            </div>
+                     </div>
+
+                            <div class=" col-sm-12 col-xl-12 row">
+                                <div class="col-sm-4 col-lg-4">
+                                <label for="floatingTextarea" class="Text">C.P. *</label>
+                                <input class="form-control mb-3" type="text" required placeholder="">
+                            </div>
+                               
+                                <div class="col-sm-4 col-lg-4">
+                                    <label for="floatingTextarea" class="Text pl-3  TextoExtendido">No. Int. *</label>
+                                    <input class="form-control mb-3" type="text" required placeholder="">
+                                </div>
+                                
+                                <div class="col-sm-4 col-lg-4">
+                                    <label for="floatingTextarea" class="Text TextoExtendido">No. Ext. *</label>
+                                <input class="form-control  mb-3" type="text" required placeholder="">
+                                </div>
+                           </div>
+
+                           <div class="col-sm-12 col-xl-12 row">
+                                <div class="col-sm-12 col-xl-6 ">   
+                                    <label for="floatingTextarea" class="Text">Nombre de usuario *</label>
+                            <input class="form-control mb-3" type="text" required placeholder="">
+                                </div>
+
+                             <div class="col-sm-12 col-xl-5  ">
+                                <label for="floatingTextarea" class="Text">Contraseña *</label> 
+                                            <input type="password" id="txtPassword" class="form-control" />  
+                             </div>
+
+                                     <div class="col-lg-1 PadPassword">    
+                                             <span id="imgContrasena" data-activo=false class="BtnShow rounded">(ó)</span>
+                                     </div>
+                        </div>
+                    
+
+                        </div>
+                           
+                            <div class="col-sm-12 col-xl-6 ">
+                                     <div class="text-center col-sm-12 col-lg-12 pt-4 hoverbox feed-profile" align="center">
+                                          <label for="foto">
+                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 250px " alt="avatar" id="img"/>
+                                          </label>
+                                          <input class="desactiveFiles" type="file" name="foto" id="foto" accept="image/*"/>
+                                        </div>   
+                                </div> 
+                                    
+                         
+                             
+                             <div class="BarraBtn rounded p-2 text-center mt-2">
+                                <button type="submit" class="btn col-sm-16 col-lg-6">Guardar cambios</button> 
+                            </div>
+                    </form>  
+                 </div>   
+             </div>
+
+                <!--Formulario end-->
                 </div>
             </div>
         </div>
@@ -107,6 +206,7 @@ $usuario = $_SESSION["nombre_usuario"];
         }, 3000);
         
     </script>
+     <script src="script/show.js"></script>
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>
     <script src="script/showHide.js"></script>

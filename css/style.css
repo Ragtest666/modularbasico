@@ -622,6 +622,21 @@ Rojizo #66260b;
 
 /*Pagina menu principal end */
 /*Pagina Colaborador star */
+.scrollBarr{
+    overflow-y:scroll;
+     height:200px;
+
+     }
+
+.PadPassword{
+  padding-top: 5%;
+}
+.BtnShow{
+  background-color: white;
+  cursor: pointer;
+}
+
+
 .BarraEtiqueta{
     margin-left: 25px;
     margin-right: 25px
