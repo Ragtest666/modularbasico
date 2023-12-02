@@ -70,11 +70,86 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </nav>
-            <div class="container-fluid pt-4 px-4">
-                <div class="row  cafeclaro rounded align-items-center justify-content-center mx-0" style="height:85vh;">
-                    <div class="col-md-6  text-center">
-                        <h3>This is blank page</h3>
+            <!-- Container Start -->
+            <div class="container-fluid pt-3 px-3">
+                <div class="cafeclaro rounded p-4">
+
+                    <div class="container-fluid pt-3 px-4 ">
+                    <!-- Barra de acceso rapido Start-->
+
+                            <div class=" naranja rounded p-1 text-center row">
+                                <h5 class="text-center pt-2 px-4">HISTORIAL DE PEDIDOS</h5>
+                            </div>
+
+                            <div class="cafeoscuro rounded p-1 row">
+                       
+                                <div class=" col-sm-6 container-fluid pt-2 ">
+                                        <form class=" d-md-flex ">
+                                            <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" placeholder="Buscar un pedido">
+                                        </form>
+                                </div>
+
+                                    <div class=" col-sm-6  "><a  type="submit" class=" PosicionAgregar btn text-white" aria-current="page">Filtrar</a></div>
+
+                                
+
+                            </div>
+                        </div>
+               
+                    <!-- Barra de acceso rapido End -->
+        
+                    <!-- Recent Sales Start -->
+                    <div class="container-fluid pt-3 px-4">
+                        <div class="cafeoscuro text-center rounded p-4">
+                            
+                            <div class="table-responsive rounded">
+                                    
+                                <table class="table text-start align-middle table-bordered table-hover mb-0 ">
+                                        <thead class="text-center naranja text-white ">
+                                            <tr>
+                                                <th scope="col">Fecha Registro</th>
+                                                <th scope="col">Fecha Entrega</th>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Productos</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Costo Total</th>
+                                                <th scope="col">Estatus Pedido</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="CursorPointerTabla text-center">
+                                            <tr class="">
+                                                <td>9/10/23</td>
+                                                <td>10/10/23</td>
+                                                <td>Alan Brito</td>
+                                                <td>5 Teleras, 3 conchas</td>
+                                                <td>Descripciones</td>
+                                                <td>$123</td>
+                                                <td>Entregado</td>
+                                            </tr>
+                                             <tr class="">
+                                                <td>9/10/23</td>
+                                                <td>10/10/23</td>
+                                                <td>Alan Brito</td>
+                                                <td>5 Teleras, 3 conchas</td>
+                                                <td>Descripciones</td>
+                                                <td>$123</td>
+                                                <td>Cancelado</td>
+                                            </tr>
+                                             <tr class="">
+                                                <td>9/10/23</td>
+                                                <td>10/10/23</td>
+                                                <td>Alan Brito</td>
+                                                <td>5 Teleras, 3 conchas</td>
+                                                <td>Descripciones</td>
+                                                <td>$123</td>
+                                                <td>Entregado</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
                     </div>
+                    <!-- Recent Sales End -->
                 </div>
             </div>
         </div>
