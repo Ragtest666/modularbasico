@@ -67,7 +67,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                         $src = mysqli_fetch_array($imagen);
                                                                         $url = $src['imagen'];
                                                                         echo $url; ?>" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
+                            <span class="d-none d-lg-inline-flex"id="colaboradorajustes"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
                             <a href="ajustes.php" class="dropdown-item">Ajustes</a>
@@ -91,7 +91,8 @@ $usuario = $_SESSION["nombre_usuario"];
                     
                     <!--Formulario star-->
                     
-                <form class="row" action="" method="post">
+                <form class="row" action="" method="post" enctype="multipart/form-data">
+
                        
                     <div class="col-sm-12 col-xl-6  ">
                            
@@ -101,13 +102,13 @@ $usuario = $_SESSION["nombre_usuario"];
 
                             <div class="col-sm-6 col-lg-6">
                                 <label for="floatingTextarea" class="Text">Numero de telefono *</label>
-                                <input class="form-control p_input mb-3"  type="text" required  placeholder="">
+                                <input class="form-control p_input mb-3"  type="text"  name="telefono" autocomplete="off" required  placeholder="">
                             
                          </div>
 
                          <div class="col-sm-6 col-lg-6">
                             <label for="floatingTextarea" class="Text">Correo Electrónico *</label>
-                            <input class="form-control mb-3" type="email" required placeholder="">
+                            <input class="form-control mb-3" type="email"  name="correo" autocomplete="off" required placeholder="">
                           </div>
 
                         </div>
@@ -116,41 +117,41 @@ $usuario = $_SESSION["nombre_usuario"];
                             
                             <div class="col-sm-6 col-xl-6 ">
                                 <label for="floatingTextarea" class="Text">Calle *</label>
-                        <input class="form-control mb-3" type="text" required placeholder="">         
+                        <input class="form-control mb-3" type="text"  name="calle" autocomplete="off" required placeholder="">         
                             </div>
 
                             <div class="col-sm-6 col-xl-6 ">
                                 <label for="floatingTextarea" class="Text">Colonia *</label>
-                        <input class="form-control mb-3" type="text" required placeholder="">      
+                        <input class="form-control mb-3" type="text"  name="colonia" autocomplete="off" required placeholder="">      
                             </div>
                      </div>
 
                             <div class=" col-sm-12 col-xl-12 row">
                                 <div class="col-sm-4 col-lg-4">
                                 <label for="floatingTextarea" class="Text">C.P. *</label>
-                                <input class="form-control mb-3" type="text" required placeholder="">
+                                <input class="form-control mb-3" type="text"  name="codigo_postal" autocomplete="off" required placeholder="">
                             </div>
                                
                                 <div class="col-sm-4 col-lg-4">
                                     <label for="floatingTextarea" class="Text pl-3  TextoExtendido">No. Int. *</label>
-                                    <input class="form-control mb-3" type="text" required placeholder="">
+                                    <input class="form-control mb-3" type="text"  name="num_interior" autocomplete="off" required placeholder="">
                                 </div>
                                 
                                 <div class="col-sm-4 col-lg-4">
                                     <label for="floatingTextarea" class="Text TextoExtendido">No. Ext. *</label>
-                                <input class="form-control  mb-3" type="text" required placeholder="">
+                                <input class="form-control  mb-3" type="text"  name="num_exterior" autocomplete="off" required placeholder="">
                                 </div>
                            </div>
 
                            <div class="col-sm-12 col-xl-12 row">
                                 <div class="col-sm-12 col-xl-6 ">   
                                     <label for="floatingTextarea" class="Text">Nombre de usuario *</label>
-                            <input class="form-control mb-3" type="text" required placeholder="">
+                            <input class="form-control mb-3" type="text"  name="nombre_usuario" autocomplete="off" required placeholder="">
                                 </div>
 
                              <div class="col-sm-12 col-xl-5  ">
                                 <label for="floatingTextarea" class="Text">Contraseña *</label> 
-                                            <input type="password" id="txtPassword" class="form-control" />  
+                                            <input type="password" id="txtPassword" name="contrasena" autocomplete="off" class="form-control" />  
                              </div>
 
                                      <div class="col-lg-1 PadPassword">    
@@ -164,7 +165,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             <div class="col-sm-12 col-xl-6 ">
                                      <div class="text-center col-sm-12 col-lg-12 pt-4 hoverbox feed-profile" align="center">
                                           <label for="foto">
-                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 250px " alt="avatar" id="img"/>
+                                            <img class="bg-white img-thumbnail CursorPunto shadow-sm" src="https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg" style="width: 300px; height: 250px " alt="avatar" id="img"/>
                                           </label>
                                           <input class="desactiveFiles" type="file" name="foto" id="foto" accept="image/*"/>
                                         </div>   
@@ -173,15 +174,62 @@ $usuario = $_SESSION["nombre_usuario"];
                          
                              
                              <div class="BarraBtn rounded p-2 text-center mt-2">
-                                <button type="submit" class="btn col-sm-16 col-lg-6">Guardar cambios</button> 
+                                <button type="submit" class="btn col-sm-16 col-lg-6" name="update">Guardar cambios</button> 
                             </div>
+                            <?php
+                                include('control/editarcolaboradorajustes.php');
+                                ?>
+                                <script type="text/javascript">
+                                ventana.onload = función() {
+                                var colaboradorSeleccionado = document.getElementById("colaboradorajustes").value;
+                                        var xhr = new XMLHttpRequest();
+                                        xhr.onreadystatechange = function() {
+                                            if (xhr.readyState == 4) {
+                                                if (xhr.status == 200) {
+                                                    var datosColaborador = JSON.parse(xhr.responseText);
+                                                    if (datosColaborador !== null && datosColaborador !== undefined) {
+                                                        document.getElementsByName("telefono")[0].value = datosColaborador.telefono || "";
+                                                        document.getElementsByName("correo")[0].value = datosColaborador.correo || "";
+                                                        document.getElementsByName("calle")[0].value = datosColaborador.calle || "";
+                                                        document.getElementsByName("colonia")[0].value = datosColaborador.colonia || "";
+                                                        document.getElementsByName("codigo_postal")[0].value = datosColaborador.cp || "";
+                                                        document.getElementsByName("num_interior")[0].value = datosColaborador.numero_interior || "";
+                                                        document.getElementsByName("num_exterior")[0].value = datosColaborador.numero_exterior || "";
+                                                        document.getElementsByName("nombre_usuario")[0].value = datosColaborador.nombre_usuario || "";
+                                                        document.getElementsByName("contrasena")[0].value = datosColaborador.contrasena || "";
+                                                        document.getElementById("img").src = datosColaborador.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                                        document.getElementsByName("update")[0].value = datosColaborador.id_trabajador || "";
+                                                    } else {
+                                                        document.getElementsByName("telefono")[0].value = "";
+                                                        document.getElementsByName("correo")[0].value = "";
+                                                        document.getElementsByName("calle")[0].value = "";
+                                                        document.getElementsByName("colonia")[0].value = "";
+                                                        document.getElementsByName("codigo_postal")[0].value = "";
+                                                        document.getElementsByName("num_interior")[0].value = "";
+                                                        document.getElementsByName("num_exterior")[0].value = "";
+                                                        document.getElementsByName("nombre_usuario")[0].value = "";
+                                                        document.getElementsByName("contrasena")[0].value = "";
+                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
+                                                        document.getElementsByName("update")[0].value = "";
+                                                    }
+                                                } else {
+                                                    console.error("Error al obtener datos del colaborador");
+                                                }
+                                            }
+                                        };
+                                        xhr.open("GET", "obtener_datos_colaboradores.php?nombre=" + encodeURIComponent(colaboradorSeleccionado), true);
+                                        xhr.send();
+                                };
+                            </script>
                     </form>  
+
                  </div>   
              </div>
 
                 <!--Formulario end-->
                 </div>
             </div>
+
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
