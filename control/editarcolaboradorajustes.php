@@ -1,0 +1,102 @@
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de guardar los cambios?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" name="update">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+require_once("conexion.php");
+
+if (isset($_POST['update'])) {
+    $id = $_POST['update'];
+    $telefono = $_POST["telefono"];
+    $correo = $_POST["correo"];
+    $calle = $_POST["calle"];
+    $colonia = $_POST["colonia"];
+    $cp = $_POST["codigo_postal"];
+    $num_interior = $_POST["num_interior"];
+    $num_exterior = $_POST["num_exterior"];
+    $nombre_usuario = $_POST["nombre_usuario"];
+    $contrasena = $_POST["contrasena"];
+
+    // Verifica si el trabajador existe
+    $trabajadorExistente = $conexion->query("SELECT * FROM Trabajadores WHERE id = '$id'");
+    if ($trabajadorExistente->num_rows > 0) {
+        // Actualiza la tabla Trabajadores
+        $sqlTrabajadores = "UPDATE Trabajadores SET
+            telefono = '$telefono',
+            correo = '$correo',
+            calle = '$calle',
+            colonia = '$colonia',
+            cp = '$cp',
+            numero_interior = '$num_interior',
+            numero_exterior = '$num_exterior'
+            WHERE id='$id';";
+
+        if ($conexion->query($sqlTrabajadores) === TRUE) {
+            $usuarioExistente = $conexion->query("SELECT * FROM Usuarios WHERE id_trabajador = '$id'");
+            if ($usuarioExistente->num_rows > 0) {
+                $sqlUsuarios = "UPDATE Usuarios SET nombre_usuario ='$nombre_usuario',
+                    tipo_usuario = '$tipo_usuario',
+                    contrasena = '$contrasena'
+                    WHERE id_trabajador = '$id';";
+
+                if ($conexion->query($sqlUsuarios) === TRUE) {
+                    printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                                Datos de trabajador y usuario actualizados correctamente
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>');
+                } else {
+                    printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                                No se pudo actualizar la información del usuario: ' . $conexion->error . '
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>');
+                }
+            } else {
+                printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <div>
+                            El usuario no existe.
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>');
+            }
+        } else {
+            printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <div>
+                        No se pudo actualizar la información del trabajador: ' . $conexion->error . '
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>');
+        }
+    } else {
+        printf('<div class="alert alert-warning fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
+                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                <div>
+                    El trabajador no existe.
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>');
+    }
+}
+?>
+

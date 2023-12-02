@@ -126,7 +126,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <input class="desactiveFiles" type="file" name="imagen" id="foto" accept="image/*" />
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-lg-12 mt-3">
+                                <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoProducto()">Nuevo Producto</button></div>
                                         <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Producto</button></div>
