@@ -81,78 +81,76 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="cafeclaro rounded p-4">
 
                     <div class="container-fluid pt-3 px-4 ">
-                    <!-- Barra de acceso rapido Start-->
+                        <!-- Barra de acceso rapido Start-->
 
-                            <div class=" naranja rounded p-1 text-center row">
-                                <h5 class="text-center pt-2 px-4">HISTORIAL DE PEDIDOS</h5>
-                            </div>
-
-                            <div class="cafeoscuro rounded p-1 row">
-                       
-                                <div class=" col-sm-6 container-fluid pt-2 ">
-                                        <form class=" d-md-flex ">
-                                            <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" placeholder="Buscar un pedido">
-                                        </form>
-                                </div>
-
-                                    <div class=" col-sm-6  "><a  type="submit" class=" PosicionAgregar btn text-white" aria-current="page">Filtrar</a></div>
-
-                                
-
-                            </div>
+                        <div class=" naranja rounded p-1 text-center row">
+                            <h5 class="text-center pt-2 px-4">HISTORIAL DE PEDIDOS</h5>
                         </div>
-               
+
+                        <div class="cafeoscuro rounded p-1 row">
+
+                            <div class=" col-sm-6 container-fluid pt-2 ">
+                                <form class=" d-md-flex ">
+                                    <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
+
+                                </form>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+
                     <!-- Barra de acceso rapido End -->
-        
+
                     <!-- Recent Sales Start -->
                     <div class="container-fluid pt-3 px-4">
                         <div class="cafeoscuro text-center rounded p-4">
-                            
+
                             <div class="table-responsive rounded">
-                                    
+
                                 <table class="table text-start align-middle table-bordered table-hover mb-0 ">
-                                        <thead class="text-center naranja text-white ">
-                                            <tr>
-                                                <th scope="col">Fecha Registro</th>
-                                                <th scope="col">Fecha Entrega</th>
-                                                <th scope="col">Cliente</th>
-                                                <th scope="col">Productos</th>
-                                                <th scope="col">Descripcion</th>
-                                                <th scope="col">Costo Total</th>
-                                                <th scope="col">Estatus Pedido</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="CursorPointerTabla text-center">
-                                            <tr class="">
-                                                <td>9/10/23</td>
-                                                <td>10/10/23</td>
-                                                <td>Alan Brito</td>
-                                                <td>5 Teleras, 3 conchas</td>
-                                                <td>Descripciones</td>
-                                                <td>$123</td>
-                                                <td>Entregado</td>
-                                            </tr>
-                                             <tr class="">
-                                                <td>9/10/23</td>
-                                                <td>10/10/23</td>
-                                                <td>Alan Brito</td>
-                                                <td>5 Teleras, 3 conchas</td>
-                                                <td>Descripciones</td>
-                                                <td>$123</td>
-                                                <td>Cancelado</td>
-                                            </tr>
-                                             <tr class="">
-                                                <td>9/10/23</td>
-                                                <td>10/10/23</td>
-                                                <td>Alan Brito</td>
-                                                <td>5 Teleras, 3 conchas</td>
-                                                <td>Descripciones</td>
-                                                <td>$123</td>
-                                                <td>Entregado</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    <thead class="text-center naranja text-white ">
+                                        <tr>
+                                            <th scope="col">Fecha Registro</th>
+                                            <th scope="col">Fecha Entrega</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Productos</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Costo Total</th>
+                                            <th scope="col">Estatus Pedido</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="CursorPointerTabla text-center">
+                                        <?php
+                                        require('control/conexion.php');
+                                        $sql = mysqli_query($conexion, "SELECT * FROM Pedidos,Clientes WHERE Pedidos.id_cliente=Clientes.id AND Pedidos.estatus='Entregado';");
+
+                                        while ($fila = mysqli_fetch_array($sql)) {
+                                            printf(
+                                                "<tr>
+                                                    <td>%s</td>
+                                                    <td>%s</td>
+                                                    <td>%s</td>
+                                                    <td>Productos</td>
+                                                    <td>%s</td>
+                                                    <td>Total</td>
+                                                    <td>%s</td>
+                                                </tr>",
+                                                $fila["fecha_realizacion"],
+                                                $fila["fecha_entrega"],
+                                                $fila["nombre"],
+                                                $fila["descripcion_pedido"],
+                                                $fila["estatus"]
+                                            );
+                                        }
+                                        ?>
+                                    </tbody>
+
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- Recent Sales End -->
@@ -169,6 +167,20 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Trigger the function when the search input changes
+            $('#searchInput').on('input', function() {
+                var searchText = $(this).val().toLowerCase();
+
+                // Iterate through each row in the table
+                $('tbody tr').filter(function() {
+                    // Check if the row contains the search text
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+                });
+            });
+        });
+    </script>
 
     <!-- Template Javascript -->
 

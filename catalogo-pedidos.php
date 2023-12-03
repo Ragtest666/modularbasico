@@ -185,10 +185,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                         var totalCell = newRow.insertCell(4);
                                         totalCell.textContent = total;
 
-                                        document.getElementById('productoInput').value="Seleccionar producto";
-                                        document.getElementById('cantidad').value="";
-                                        document.getElementById('costo').value="Selecciona Precio";
-                                        document.querySelector('[name="total"]').value="";
+                                        document.getElementById('productoInput').value = "Seleccionar producto";
+                                        document.getElementById('cantidad').value = "";
+                                        document.getElementById('costo').value = "Selecciona Precio";
+                                        document.querySelector('[name="total"]').value = "";
                                     }
                                 </script>
                                 <script>
@@ -321,7 +321,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                    <input type="date" id="fechaActual" name="fechaRegistro" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                        <input type="date" id="fechaActual" name="fechaRegistro" value="<?php echo date('Y-m-d'); ?>" readonly>
                                     </div>
                                     <div class="col-6">
                                         <input type="date" name="fechaEntrega" class="date col-9">
@@ -334,7 +334,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                             <div class=" row ">
                                 <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo">Nuevo Pedido</button></div>
-                                <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Pedido</button></div>
+                                <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar" onclick="enviarPedido()">Agregar Pedido</button></div>
                                 <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
                                 <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Pedido</button></div>
 
@@ -376,6 +376,59 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>
     <script src="script/showHide.js"></script>
+    <script>
+        function enviarPedido() {
+            // Obtener los datos del formulario
+            var formData = {
+                nombre: $('#nombre').val(),
+                descripcion: $('#descripcion').val(),
+                fechaRegistro: $('#fechaRegistro').val(),
+                fechaEntrega: $('#fechaEntrega').val(),
+                tablaProductos: obtenerProductos()
+            };
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                    type: 'POST',
+                    url: 'control/agregarpedido.php',
+                    data: formData,
+                    dataType: 'json',
+                    encode: true
+                })
+                .done(function(data) {
+                    console.log(data); // Puedes mostrar la respuesta del servidor en la consola
+
+                    // Puedes hacer algo en la interfaz de usuario en función de la respuesta del servidor
+                    if (data.success) {
+                        alert('Pedido agregado correctamente');
+                        // Redirigir o hacer alguna otra acción después de agregar el pedido
+                    } else {
+                        alert('Error al agregar el pedido: ' + data.message);
+                    }
+                })
+                .fail(function(data) {
+                    console.error('Error en la solicitud AJAX: ' + JSON.stringify(data));
+                });
+        }
+
+        // Esta función obtiene los datos de la tabla de productos
+        function obtenerProductos() {
+            var productos = [];
+
+            $('#tablaProductos tbody tr').each(function(index, row) {
+                var producto = {
+                    producto: $(row).find('td:nth-child(2)').text(),
+                    cantidad: $(row).find('td:nth-child(3)').text(),
+                    precio: $(row).find('td:nth-child(4)').text(),
+                    total: $(row).find('td:nth-child(5)').text()
+                };
+
+                productos.push(producto);
+            });
+
+            return productos;
+        }
+    </script>
 </body>
 
 </html>

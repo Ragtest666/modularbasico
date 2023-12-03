@@ -61,13 +61,13 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="<?php 
-                    $usuario = $_SESSION['nombre_usuario'];
-                    $img="SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
-                    $imagen=mysqli_query($conexion,$img);
-                    $src=mysqli_fetch_array($imagen);
-                    $url=$src['imagen'];
-                    echo $url;?>" alt="" style="width: 40px; height: 40px;">
+                            <img class="rounded-circle me-lg-2" src="<?php
+                                                                        $usuario = $_SESSION['nombre_usuario'];
+                                                                        $img = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                        $imagen = mysqli_query($conexion, $img);
+                                                                        $src = mysqli_fetch_array($imagen);
+                                                                        $url = $src['imagen'];
+                                                                        echo $url; ?>" alt="" style="width: 40px; height: 40px;">
                             <span class="d-none d-lg-inline-flex"><?php echo $usuario; ?></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end cafeoscuro border-0 rounded-0 rounded-bottom m-0">
@@ -79,65 +79,107 @@ $usuario = $_SESSION["nombre_usuario"];
             </nav>
             <div class="container-fluid pt-4 px-4">
                 <div class="cafeclaro rounded p-4" style="height:85vh;">
-                    
-                <div class="container-fluid pt-3 px-4 ">
 
-                    <div class=" naranja rounded p-1 text-center ">
-                                <h5 class="text-center pt-2 px-4">PEDIDOS PENDIENTES</h5>
+                    <div class="container-fluid pt-3 px-4 ">
+
+                        <div class=" naranja rounded p-1 text-center ">
+                            <h5 class="text-center pt-2 px-4">PEDIDOS PENDIENTES</h5>
+                        </div>
+                        <div class="cafeoscuro   rounded p-1  ">
+                            <div class=" col-sm-6 container-fluid text-center pt-2 ">
+                                <form class=" d-md-flex ">
+                                <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
+                                </form>
                             </div>
-                            <div class="cafeoscuro   rounded p-1  ">
-                                <div class=" col-sm-6 container-fluid text-center pt-2 ">
-                                        <form class=" d-md-flex ">
-                                            <input class="col-sm-12 col-lg-12 searchSize search grispan border-0 rounded" type="search" placeholder="Buscar un pedido">
-                                        </form>
-                                </div>
                         </div>
                     </div>
-                        
+
                     <!-- Recent Sales Start -->
-                        <div class="container-fluid pt-3 px-4">
-                            <div class="cafeoscuro rounded h-100 p-3 w-100">
-                              
+                    <div class="container-fluid pt-3 px-4">
+                        <div class="cafeoscuro rounded h-100 p-3 w-100">
+
                             <div class="table-responsive rounded">
-                                    
+
                                 <table class="table text-start align-middle table-bordered table-hover mb-0 ">
-                                        <thead class="text-center naranja text-white ">
-                                            <tr>
-                                                <th scope="col">Fecha Registro</th>
-                                                <th scope="col">Fecha Entrega</th>
-                                                <th scope="col">Cliente</th>
-                                                <th scope="col">Productos</th>
-                                                <th scope="col">Descripcion</th>
-                                                <th scope="col">Costo Total</th>
-                                                <th scope="col">Estatus Pedido</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="CursorPointerTabla text-center">
-                                            <tr class="">
-                                                <td>9/10/23</td>
-                                                <td>10/10/23</td>
-                                                <td>Alan Brito</td>
-                                                <td>5 Teleras, 3 conchas</td>
-                                                <td>Descripciones</td>
-                                                <td>$123</td>
-                                                <td>
-                                                    <div>
-                                                        <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
-                                                        <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
-                                                            <a class="labeltablaProgreso dropdown-item">En proceso</a>
-                                                            <a class="labeltablaEntregado dropdown-item">Entregado</a>
-                                                            <a class="labeltablaCancelar dropdown-item">Cancelar</a>
+                                    <thead class="text-center naranja text-white ">
+                                        <tr>
+                                            <th scope="col">Fecha Registro</th>
+                                            <th scope="col">Fecha Entrega</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Productos</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Costo Total</th>
+                                            <th scope="col">Estatus Pedido</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="CursorPointerTabla text-center">
+                                        <?php
+                                        require('control/conexion.php');
+                                        $sql = mysqli_query($conexion, "SELECT * FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
+
+                                        while ($fila = mysqli_fetch_array($sql)) {
+                                            if($fila['estatus']=="Pendiente"){
+                                                printf(
+                                                    '<tr class="">
+                                                    <td>%s</td>
+                                                    <td>%s</td>
+                                                    <td>%s</td>
+                                                    <td>Productos</td>
+                                                    <td>%s</td>
+                                                    <td>$123</td>
+                                                    <td>
+                                                        <div>
+                                                            <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
+                                                            <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
+                                                                <a class="labeltablaProgreso dropdown-item">En proceso</a>
+                                                                <a class="labeltablaEntregado dropdown-item">Entregado</a>
+                                                                <a class="labeltablaCancelar dropdown-item">Cancelar</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    </td>
+                                                </tr>',
+                                                    $fila["fecha_realizacion"],
+                                                    $fila["fecha_entrega"],
+                                                    $fila["nombre"],
+                                                    $fila["descripcion_pedido"],
+                                                    $fila["estatus"]
+                                                );
+                                            }elseif($fila['estatus']=="En proceso"){
+                                                printf(
+                                                    '<tr class="">
+                                                    <td>%s</td>
+                                                    <td>%s</td>
+                                                    <td>%s</td>
+                                                    <td>Productos</td>
+                                                    <td>%s</td>
+                                                    <td>$123</td>
+                                                    <td>
+                                                        <div>
+                                                            <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>En proceso</label></div>
+                                                            <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
+                                                                <a class="labeltablaEntregado dropdown-item">Entregado</a>
+                                                                <a class="labeltablaCancelar dropdown-item">Cancelar</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>',
+                                                    $fila["fecha_realizacion"],
+                                                    $fila["fecha_entrega"],
+                                                    $fila["nombre"],
+                                                    $fila["descripcion_pedido"],
+                                                    $fila["estatus"]
+                                                );
+                                            }
+                                        }
+                                        ?>
+                                        
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <!-- Recent Sales End -->
-                    
+                    </div>
+                    <!-- Recent Sales End -->
+
                 </div>
             </div>
         </div>
@@ -153,7 +195,20 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Trigger the function when the search input changes
+            $('#searchInput').on('input', function() {
+                var searchText = $(this).val().toLowerCase();
 
+                // Iterate through each row in the table
+                $('tbody tr').filter(function() {
+                    // Check if the row contains the search text
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+                });
+            });
+        });
+    </script>
     <!-- Template Javascript -->
 
     <script src="js/main.js"></script>
@@ -164,7 +219,6 @@ $usuario = $_SESSION["nombre_usuario"];
                 window.location.href = 'index.php';
             });
         }, 3000);
-       
     </script>
 </body>
 

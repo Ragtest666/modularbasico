@@ -1,6 +1,6 @@
 <?php
 $url=$_SERVER["PHP_SELF"];
-if($url=="/ModularBasico/index.php"){
+if($url=="/modularbasico/index.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
@@ -29,7 +29,7 @@ if($url=="/ModularBasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/ModularBasico/catalogo-clientes.php"){
+}elseif($url=="/modularbasico/catalogo-clientes.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
@@ -58,7 +58,7 @@ if($url=="/ModularBasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/ModularBasico/catalogo-productos.php"){
+}elseif($url=="/modularbasico/catalogo-productos.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
@@ -87,7 +87,7 @@ if($url=="/ModularBasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/ModularBasico/catalogo-pedidos.php"){
+}elseif($url=="/modularbasico/catalogo-pedidos.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
@@ -116,7 +116,7 @@ if($url=="/ModularBasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/ModularBasico/historial.php"){
+}elseif($url=="/modularbasico/historial.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
@@ -145,7 +145,7 @@ if($url=="/ModularBasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/ModularBasico/catalogo-usuarios.php"){
+}elseif($url=="/modularbasico/catalogo-usuarios.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
