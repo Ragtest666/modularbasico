@@ -89,7 +89,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="col-sm-12 col-xl-12">
                                     <div class="mb-3">
                                         <label for="floatingTextarea" class="Text">Nombre del cliente</label>
-                                        <select class="form-select mb-3 grispan" aria-label="Default select example" oninput="obtenerPrecios()">
+                                        <select class="form-select mb-3 grispan" name="nombre" aria-label="Default select example" oninput="obtenerPrecios()">
                                             <option selected>Seleccionar cliente</option>
                                             <?php
                                             $nomCliente = "SELECT nombre FROM Clientes;";
@@ -144,7 +144,6 @@ $usuario = $_SESSION["nombre_usuario"];
                                         </table>
                                     </div>
                                     <div>
-
                                         <button class="btn" type="button" onclick="agregarProductos()">Agregar producto</button>
                                     </div>
                                 </div>
@@ -185,9 +184,13 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                         var totalCell = newRow.insertCell(4);
                                         totalCell.textContent = total;
+
+                                        document.getElementById('productoInput').value="Seleccionar producto";
+                                        document.getElementById('cantidad').value="";
+                                        document.getElementById('costo').value="Selecciona Precio";
+                                        document.querySelector('[name="total"]').value="";
                                     }
                                 </script>
-
                                 <script>
                                     function eliminarProductos() {
                                         // Referencia a la segunda tabla
@@ -211,8 +214,6 @@ $usuario = $_SESSION["nombre_usuario"];
                                         }
                                     }
                                 </script>
-
-
                                 <script>
                                     function obtenerPrecios() {
                                         var productoSeleccionado = document.getElementById("productoInput").value;
@@ -260,7 +261,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="mb-3 ">
                                     <label for="floatingTextarea" class="Text">Productos Agregados</label>
                                     <div class="scrollBarr">
-                                        <table class="table  table-bordered table-hover p-4 scrollBarr" id="tablaProductos" style="height: 55px;">
+                                        <table class="table  table-bordered table-hover p-4 scrollBarr" id="tablaProductos" name="tablaProductos" style="height: 55px;">
                                             <thead class="ssss" style="border-top: 1px;">
                                                 <tr class="">
                                                     <th scope="col"><input class="form-check-input" type="checkbox" onclick="toggleCheckAll()"></th>
@@ -307,7 +308,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                 <div class="mb-3">
                                     <label for="floatingTextarea" class="Text">Descripción</label>
-                                    <textarea class="form-control grispan" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
+                                    <textarea class="form-control grispan" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
                                 </div>
 
                             </div>
@@ -320,10 +321,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                    <input type="date" id="fechaActual" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                    <input type="date" id="fechaActual" name="fechaRegistro" value="<?php echo date('Y-m-d'); ?>" readonly>
                                     </div>
                                     <div class="col-6">
-                                        <input type="datetime-local" class="date col-9">
+                                        <input type="date" name="fechaEntrega" class="date col-9">
                                     </div>
                                 </div>
                             </div>
@@ -332,13 +333,16 @@ $usuario = $_SESSION["nombre_usuario"];
 
                         <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                             <div class=" row ">
-                                <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Nuevo Pedido</button></div>
+                                <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo">Nuevo Pedido</button></div>
                                 <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Pedido</button></div>
                                 <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
                                 <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Pedido</button></div>
 
                             </div>
                         </div>
+                        <?php
+                        include("control/agregarpedido.php");
+                        ?>
                         </form>
                     </div>
 
