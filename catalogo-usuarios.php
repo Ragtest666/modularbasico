@@ -213,7 +213,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                             if (xhr.readyState == 4) {
                                                 if (xhr.status == 200) {
                                                     var datosColaborador = JSON.parse(xhr.responseText);
-                                                    if (datosColaborador !== null && datosColaborador !== undefined) {
+                                                    if (datosColaborador.nombre) {
                                                         document.getElementsByName("telefono")[0].value = datosColaborador.telefono || "";
                                                         document.getElementsByName("correo")[0].value = datosColaborador.correo || "";
                                                         document.getElementsByName("nss")[0].value = datosColaborador.nss || "";
@@ -234,8 +234,12 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         btnAgregar.disabled = true;
                                                         btnGuardar.disabled = false;
                                                         btnEliminar.disabled = false;
+                                                        
                                                     } else {
-                                                        nuevoColaborador();
+                                                        btnNuevo.disabled = true;
+                                                        btnAgregar.disabled = false;
+                                                        btnGuardar.disabled = true;
+                                                        btnEliminar.disabled = true;
                                                     }
                                                 } else {
                                                     console.error("Error al obtener datos del colaborador");

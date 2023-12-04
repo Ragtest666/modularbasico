@@ -154,7 +154,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                             if (xhr.readyState == 4) {
                                                 if (xhr.status == 200) {
                                                     var datosProducto = JSON.parse(xhr.responseText);
-                                                    if (datosProducto !== null && datosProducto !== undefined) {
+                                                    if (datosProducto.nombre_producto) {
                                                         document.getElementsByName("precio_menudeo")[0].value = datosProducto.precio_menudeo || "";
                                                         document.getElementsByName("precio_mayoreo")[0].value = datosProducto.precio_mayoreo || "";
                                                         document.getElementsByName("descripcion")[0].value = datosProducto.descripcion || "";
@@ -168,7 +168,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         btnGuardar.disabled = false;
                                                         btnEliminar.disabled = false;
                                                     } else {
-                                                        nuevoProducto();
+                                                        btnNuevo.disabled = true;
+                                                        btnAgregar.disabled = false;
+                                                        btnGuardar.disabled = true;
+                                                        btnEliminar.disabled = true;
                                                     }
                                                 } else {
                                                     console.error("Error al obtener datos del producto");
