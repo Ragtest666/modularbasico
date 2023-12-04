@@ -194,12 +194,21 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                                                             );
                                                                                                         }
                                                 
-                                                                                                        echo '</select>
+                                                                                                    printf( '</select>
                                                                                                 </div>
                                                                                                 <div class="row">
                                                                                                     <div class="col-lg-3">
                                                                                                         <label style="color: white;">Producto</label>
-                                                                                                        <input type="text" name="producto" class="form-control input-sm">
+                                                                                                        <select class="form-select grispan" name="producto" id="productoInput">
+                                                                                                        <option selected>Seleccionar producto</option>');
+                                                                                                      
+                                                                                                        $nomProducto = "SELECT nombre_producto FROM Productos;";
+                                                                                                        $conNom = mysqli_query($conexion, $nomProducto);
+                                                                                                        while ($fila = mysqli_fetch_array($conNom)) {
+                                                                                                            printf('<option class="naranja" value="%s">%s</option>', $fila['nombre_producto'], $fila['nombre_producto']);
+                                                                                                        }
+                                                                                                        printf('
+                                                                                                    </select>
                                                                                                     </div>
                                                                                                     <div class="col-lg-3">
                                                                                                         <label style="color: white;">Cantidad</label>
@@ -207,7 +216,12 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                                                     </div>
                                                                                                     <div class="col-lg-3">
                                                                                                         <label style="color: white;">Precio</label>
-                                                                                                        <input type="text" name="precio" class="form-control input-sm">
+                                                                                                        <select class="form-select grispan" id="costo" name="costo" oninput="obtenerPrecios()">
+                                                                                                        <option selected>Selecciona Precio</option>
+                                                                                                        <option value="1">Mayoreo</option>
+                                                                                                        <option value="2">Menudeo</option>
+                                                                                                    </select>
+
                                                                                                     </div>
                                                                                                     <div class="col-lg-3">
                                                                                                         <label style="color: white;">Costo Total</label>
@@ -221,18 +235,26 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                                             <div class="col-sm-12 col-xl-12">
                                                                                                 <div class="mb-3">
                                                                                                     <label for="productosAgregados" class="Text mt-2">Productos Agregados</label>
-                                                                                                    <textarea readonly style="background: #9c886f;" class="form-control grispan mt-2 rea" name="productosAgregados" id="productosAgregados" placeholder="Agrega un Producto" style="height: 100px;"></textarea>
+                                                                                                    <textarea readonly style="background: #9c886f;" class="form-control grispan mt-2 rea"  name="productosAgregados" id="productosAgregados" placeholder="Agrega un Producto" style="height: 100px;">%s</textarea>
                                                                                                 </div>
                                                                                                 <div class="mb-3">
                                                                                                     <button class="btn" type="button" onclick="eliminarProductos()">Eliminar Producto</button>
                                                                                                 </div>
                                                                                                 <div class="mb-3">
                                                                                                     <label for="descripcion" class="Text mt-2">Descripción del Pedido</label>
-                                                                                                    <textarea class="form-control grispan mt-2" name="descripcion" id="descripcion" placeholder="Descripción" style="height: 100px;"></textarea>
+                                                                                                    <textarea class="form-control grispan mt-2" name="descripcion" id="descripcion"  placeholder="Descripción" style="height: 100px;">.htmlspecialchars(%s).</textarea>
                                                                                                 </div>
-                                                                                                <div class="col-lg-4">
-                                                                                                    <h6>Costo Total:</h6>
-                                                                                                    <div><label class="display-4" style="color: white;">$</label></div>
+                                                                                                <div class=" col-lg-6">
+                                                                                                    <div class="row">
+                                                                                                        <h6> Costo Total:</h6>
+                                                                                                            <div class="col-lg-1">
+                                                                                                            <label class="display-4 pt-3" style="color: white;">$</label>
+                                                                                                            </div>
+                                                                                                            <div class="col-lg-6 " >
+                                                                                                                <input type="text" id="costo_total" value="%s" name="costo_total" readonly class="display-4 form-control-plaintext white"value="">
+                                                                                                            </div>
+
+                                                                                                            </div>
                                                                                                 </div>
                                                                                                 <div class="pt-4 pb-4">
                                                                                                     <div class="row">
@@ -241,10 +263,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-6">
-                                                                                                            <input type="date" id="fechaActual" name="fechaRegistro" value="2023-12-04" readonly>
+                                                                                                            <input type="date" id="fechaActual" name="fechaRegistro" value="%s" readonly>
                                                                                                         </div>
                                                                                                         <div class="col-6">
-                                                                                                            <input type="date" name="fechaEntrega" class="date col-9">
+                                                                                                            <input type="date" name="fechaEntrega" value="%s" class="date col-9">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -258,11 +280,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                                                        <button type="button" class="btn btn-primary" value="%s" >Guardar cambios</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>';
+                                                        </div>',$fila["productos"],$fila["descripcion_pedido"],$fila["costo_total"],$fila["fecha_realizacion"],$fila["fecha_entrega"],$fila["id_pedido"]);
                                                         
                                                                                                     
                                                 } elseif ($fila['estatus'] == "En proceso") {
