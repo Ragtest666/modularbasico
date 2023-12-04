@@ -103,6 +103,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                     <table class="table text-start align-middle table-bordered table-hover mb-0 ">
                                         <thead class="text-center naranja text-white ">
                                             <tr>
+                                                <th scope="col"></th>
                                                 <th scope="col">Fecha Registro</th>
                                                 <th scope="col">Fecha Entrega</th>
                                                 <th scope="col">Cliente</th>
@@ -121,6 +122,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 if ($fila['estatus'] == "Pendiente") {
                                                     printf(
                                                         '<tr class="">
+                                                        <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">En proceso</button></td>
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
@@ -137,11 +139,29 @@ $usuario = $_SESSION["nombre_usuario"];
                                                             </div>
                                                         </div>
                                                     </td>
-                                                </tr>',
+                                                </tr>
+                                                <div class="modal fade" id="exampleModal%s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>',$fila["id_pedido"],
                                                         $fila["fecha_realizacion"],
                                                         $fila["fecha_entrega"],
                                                         $fila["nombre"],
                                                         $fila["descripcion_pedido"],
+                                                        $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"]
@@ -149,6 +169,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 } elseif ($fila['estatus'] == "En proceso") {
                                                     printf(
                                                         '<tr class="">
+                                                        <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">En proceso</button></td>
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
@@ -164,11 +185,29 @@ $usuario = $_SESSION["nombre_usuario"];
                                                             </div>
                                                         </div>
                                                     </td>
-                                                </tr>',
+                                                </tr>
+                                                <div class="modal fade" id="exampleModal%s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>',$fila["id_pedido"],
                                                         $fila["fecha_realizacion"],
                                                         $fila["fecha_entrega"],
                                                         $fila["nombre"],
                                                         $fila["descripcion_pedido"],
+                                                        $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"]
                                                     );

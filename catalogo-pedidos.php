@@ -167,7 +167,8 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                     <div class=" col-lg-4">
                                    <h6> Costo Total:</h6>
-                                    <div ><label class="display-4" style="color: white;">$</label></div>
+                                    <div> <input type="text" id="costo_total"  name="costo_total" class="display-4 form-control-plaintext white" value="" >
+                                        </div>
                                 </div>
 
                                     <div class="pt-4">
@@ -191,12 +192,14 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
                                         
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar" onclick="enviarPedido()">Agregar Pedido</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar"">Agregar Pedido</button></div>
                                         
 
                                     </div>
                                 </div>
-
+                                            <?php
+                                            include('control/agregarpedido.php');
+                                            ?>
                             </form>
                         </div>
 
@@ -216,7 +219,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
-        var costo_total=""
+        var costo_total=0
         function obtenerPrecios() {
             var productoSeleccionado = document.getElementById("productoInput").value;
             var xhr = new XMLHttpRequest();
@@ -277,7 +280,7 @@ $usuario = $_SESSION["nombre_usuario"];
             var cantidad = document.getElementById('cantidad').value;
             var costo = document.getElementById('costo').value;
             var total = document.querySelector('[name="total"]').value;
-            costo_total=costo_total+total;
+            costo_total=parseFloat(costo_total)+parseFloat(total);
             var textoCosto = "";
             if (costo == 1) {
                 textoCosto = "Mayoreo";
@@ -302,6 +305,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
             // Referencia a la segunda tabla
 
+            document.getElementById('costo_total').value = "$ "+costo_total;
 
             document.getElementById('productoInput').value = "Seleccionar producto";
             document.getElementById('cantidad').value = "";
