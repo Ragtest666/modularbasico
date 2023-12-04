@@ -90,9 +90,6 @@ $usuario = $_SESSION["nombre_usuario"];
                             <!--Formulario star-->
                             <form class="row" action="" method="post" enctype="multipart/form-data">
                                 <div class="col-sm-12 col-lg-6  ">
-                                    
-                                <div class="col-sm-12 col-xl-12 row">
-                                    <div class="col-lg-12">
                                     <label for="nombre" class="Text">Nombre del Colaborador *</label>
                                     <input class="form-control mb-3" list="Colaboradorsnombre" name="nombre" autocomplete="off" required placeholder="" id="ColaboradorInput" oninput="seleccionarColaborador()">
                                     <datalist id="Colaboradorsnombre">
@@ -104,7 +101,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         }
                                         ?>
                                     </datalist>
-                                    </div>
+                                    <div class="col-sm-12 col-xl-12 row">
                                         <div class="col-sm-6 col-lg-6">
                                             <label for="telefono" class="Text">Teléfono *</label>
                                             <input class="form-control p_input mb-3" type="number" name="telefono" autocomplete="off" required placeholder="">
@@ -137,7 +134,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                             <input class="form-control mb-3" type="text" name="colonia" autocomplete="off" placeholder="">
                                         </div>
 
-                                      
+                                        <div class="col-sm-12 col-xl-12 row">
                                             <div class="col-sm-4 col-lg-4">
                                                 <label for="codigo_postal" class="Text">C.P.</label>
                                                 <input class="form-control mb-3" type="text" name="codigo_postal" autocomplete="off" placeholder="">
@@ -152,7 +149,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 <label for="num_exterior" class="Text TextoExtendido">No. Ext.</label>
                                                 <input class="form-control mb-3" type="text" name="num_exterior" autocomplete="off" placeholder="">
                                             </div>
-                                       
+                                        </div>
                                     </div>
                                 </div>
 
