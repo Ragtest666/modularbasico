@@ -49,7 +49,6 @@ if (isset($_POST['update'])) {
             $usuarioExistente = $conexion->query("SELECT * FROM Usuarios WHERE id_trabajador = '$id'");
             if ($usuarioExistente->num_rows > 0) {
                 $sqlUsuarios = "UPDATE Usuarios SET nombre_usuario ='$nombre_usuario',
-                    tipo_usuario = '$tipo_usuario',
                     contrasena = '$contrasena'
                     WHERE id_trabajador = '$id';";
 
