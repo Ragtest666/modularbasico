@@ -174,7 +174,7 @@ if($url=="/modularbasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/modularbasico/ajuste.php"){
+}elseif($url=="/modularbasico/ajustes.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
@@ -203,7 +203,7 @@ if($url=="/modularbasico/index.php"){
         </div>
     </nav>
 </div>');
-}elseif($url=="/ModularBasico/ajuste.php"){
+}elseif($url=="/ModularBasico/ajustes.php"){
     printf('<div class="sidebar pe-4 pb-3">
     <nav class="navbar naranja navbar-dark">
         <a href="index.php" class="mx-4 d-lg-block d-sm-block">
