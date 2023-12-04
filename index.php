@@ -100,196 +100,204 @@ $usuario = $_SESSION["nombre_usuario"];
 
                             <div class="table-responsive rounded">
                                 <form action="" method="POST">
-                                <div class="scrollBarr" style="height: 350px;">
-                                    <table  class="table text-start align-middle table-bordered table-hover mb-0 ">
-                                        <thead class="text-center naranja text-white ">
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Fecha Registro</th>
-                                                <th scope="col">Fecha Entrega</th>
-                                                <th scope="col">Cliente</th>
-                                                <th scope="col">Productos</th>
-                                                <th scope="col">Descripcion</th>
-                                                <th scope="col">Costo Total</th>
-                                                <th scope="col">Estatus Pedido</th>
-                                            </tr>
-                                        </thead>
-                                        
-                                        <tbody class=" CursorPointerTabla text-center">
-                                        
-                                            <?php
-                                            require('control/conexion.php');
-                                            $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus,productos,costo_total FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
+                                    <div class="scrollBarr" style="height: 350px;">
+                                        <table class="table text-start align-middle table-bordered table-hover mb-0 ">
+                                            <thead class="text-center naranja text-white ">
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Fecha Registro</th>
+                                                    <th scope="col">Fecha Entrega</th>
+                                                    <th scope="col">Cliente</th>
+                                                    <th scope="col">Productos</th>
+                                                    <th scope="col">Descripcion</th>
+                                                    <th scope="col">Costo Total</th>
+                                                    <th scope="col">Estatus Pedido</th>
+                                                </tr>
+                                            </thead>
 
-                                            while ($fila = mysqli_fetch_array($sql)) {
-                                                if ($fila['estatus'] == "Pendiente") {
-                                                    printf(
-                                                        '<tr>
-                                                            <td>
-                                                                <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button>
-                                                            </td>
-                                                            <td>%s</td>
-                                                            <td>%s</td>
-                                                            <td>%s</td>
-                                                            <td>%s</td>
-                                                            <td>%s</td>
-                                                            <td>$%s</td>
-                                                            <td>
-                                                                <div class="BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown">
-                                                                    <label>%s</label>
-                                                                </div>
-                                                                <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
-                                                                    <button type="submit" class="labeltablaProgreso dropdown-item" name="proceso" value="%s">En proceso</button>
-                                                                    <button type="submit" class="labeltablaEntregado dropdown-item" name="entregado" value="%s">Entregado</button>
-                                                                    <button type="submit" class="labeltablaCancelar dropdown-item" name="cancelado" value="%s">Cancelar</button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <div class="modal fade" id="exampleModal%s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-xl">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Editar Pedido</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <!-- Contenido del formulario modal -->
-                                                                        <div class="container-fluid pt-3 px-3">
-                                                                            <div class="cafeclaro rounded p-4">
-                                                                                <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
-                                                                                    <h5 class="pt-2 text-center">EDITAR PEDIDO</h5>
-                                                                                </div>
-                                                                                <!-- Form Start -->
-                                                                                <div class="container-fluid px-4">
-                                                                                    <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
-                                                                                        <form class="row" method="post" name="formularioPedido">
-                                                                                            <div class="col-sm-12 col-xl-12">
-                                                                                                <div class="mb-3">
-                                                                                                    <label for="cliente" class="Text">Nombre del cliente</label>
-                                                                                                    <select class="form-select mb-3 grispan" name="nombre" id="cliente" aria-label="Default select example" oninput="obtenerPrecios()">
-                                                                                                        <option selected>Seleccionar cliente</option>',
-                                                                                                            
-                                                                                                            $fila["id_pedido"],
-                                                        $fila["fecha_realizacion"],
-                                                        $fila["fecha_entrega"],
-                                                        $fila["nombre"],
-                                                        $fila["productos"],
-                                                        $fila["descripcion_pedido"],
-                                                        $fila["costo_total"],
-                                                        $fila["estatus"],
-                                                        $fila["id_pedido"],
-                                                        $fila["id_pedido"],
-                                                        $fila["id_pedido"],
-                                                        $fila["id_pedido"],
-                                                        $fila["nombre"],
-                                                                                                        );
-                                                
-                                                                                                        $nomCliente = "SELECT nombre FROM Clientes;";
-                                                                                                        $conNom = mysqli_query($conexion, $nomCliente);
-                                                                                                        while ($filaCliente = mysqli_fetch_array($conNom)) {
-                                                                                                            printf("<option class=\"naranja\" value=\"%s\" %s>%s</option>",
-                                                                                                                $filaCliente["nombre"],
-                                                                                                                ($filaCliente["nombre"] == $fila["nombre"]) ? "selected" : "",
-                                                                                                                $filaCliente["nombre"]
-                                                                                                            );
-                                                                                                        }
-                                                
-                                                                                                    printf( '</select>
-                                                                                                </div>
-                                                                                                <div class="row">
-                                                                                                    <div class="col-lg-3">
-                                                                                                        <label style="color: white;">Producto</label>
-                                                                                                        <select class="form-select grispan" name="producto" id="productoInput">
-                                                                                                        <option selected>Seleccionar producto</option>');
-                                                                                                      
-                                                                                                        $nomProducto = "SELECT nombre_producto FROM Productos;";
-                                                                                                        $conNom = mysqli_query($conexion, $nomProducto);
-                                                                                                        while ($fila = mysqli_fetch_array($conNom)) {
-                                                                                                            printf('<option class="naranja" value="%s">%s</option>', $fila['nombre_producto'], $fila['nombre_producto']);
-                                                                                                        }
-                                                                                                        printf('
-                                                                                                    </select>
-                                                                                                    </div>
-                                                                                                    <div class="col-lg-3">
-                                                                                                        <label style="color: white;">Cantidad</label>
-                                                                                                        <input type="text" name="cantidad" class="form-control input-sm">
-                                                                                                    </div>
-                                                                                                    <div class="col-lg-3">
-                                                                                                        <label style="color: white;">Precio</label>
-                                                                                                        <select class="form-select grispan" id="costo" name="costo" oninput="obtenerPrecios()">
-                                                                                                        <option selected>Selecciona Precio</option>
-                                                                                                        <option value="1">Mayoreo</option>
-                                                                                                        <option value="2">Menudeo</option>
-                                                                                                    </select>
+                                            <tbody class=" CursorPointerTabla text-center">
 
-                                                                                                    </div>
-                                                                                                    <div class="col-lg-3">
-                                                                                                        <label style="color: white;">Costo Total</label>
-                                                                                                        <input type="text" name="costo_total" class="form-control input-sm">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="mb-3">
-                                                                                                    <button class="btn" type="button" onclick="agregarProductos()">Agregar producto</button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-sm-12 col-xl-12">
-                                                                                                <div class="mb-3">
-                                                                                                    <label for="productosAgregados" class="Text mt-2">Productos Agregados</label>
-                                                                                                    <textarea readonly style="background: #9c886f;" class="form-control grispan mt-2 rea"  name="productosAgregados" id="productosAgregados" placeholder="Agrega un Producto" style="height: 100px;">%s</textarea>
-                                                                                                </div>
-                                                                                                <div class="mb-3">
-                                                                                                    <button class="btn" type="button" onclick="eliminarProductos()">Eliminar Producto</button>
-                                                                                                </div>
-                                                                                                <div class="mb-3">
-                                                                                                    <label for="descripcion" class="Text mt-2">Descripción del Pedido</label>
-                                                                                                    <textarea class="form-control grispan mt-2" name="descripcion" id="descripcion"  placeholder="Descripción" style="height: 100px;">.htmlspecialchars(%s).</textarea>
-                                                                                                </div>
-                                                                                                <div class=" col-lg-6">
-                                                                                                    <div class="row">
-                                                                                                        <h6> Costo Total:</h6>
-                                                                                                            <div class="col-lg-1">
-                                                                                                            <label class="display-4 pt-3" style="color: white;">$</label>
-                                                                                                            </div>
-                                                                                                            <div class="col-lg-6 " >
-                                                                                                                <input type="text" id="costo_total" value="%s" name="costo_total" readonly class="display-4 form-control-plaintext white"value="">
-                                                                                                            </div>
+                                                <?php
+                                                require('control/conexion.php');
+                                                $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus,productos,costo_total FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
 
-                                                                                                            </div>
-                                                                                                </div>
-                                                                                                <div class="pt-4 pb-4">
-                                                                                                    <div class="row">
-                                                                                                        <label class="Text col-6">Fecha Realizado</label>
-                                                                                                        <label class="Text col-6">Fecha Entrega</label>
-                                                                                                    </div>
-                                                                                                    <div class="row">
-                                                                                                        <div class="col-6">
-                                                                                                            <input type="date" id="fechaActual" name="fechaRegistro" value="%s" readonly>
-                                                                                                        </div>
-                                                                                                        <div class="col-6">
-                                                                                                            <input type="date" name="fechaEntrega" value="%s" class="date col-9">
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- Form End -->
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                                        <button type="button" class="btn btn-primary" value="%s" >Guardar cambios</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>',$fila["productos"],$fila["descripcion_pedido"],$fila["costo_total"],$fila["fecha_realizacion"],$fila["fecha_entrega"],$fila["id_pedido"]);
-                                                        
-                                                                                                    
-                                                } elseif ($fila['estatus'] == "En proceso") {
-                                                    printf(
-                                                        '<tr class="">
+                                                while ($fila = mysqli_fetch_array($sql)) {
+                                                       if ($fila['estatus'] == "Pendiente") {
+        printf(
+            '<tr>
+                <td>
+                    <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button>
+                </td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>$%s</td>
+                <td>
+                    <div class="BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                        <label>%s</label>
+                    </div>
+                    <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
+                        <button type="submit" class="labeltablaProgreso dropdown-item" name="proceso" value="%s">En proceso</button>
+                        <button type="submit" class="labeltablaEntregado dropdown-item" name="entregado" value="%s">Entregado</button>
+                        <button type="submit" class="labeltablaCancelar dropdown-item" name="cancelado" value="%s">Cancelar</button>
+                    </div>
+                </td>
+            </tr>
+            <div class="modal fade" id="exampleModal%s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Pedido</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Contenido del formulario modal -->
+                            <div class="container-fluid pt-3 px-3">
+                                <div class="cafeclaro rounded p-4">
+                                    <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+                                        <h5 class="pt-2 text-center">EDITAR PEDIDO</h5>
+                                    </div>
+                                    <!-- Form Start -->
+                                    <div class="container-fluid px-4">
+                                        <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                                            <form class="row" method="post" name="formularioPedido">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div class="mb-3">
+                                                        <label for="cliente" class="Text">Nombre del cliente</label>
+                                                        <select class="form-select mb-3 grispan" name="nombre" id="cliente" aria-label="Default select example" oninput="obtenerPrecios()">
+                                                            <option selected>Seleccionar cliente</option>',
+
+        $fila["id_pedido"],
+        $fila["fecha_realizacion"],
+        $fila["fecha_entrega"],
+        $fila["nombre"],
+        $fila["productos"],
+        $fila["descripcion_pedido"],
+        $fila["costo_total"],
+        $fila["estatus"],
+        $fila["id_pedido"],
+        $fila["id_pedido"],
+        $fila["id_pedido"],
+        $fila["id_pedido"],
+        $fila["id_pedido"]
+    );
+
+    $nomCliente = "SELECT nombre FROM Clientes;";
+    $conNom = mysqli_query($conexion, $nomCliente);
+    while ($filaCliente = mysqli_fetch_array($conNom)) {
+        printf(
+            "<option class=\"naranja\" value=\"%s\" %s>%s</option>",
+            $filaCliente["nombre"],
+            ($filaCliente["nombre"] == $fila["nombre"]) ? "selected" : "",
+            $filaCliente["nombre"]
+        );
+    }
+
+    printf('
+                                                        </select>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label style="color: white;">Producto</label>
+                                                            <select class="form-select grispan" name="producto" id="productoInput">
+                                                                <option selected>Seleccionar producto</option>');
+
+    $nomProducto = "SELECT nombre_producto FROM Productos;";
+    $conNom = mysqli_query($conexion, $nomProducto);
+    while ($filaProd = mysqli_fetch_array($conNom)) {
+        printf('<option class="naranja" value="%s">%s</option>', $filaProd['nombre_producto'], $filaProd['nombre_producto']);
+    }
+
+    printf('
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            
+                                                        <label style="color: white;">Cantidad</label>
+                                                        <input class="form-control" id="cantidad" name="cantidad" type="number">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label style="color: white;">Precio</label>
+                                                            <select class="form-select grispan" id="costo" name="costo" oninput="obtenerPrecios()">
+                                                            <option selected>Selecciona Precio</option>
+                                                            <option value="1">Mayoreo</option>
+                                                            <option value="2">Menudeo</option>
+                                                        </select>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label style="color: white;">Costo Total</label>
+                                                            <input style="background: #9c886f;" class="form-control" readonly name="total">
+                                                        </select>
+                                                        </div>
+                                                        <div>
+                                        <button class="btn" type="button" onclick="agregarProductos()">Agregar un Producto</button>
+                                    </div>
+                                    <div class="mb-3 ">
+                                        <label for="floatingTextarea" class="Text mt-2">Productos Agregados</label>
+                                        <textarea readonly class="form-control grispan mt-2" name="agregados" placeholder="Agrega un Producto" id="floatingTextarea" style="height: 100px;background: #9c886f;">');echo htmlspecialchars($fila["productos"]); printf('</textarea>
+
+                                    </div>
+                                    <div>
+                                        <button class="btn" type="button" onclick="eliminarUltimaLinea()">Eliminar un Producto</button>
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="floatingTextarea" class="Text mt-2">Descripción del pedido</label>
+                                        <textarea class="form-control grispan mt-2" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;">');echo htmlspecialchars($fila["descripcion_pedido"]); printf('</textarea>
+                                    </div>
+                                    <div class=" col-lg-6">
+                                        <div class="row">
+                                            <h6> Costo Total:</h6>
+                                                <div class="col-lg-1">
+                                                   <label class="display-4 pt-3" style="color: white;">$</label>
+                                                </div>
+                                                <div class="col-lg-6 " >
+                                                    <input type="text" id="costo_total"  name="costo_total" readonly class="display-4 form-control-plaintext white"value="%s',$fila['costo_total']);printf('">
+                                                </div>
+
+                                                </div>
+                                     </div>
+                                     <div class="pt-4">
+                                     <div class="row">
+                                         <label class="Text col-6">Fecha Realizado</label>
+                                         <label class="Text col-6">Fecha Entrega</label>
+
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-6">
+                                             <input type="date" id="fechaActual" name="fechaRegistro" value="%s" readonly>
+                                         </div>
+                                         <div class="col-6">
+                                             <input type="date" name="fechaEntrega" value="%s" class="date col-9">
+                                         </div>
+                                     </div>
+                                 </div>
+                                                        <!-- ... (resto del formulario) -->
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Form End -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" value="%s" onclick="guardarCambios()">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>',
+            $fila["fecha_realizacion"],
+            $fila["fecha_entrega"],
+            $fila["id_pedido"]
+        );
+    }elseif ($fila['estatus'] == "En proceso") {
+                                                        printf(
+                                                            '<tr class="">
                                                         <td><button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button></td>
                                                         <td>%s</td>
                                                         <td>%s</td>
@@ -324,28 +332,29 @@ $usuario = $_SESSION["nombre_usuario"];
     </div>
   </div>
 </div>',
-                                                        $fila["id_pedido"],
-                                                        $fila["fecha_realizacion"],
-                                                        $fila["fecha_entrega"],
-                                                        $fila["nombre"],
-                                                        $fila["productos"],
-                                                        $fila["descripcion_pedido"],
-                                                        $fila["costo_total"],
-                                                        $fila["id_pedido"],
-                                                        $fila["id_pedido"],
-                                                        $fila["id_pedido"]
-                                                    );
+                                                            $fila["id_pedido"],
+                                                            $fila["fecha_realizacion"],
+                                                            $fila["fecha_entrega"],
+                                                            $fila["nombre"],
+                                                            $fila["productos"],
+                                                            $fila["descripcion_pedido"],
+                                                            $fila["costo_total"],
+                                                            $fila["id_pedido"],
+                                                            $fila["id_pedido"],
+                                                            $fila["id_pedido"]
+                                                        );
+                                                    }
                                                 }
-                                            }
-                                            ?>
-                                       
-                                        </tbody>
-                                        
+                                                ?>
 
-                                    </table>
+                                            </tbody>
+
+
+                                        </table>
                                     </div>
                                     <?php
                                     include('control/modificarestatus.php');
+                                    include('control/editarpedido.php');
                                     ?>
                                 </form>
                             </div>
@@ -381,6 +390,105 @@ $usuario = $_SESSION["nombre_usuario"];
                 });
             });
         });
+    </script>
+    <script>
+        var costo_total=document.getElementById("costo_total").value;
+        var total=0;
+        function obtenerPrecios() {
+            var productoSeleccionado = document.getElementById("productoInput").value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var datosProducto = JSON.parse(xhr.responseText);
+                        if (datosProducto !== null && datosProducto !== undefined) {
+                            var cantidad = document.getElementById("cantidad").value;
+                            var costo = document.getElementById("costo").value;
+                            var totalInput = document.getElementsByName("total")[0];
+
+                            if (!isNaN(cantidad)) {
+                                cantidad = parseFloat(cantidad);
+
+                                if (costo == 1) {
+                                    var may = parseFloat(datosProducto.precio_mayoreo);
+                                    var result = cantidad * may;
+                                    totalInput.value = result;
+                                } else if (costo == 2) {
+                                    var men = parseFloat(datosProducto.precio_menudeo);
+                                    var result = cantidad * men;
+                                    totalInput.value = result;
+                                } else {
+                        
+                                }
+                            } else {
+                                alert('Ingresa una cantidad válida.');
+                            }
+                        }
+                    }
+                }
+            };
+            xhr.open("GET", "obtener_precios.php?nombre_producto=" + encodeURIComponent(productoSeleccionado), true);
+            xhr.send();
+        }
+
+        function eliminarUltimaLinea() {
+            var txt = document.getElementById('floatingTextarea');
+
+            // Obtén el contenido del textarea
+            var contenido = txt.value;
+
+            // Dividir el contenido en líneas
+            var lineas = contenido.split('\n');
+
+            // Elimina la última línea
+            lineas.pop();
+
+            // Actualiza el contenido del textarea
+            txt.value = lineas.join('\n');
+            
+            costo_total=parseFloat(costo_total)-parseFloat(total);
+            document.getElementById('costo_total').value =costo_total;
+        }
+        
+
+        function agregarProductos() {
+            var producto = document.getElementById('productoInput').value;
+            var cantidad = document.getElementById('cantidad').value;
+            var costo = document.getElementById('costo').value;
+             total = document.querySelector('[name="total"]').value;
+            
+            costo_total=parseFloat(costo_total)+parseFloat(total);
+            var textoCosto = "";
+            if (costo == 1) {
+                textoCosto = "Mayoreo";
+            } else if (costo == 2) {
+                textoCosto = "Menudeo";
+            } else {
+                // Manejar otro caso si es necesario
+                textoCosto = "Valor no válido";
+            }
+
+            var textArea = document.getElementById('floatingTextarea').value;
+            if(textArea==""){
+                textArea = textArea + producto + '-' + cantidad + '-' + textoCosto + '- $' + total;
+
+            }else{
+                textArea = textArea + '\n' + producto + '-' + cantidad + '-' + textoCosto + '- $' + total;
+            }
+           
+
+            document.getElementById('floatingTextarea').value = textArea;
+
+
+            // Referencia a la segunda tabla
+
+            document.getElementById('costo_total').value =costo_total;
+
+            document.getElementById('productoInput').value = "Seleccionar producto";
+            document.getElementById('cantidad').value = "";
+            document.getElementById('costo').value = "Selecciona Precio";
+            document.querySelector('[name="total"]').value = "";
+        }
     </script>
     <!-- Template Javascript -->
 
