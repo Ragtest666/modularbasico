@@ -280,7 +280,7 @@ $usuario = $_SESSION["nombre_usuario"];
             var cantidad = document.getElementById('cantidad').value;
             var costo = document.getElementById('costo').value;
             var total = document.querySelector('[name="total"]').value;
-            costo_total="$"+parseFloat(costo_total)+parseFloat(total);
+            costo_total=parseFloat(costo_total)+parseFloat(total);
             var textoCosto = "";
             if (costo == 1) {
                 textoCosto = "Mayoreo";

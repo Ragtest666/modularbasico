@@ -129,7 +129,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
-                                                    <td>%s</td>
+                                                    <td>$%s</td>
                                                     <td>
                                                         <div>
                                                             <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
@@ -157,7 +157,8 @@ $usuario = $_SESSION["nombre_usuario"];
       </div>
     </div>
   </div>
-</div>',$fila["id_pedido"],
+</div>',
+                                                        $fila["id_pedido"],
                                                         $fila["fecha_realizacion"],
                                                         $fila["fecha_entrega"],
                                                         $fila["nombre"],
@@ -173,12 +174,12 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     printf(
                                                         '<tr class="">
                                                         <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">En proceso</button></td>
-                                                    <td>%s</td>
-                                                    <td>%s</td>
-                                                    <td>%s</td>
-                                                    <td>Productos</td>
-                                                    <td>%s</td>
-                                                    <td>$123</td>
+                                                        <td>%s</td>
+                                                        <td>%s</td>
+                                                        <td>%s</td>
+                                                        <td>%s</td>
+                                                        <td>%s</td>
+                                                        <td>$%s</td>
                                                     <td>
                                                         <div>
                                                             <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>En proceso</label></div>
@@ -205,11 +206,14 @@ $usuario = $_SESSION["nombre_usuario"];
       </div>
     </div>
   </div>
-</div>',$fila["id_pedido"],
+</div>',
+                                                        $fila["id_pedido"],
                                                         $fila["fecha_realizacion"],
                                                         $fila["fecha_entrega"],
                                                         $fila["nombre"],
+                                                        $fila["productos"],
                                                         $fila["descripcion_pedido"],
+                                                        $fila["costo_total"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"]
