@@ -197,7 +197,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                     </div>
                                 </div>
-                                            <?php
+                                             <?php
                                             include('control/agregarpedido.php');
                                             ?>
                             </form>
