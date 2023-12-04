@@ -201,7 +201,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="col-sm-12 col-xl-6 ">
                                     <div class="text-center col-sm-12 col-lg-12 pt-4 hoverbox feed-profile" aling="center">
                                         <label for="foto">
-                                            <img class="bg-white img-thumbnail CursorPunto shadow-sm" src="<?php $usuario = $_SESSION['nombre_usuario'];
+                                            <img class="bg-white img-thumbnail CursorPointerTabla shadow-sm" src="<?php $usuario = $_SESSION['nombre_usuario'];
                                                                                                     $nombreColab = "SELECT imagen FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
                                                                                                     $nom = mysqli_query($conexion, $nombreColab);
                                                                                                     $fila = mysqli_fetch_array($nom);
