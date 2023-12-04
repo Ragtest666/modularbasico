@@ -116,7 +116,11 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                         <div class="col-sm-6 col-lg-6">
                                             <label for="floatingTextarea" class="Text">Correo Electrónico *</label>
-                                            <input class="form-control mb-3" type="email" name="correo"  autocomplete="off"  required placeholder="">
+                                            <input class="form-control mb-3" type="email" name="correo"  value="<?php $usuario = $_SESSION['nombre_usuario'];
+                                                                                                    $nombreColab = "SELECT Trabajadores.correo AS correo FROM Trabajadores, Usuarios WHERE Trabajadores.id=Usuarios.id_trabajador AND Usuarios.nombre_usuario='$usuario';";
+                                                                                                    $nom = mysqli_query($conexion, $nombreColab);
+                                                                                                    $fila = mysqli_fetch_array($nom);
+                                                                                                    echo $fila['correo']; ?>"autocomplete="off" required placeholder="">
                                         </div>
 
                                     </div>
