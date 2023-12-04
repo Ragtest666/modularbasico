@@ -165,7 +165,6 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     var datosCliente = JSON.parse(xhr.responseText);
 
                                                     if (datosCliente.nombre) {
-                                                         // Datos del cliente no son null o undefined
                                                         document.getElementsByName("tipo_local")[0].value = datosCliente.tipo_local || "";
                                                         document.getElementsByName("telefono")[0].value = datosCliente.telefono || "";
                                                         document.getElementsByName("correo")[0].value = datosCliente.correo || "";
