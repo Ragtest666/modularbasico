@@ -137,7 +137,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input class="form-control" name="total">
+                                                        <input style="background: #9c886f;" class="form-control" readonly name="total">
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -175,7 +175,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                    <label class="display-4 pt-3" style="color: white;">$</label>
                                                 </div>
                                                 <div class="col-lg-6 " >
-                                                    <input type="text" id="costo_total"  name="costo_total" ready class="display-4 form-control-plaintext white"value="">
+                                                    <input type="text" id="costo_total"  name="costo_total" readonly class="display-4 form-control-plaintext white"value="">
                                                 </div>
 
                                                 </div>
@@ -307,10 +307,10 @@ $usuario = $_SESSION["nombre_usuario"];
 
             var textArea = document.getElementById('floatingTextarea').value;
             if(textArea==""){
-                textArea = textArea + producto + '-' + cantidad + '-' + textoCosto + '-' + total;
+                textArea = textArea + producto + '-' + cantidad + '-' + textoCosto + '- $' + total;
 
             }else{
-                textArea = textArea + '\n' + producto + '-' + cantidad + '-' + textoCosto + '-' + total;
+                textArea = textArea + '\n' + producto + '-' + cantidad + '-' + textoCosto + '- $' + total;
             }
            
 
