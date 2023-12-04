@@ -8,6 +8,7 @@ if (isset($_POST['agregar'])) {
     $descripcion = $_POST["descripcion"];
     $fechaRegisto = $_POST["fechaRegistro"];
     $fechaEntrega=$_POST["fechaEntrega"];
+    
 
     // Obtener el ID del trabajador
     $consulta_trabajador = "SELECT Usuarios.id_trabajador 
@@ -42,14 +43,18 @@ if (isset($_POST['agregar'])) {
 
             if ($resultado_insertar_pedido) {
                 $id_pedido = mysqli_insert_id($conexion);
-                $tablaProductos = $_POST['tablaProductos'];
+                $productos = json_decode($_POST['productos'], true);
 
-                // Iterar sobre los productos
-                foreach ($tablaProductos as $producto) {
+                // Realizar el insert en la tabla de tickets
+                // Aquí debes adaptar la lógica según la estructura de tu base de datos
+                // Además, asegúrate de sanitizar y validar los datos antes de utilizarlos en la consulta SQL
+            
+                // Ejemplo básico:
+                foreach ($productos as $producto) {
                     $nombre_producto = $producto['producto'];
                     $cantidad = $producto['cantidad'];
                     $precio = $producto['precio'];
-                    $total = $producto['total'];
+                    $costoTotal = $producto['costoTotal'];
 
                     // Insertar ticket
                     $consulta_insertar_ticket = "INSERT INTO Tickets (id_pedidos, producto, cantidad, costo, total)

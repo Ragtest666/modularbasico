@@ -85,7 +85,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     <!-- Form Start -->
                     <div class="container-fluid px-4">
                         <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
-                            <form class="row" method="post">
+                            <form class="row" method="post" name="formularioPedido">
                                 <div class="col-sm-12 col-xl-12">
                                     <div class="mb-3">
                                         <label for="floatingTextarea" class="Text">Nombre del cliente</label>
@@ -272,6 +272,20 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 </tr>
                                             </thead>
                                             <tbody class="">
+                                                <tr>
+                                                    <td>Dato 1-1</td>
+                                                    <td>Dato 1-2</td>
+                                                    <td>Dato 1-3</td>
+                                                    <td>Dato 1-4</td>
+                                                    <td>Dato 1-5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dato 2-1</td>
+                                                    <td>Dato 2-2</td>
+                                                    <td>Dato 2-3</td>
+                                                    <td>Dato 2-4</td>
+                                                    <td>Dato 2-5</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <script>
@@ -295,6 +309,51 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     // Marcar o desmarcar el checkbox según el estado actual del checkbox del encabezado
                                                     checkbox.checked = isChecked;
                                                 }
+                                            }
+
+                                            function enviarPedido() {
+                                                // Obtén la referencia de la tabla
+                                                var tablaProductos = document.getElementById('tablaProductos');
+
+                                                // Obtén todas las filas de la tabla, excluyendo la primera que es el encabezado
+                                                var filas = Array.from(tablaProductos.getElementsByTagName('tr')).slice(1);
+
+                                                // Crea un array para almacenar los datos de cada fila
+                                                var datos = [];
+
+                                                // Recorre las filas y obtén los datos de cada celda
+                                                filas.forEach(function(fila) {
+                                                    var celdas = fila.getElementsByTagName('td');
+                                                    var datosFila = Array.from(celdas).map(function(celda) {
+                                                        return celda.textContent.trim(); // Puedes ajustar según tu estructura HTML
+                                                    });
+                                                    datos.push(datosFila);
+                                                });
+
+                                                // Realiza la solicitud AJAX al script PHP
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.onreadystatechange = function() {
+                                                    if (xhr.readyState == 4) {
+                                                        if (xhr.status == 200) {
+                                                            // Manejar la respuesta del servidor si es necesario
+                                                            console.log(xhr.responseText);
+                                                        } else {
+                                                            console.error("Error al realizar la solicitud AJAX. Estado:", xhr.status);
+                                                            console.error("Respuesta del servidor:", xhr.responseText); // Agregamos esta línea para obtener más detalles sobre el error
+                                                        }
+                                                    }
+                                                };
+
+                                                // Configura la solicitud
+                                                var url = "control/prueba.php";
+                                                xhr.open("POST", url, true);
+                                                xhr.setRequestHeader("Content-Type", "application/json");
+
+                                                // Convierte los datos a formato JSON y envíalos
+                                                var datosJSON = JSON.stringify({
+                                                    filas: datos
+                                                });
+                                                xhr.send(datosJSON);
                                             }
                                         </script>
 
@@ -340,9 +399,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                             </div>
                         </div>
-                        <?php
-                        include("control/agregarpedido.php");
-                        ?>
+
                         </form>
                     </div>
 
@@ -376,59 +433,6 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="js/main.js"></script>
     <script src="script/script.js"></script>
     <script src="script/showHide.js"></script>
-    <script>
-        function enviarPedido() {
-            // Obtener los datos del formulario
-            var formData = {
-                nombre: $('#nombre').val(),
-                descripcion: $('#descripcion').val(),
-                fechaRegistro: $('#fechaRegistro').val(),
-                fechaEntrega: $('#fechaEntrega').val(),
-                tablaProductos: obtenerProductos()
-            };
-
-            // Realizar la solicitud AJAX
-            $.ajax({
-                    type: 'POST',
-                    url: 'control/agregarpedido.php',
-                    data: formData,
-                    dataType: 'json',
-                    encode: true
-                })
-                .done(function(data) {
-                    console.log(data); // Puedes mostrar la respuesta del servidor en la consola
-
-                    // Puedes hacer algo en la interfaz de usuario en función de la respuesta del servidor
-                    if (data.success) {
-                        alert('Pedido agregado correctamente');
-                        // Redirigir o hacer alguna otra acción después de agregar el pedido
-                    } else {
-                        alert('Error al agregar el pedido: ' + data.message);
-                    }
-                })
-                .fail(function(data) {
-                    console.error('Error en la solicitud AJAX: ' + JSON.stringify(data));
-                });
-        }
-
-        // Esta función obtiene los datos de la tabla de productos
-        function obtenerProductos() {
-            var productos = [];
-
-            $('#tablaProductos tbody tr').each(function(index, row) {
-                var producto = {
-                    producto: $(row).find('td:nth-child(2)').text(),
-                    cantidad: $(row).find('td:nth-child(3)').text(),
-                    precio: $(row).find('td:nth-child(4)').text(),
-                    total: $(row).find('td:nth-child(5)').text()
-                };
-
-                productos.push(producto);
-            });
-
-            return productos;
-        }
-    </script>
 </body>
 
 </html>
