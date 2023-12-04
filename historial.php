@@ -110,7 +110,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         <div class="cafeoscuro text-center rounded p-4">
 
                             <div class="table-responsive rounded">
-
+                            <div class="scrollBarr" style="height: 350px;">
                                 <table class="table text-start align-middle table-bordered table-hover mb-0 ">
                                     <thead class="text-center naranja text-white ">
                                         <tr>
@@ -134,15 +134,17 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
-                                                    <td>Productos</td>
                                                     <td>%s</td>
-                                                    <td>Total</td>
+                                                    <td>%s</td>
+                                                    <td>%s</td>
                                                     <td>%s</td>
                                                 </tr>",
                                                 $fila["fecha_realizacion"],
                                                 $fila["fecha_entrega"],
                                                 $fila["nombre"],
+                                                $fila["productos"],
                                                 $fila["descripcion_pedido"],
+                                                $fila["costo_total"],
                                                 $fila["estatus"]
                                             );
                                         }
@@ -150,6 +152,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </tbody>
 
                                 </table>
+                                    </div>
                             </div>
                         </div>
                     </div>

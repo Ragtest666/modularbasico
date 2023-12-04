@@ -100,7 +100,8 @@ $usuario = $_SESSION["nombre_usuario"];
 
                             <div class="table-responsive rounded">
                                 <form action="" method="POST">
-                                    <table class="table text-start align-middle table-bordered table-hover mb-0 ">
+                                <div class="scrollBarr" style="height: 350px;">
+                                    <table  class="table text-start align-middle table-bordered table-hover mb-0 ">
                                         <thead class="text-center naranja text-white ">
                                             <tr>
                                                 <th scope="col"></th>
@@ -113,7 +114,9 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 <th scope="col">Estatus Pedido</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="CursorPointerTabla text-center">
+                                        
+                                        <tbody class=" CursorPointerTabla text-center">
+                                        
                                             <?php
                                             require('control/conexion.php');
                                             $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus,productos,costo_total FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
@@ -329,9 +332,12 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 }
                                             }
                                             ?>
-
+                                       
                                         </tbody>
+                                        
+
                                     </table>
+                                    </div>
                                     <?php
                                     include('control/modificarestatus.php');
                                     ?>
