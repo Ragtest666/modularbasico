@@ -164,7 +164,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 if (xhr.status == 200) {
                                                     var datosCliente = JSON.parse(xhr.responseText);
 
-                                                    if (datosCliente) {
+                                                    if (datosCliente.nombre) {
                                                         // Datos del cliente no son null o undefined
                                                         document.getElementsByName("tipo_local")[0].value = datosCliente.tipo_local || "";
                                                         document.getElementsByName("telefono")[0].value = datosCliente.telefono || "";
@@ -178,15 +178,18 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("agregar")[0].value = datosCliente.id;
                                                         document.getElementsByName("update")[0].value = datosCliente.id;
                                                         document.getElementsByName("eliminar")[0].value = datosCliente.id;
-
                                                         btnNuevo.disabled = false;
                                                         btnAgregar.disabled = true;
                                                         btnGuardar.disabled = false;
                                                         btnEliminar.disabled = false;
 
+
+
                                                     } else {
-                                                        // Datos del cliente son null o undefined
-                                                        nuevoCliente();
+                                                        btnNuevo.disabled = true;
+                                                        btnAgregar.disabled = false;
+                                                        btnGuardar.disabled = true;
+                                                        btnEliminar.disabled = true;
                                                     }
                                                 } else {
                                                     console.error("Error al obtener datos del cliente");
