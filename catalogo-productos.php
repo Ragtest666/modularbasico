@@ -89,8 +89,8 @@ $usuario = $_SESSION["nombre_usuario"];
                             <form class="row" action="#" method="post" enctype="multipart/form-data">
 
                                 <div class="col-lg-8 col-sm-10 m-auto pd-2">
-                                    <div class="row">
-                                        <label for="floatingTextarea" class="Text">Nombre del Producto</label>
+                                    <div class="">
+                                        <label for="floatingTextarea" class="Text">Nombre del Producto *</label>
                                         <input class="form-control mb-3" list="productosnombre" name="nombre_producto" autocomplete="off" required placeholder="Nombre del producto" id="productoInput" oninput="seleccionarProducto()">
                                         <datalist id="productosnombre">
                                             <?php
@@ -103,17 +103,17 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <label for="floatingTextarea" class="Text">Precio menudeo</label>
-                                            <input type="number" class="form-control" id="floatingInput" name="precio_menudeo" placeholder="$">
+                                            <label for="floatingTextarea" class="Text">Precio Menudeo *</label>
+                                            <input type="number" class="form-control" id="floatingInput" name="precio_menudeo" required placeholder="$">
                                         </div>
                                         <div class="col">
-                                            <label for="floatingTextarea" class="Text">Precio mayoreo</label>
-                                            <input type="number" class="form-control" id="floatingInput" name="precio_mayoreo" placeholder="$">
+                                            <label for="floatingTextarea" class="Text">Precio Mayoreo *</label>
+                                            <input type="number" class="form-control" id="floatingInput" name="precio_mayoreo" required placeholder="$">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
-                                            <label for="floatingTextarea" class="Text">Descripción</label>
+                                        <div class="col pt-3">
+                                            <label for="floatingTextarea" class="Text">Descripción del Producto</label>
                                             <textarea class="form-control grispan" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
                                         </div>
                                     </div>
