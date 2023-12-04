@@ -123,6 +123,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     printf(
                                                         '<tr class="">
                                                         <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">En proceso</button></td>
+                                                        
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
