@@ -44,18 +44,7 @@ if (isset($_POST['guardar'])) {
             echo '<div class="alert alert-danger" role="alert">Error al actualizar el pedido: ' . mysqli_error($conexion) . '</div>';
         }
     
-        // Ejecutar la consulta
-        if (mysqli_query($conexion, $insertarPedido)) {
-            printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
-            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-            <div>
-              Pedido agregado correctamente
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>');
-        } else {
-            echo '<div class="alert alert-danger" role="alert">Error al agregar el pedido: ' . mysqli_error($conexion) . '</div>';
-        }
+       
     }
 
 ?>

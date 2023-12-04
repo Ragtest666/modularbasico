@@ -277,7 +277,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         <!-- ... (resto del formulario) -->
                                                     </div>
                                                 </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
                                     <!-- Form End -->
@@ -286,8 +286,9 @@ $usuario = $_SESSION["nombre_usuario"];
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" value="%s" onclick="guardarCambios()">Guardar cambios</button>
+                            <button type="submit" name="guardar" class="btn btn-primary" value="%s" onclick="guardarCambios()">Guardar cambios</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>',
@@ -392,7 +393,7 @@ $usuario = $_SESSION["nombre_usuario"];
         });
     </script>
     <script>
-        var costo_total=document.getElementById("costo_total").value;
+        var costo_total=parseFloat(document.getElementById("costo_total").value);
         var total=0;
         function obtenerPrecios() {
             var productoSeleccionado = document.getElementById("productoInput").value;
@@ -499,7 +500,7 @@ $usuario = $_SESSION["nombre_usuario"];
                 $(this).remove();
                 window.location.href = 'index.php';
             });
-        }, 3000);
+        }, 1500);
     </script>
 </body>
 
