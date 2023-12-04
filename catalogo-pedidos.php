@@ -170,16 +170,15 @@ $usuario = $_SESSION["nombre_usuario"];
                                             <label class="Text col-6">Fecha Realizado</label>
                                             <label class="Text col-6">Fecha Entrega</label>
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input type="date" id="fechaActual" name="fechaRegistro" value="<?php echo date('Y-m-d'); ?>" readonly>
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="date" name="fechaEntrega" class="date col-9">
-                                            </div>
-                                        </div>
-                                    </div>
+                                 <div class=" col-lg-4">
+                                   <h6> Costo Total:</h6>
+                                    <div ><label class="display-4" style="color: white;">$</label></div>
+                                </div>
+
+                            <div class="pt-4">
+                                <div class="row">
+                                    <label class="Text col-6">Fecha Realizado</label>
+                                    <label class="Text col-6">Fecha Entrega</label>
 
                                 </div>
 
