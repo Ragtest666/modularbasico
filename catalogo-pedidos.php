@@ -164,12 +164,23 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <label for="floatingTextarea" class="Text mt-2">Descripción</label>
                                         <textarea class="form-control grispan mt-2" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
                                     </div>
+                                
+                                               
+                                   
+                                            
+                                    <div class=" col-lg-6">
+                                        <div class="row">
+                                            <h6> Costo Total:</h6>
+                                                <div class="col-lg-1">
+                                                   <label class="display-4" style="color: white;">$</label>
+                                                </div>
+                                                <div class="col-lg-6 " >
+                                                    <input type="text" id="costo_total"  name="costo_total" class="display-4 form-control-plaintext white"value="">
+                                                </div>
 
-                                    <div class=" col-lg-4">
-                                   <h6> Costo Total:</h6>
-                                    <div> <input type="text" id="costo_total"  name="costo_total" class="display-4 form-control-plaintext white" value="" >
-                                        </div>
-                                </div>
+                                                </div>
+                                     </div>
+                                
 
                                     <div class="pt-4">
                                         <div class="row">
