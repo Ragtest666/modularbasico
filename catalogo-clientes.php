@@ -136,14 +136,26 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoCliente()">Nuevo Cliente</button></div>
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Cliente</button></div>
+                                        <div class="col"><button id="btnNuevo" type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoCliente()">Nuevo Cliente</button></div>
+                                        <div class="col"><button id="btnAgregar" type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Cliente</button></div>
+                                        <div class="col"><button id="btnGuardar" type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
+                                        <div class="col"><button id="btnEliminar" type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Cliente</button></div>
 
                                     </div>
                                 </div>
                                 <script>
+                                    var btnNuevo, btnAgregar, btnGuardar, btnEliminar;
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        btnNuevo = document.getElementById("btnNuevo");
+                                        btnAgregar = document.getElementById("btnAgregar");
+                                        btnGuardar = document.getElementById("btnGuardar");
+                                        btnEliminar = document.getElementById("btnEliminar");
+                                        btnNuevo.disabled = true;
+                                        btnGuardar.disabled = true;
+                                        btnEliminar.disabled = true;
+
+                                    });
+
                                     function seleccionarCliente() {
                                         var clienteSeleccionado = document.getElementById("clienteInput").value;
                                         var xhr = new XMLHttpRequest();
@@ -151,7 +163,9 @@ $usuario = $_SESSION["nombre_usuario"];
                                             if (xhr.readyState == 4) {
                                                 if (xhr.status == 200) {
                                                     var datosCliente = JSON.parse(xhr.responseText);
-                                                    if (datosCliente !== null && datosCliente !== undefined) {
+
+                                                    if (datosCliente) {
+                                                        // Datos del cliente no son null o undefined
                                                         document.getElementsByName("tipo_local")[0].value = datosCliente.tipo_local || "";
                                                         document.getElementsByName("telefono")[0].value = datosCliente.telefono || "";
                                                         document.getElementsByName("correo")[0].value = datosCliente.correo || "";
@@ -164,19 +178,15 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("agregar")[0].value = datosCliente.id;
                                                         document.getElementsByName("update")[0].value = datosCliente.id;
                                                         document.getElementsByName("eliminar")[0].value = datosCliente.id;
+
+                                                        btnNuevo.disabled = false;
+                                                        btnAgregar.disabled = true;
+                                                        btnGuardar.disabled = false;
+                                                        btnEliminar.disabled = false;
+
                                                     } else {
-                                                        document.getElementsByName("tipo_local")[0].value = "";
-                                                        document.getElementsByName("telefono")[0].value = "";
-                                                        document.getElementsByName("correo")[0].value = "";
-                                                        document.getElementsByName("direccion")[0].value = "";
-                                                        document.getElementsByName("colonia")[0].value = "";
-                                                        document.getElementsByName("codigo_postal")[0].value = "";
-                                                        document.getElementsByName("num_interior")[0].value = "";
-                                                        document.getElementsByName("num_exterior")[0].value = "";
-                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
-                                                        document.getElementsByName("agregar")[0].value = "";
-                                                        document.getElementsByName("update")[0].value = "";
-                                                        document.getElementsByName("eliminar")[0].value = "";
+                                                        // Datos del cliente son null o undefined
+                                                        nuevoCliente();
                                                     }
                                                 } else {
                                                     console.error("Error al obtener datos del cliente");
@@ -188,6 +198,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                     }
 
                                     function nuevoCliente() {
+                                        btnNuevo.removeAttribute("disabled");
+                                        btnAgregar.removeAttribute("disabled");
+                                        btnGuardar.removeAttribute("disabled");
+                                        btnEliminar.removeAttribute("disabled");
                                         document.getElementsByName("nombre")[0].value = "";
                                         document.getElementsByName("tipo_local")[0].value = "";
                                         document.getElementsByName("telefono")[0].value = "";
@@ -201,6 +215,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                         document.getElementsByName("agregar")[0].value = "";
                                         document.getElementsByName("update")[0].value = "";
                                         document.getElementsByName("eliminar")[0].value = "";
+                                        btnNuevo.disabled = true;
+                                        btnAgregar.disabled = false;
+                                        btnGuardar.disabled = true;
+                                        btnEliminar.disabled = true;
                                     }
                                 </script>
                                 <?php

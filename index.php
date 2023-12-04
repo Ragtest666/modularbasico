@@ -88,7 +88,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         <div class="cafeoscuro   rounded p-1  ">
                             <div class=" col-sm-6 container-fluid text-center pt-2 ">
                                 <form class=" d-md-flex ">
-                                <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
+                                    <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
                                 </form>
                             </div>
                         </div>
@@ -99,28 +99,28 @@ $usuario = $_SESSION["nombre_usuario"];
                         <div class="cafeoscuro rounded h-100 p-3 w-100">
 
                             <div class="table-responsive rounded">
+                                <form action="" method="POST">
+                                    <table class="table text-start align-middle table-bordered table-hover mb-0 ">
+                                        <thead class="text-center naranja text-white ">
+                                            <tr>
+                                                <th scope="col">Fecha Registro</th>
+                                                <th scope="col">Fecha Entrega</th>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Productos</th>
+                                                <th scope="col">Descripcion</th>
+                                                <th scope="col">Costo Total</th>
+                                                <th scope="col">Estatus Pedido</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="CursorPointerTabla text-center">
+                                            <?php
+                                            require('control/conexion.php');
+                                            $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
 
-                                <table class="table text-start align-middle table-bordered table-hover mb-0 ">
-                                    <thead class="text-center naranja text-white ">
-                                        <tr>
-                                            <th scope="col">Fecha Registro</th>
-                                            <th scope="col">Fecha Entrega</th>
-                                            <th scope="col">Cliente</th>
-                                            <th scope="col">Productos</th>
-                                            <th scope="col">Descripcion</th>
-                                            <th scope="col">Costo Total</th>
-                                            <th scope="col">Estatus Pedido</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="CursorPointerTabla text-center">
-                                        <?php
-                                        require('control/conexion.php');
-                                        $sql = mysqli_query($conexion, "SELECT * FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
-
-                                        while ($fila = mysqli_fetch_array($sql)) {
-                                            if($fila['estatus']=="Pendiente"){
-                                                printf(
-                                                    '<tr class="">
+                                            while ($fila = mysqli_fetch_array($sql)) {
+                                                if ($fila['estatus'] == "Pendiente") {
+                                                    printf(
+                                                        '<tr class="">
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
@@ -131,22 +131,24 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         <div>
                                                             <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
                                                             <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
-                                                                <a class="labeltablaProgreso dropdown-item">En proceso</a>
-                                                                <a class="labeltablaEntregado dropdown-item">Entregado</a>
-                                                                <a class="labeltablaCancelar dropdown-item">Cancelar</a>
+                                                                <button type="submit" class="labeltablaProgreso dropdown-item" name="proceso" value="%s">En proceso</button>
+                                                                <button type="submit" class="labeltablaEntregado dropdown-item" name="entregado" value="%s">Entregado</button>
+                                                                <button type="submit" class="labeltablaCancelar dropdown-item" name="cancelado" value="%s">Cancelar</button>
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>',
-                                                    $fila["fecha_realizacion"],
-                                                    $fila["fecha_entrega"],
-                                                    $fila["nombre"],
-                                                    $fila["descripcion_pedido"],
-                                                    $fila["estatus"]
-                                                );
-                                            }elseif($fila['estatus']=="En proceso"){
-                                                printf(
-                                                    '<tr class="">
+                                                        $fila["fecha_realizacion"],
+                                                        $fila["fecha_entrega"],
+                                                        $fila["nombre"],
+                                                        $fila["descripcion_pedido"],
+                                                        $fila["id_pedido"],
+                                                        $fila["id_pedido"],
+                                                        $fila["id_pedido"]
+                                                    );
+                                                } elseif ($fila['estatus'] == "En proceso") {
+                                                    printf(
+                                                        '<tr class="">
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
@@ -157,24 +159,29 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         <div>
                                                             <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>En proceso</label></div>
                                                             <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
-                                                                <a class="labeltablaEntregado dropdown-item">Entregado</a>
-                                                                <a class="labeltablaCancelar dropdown-item">Cancelar</a>
+                                                            <button type="submit" class="labeltablaEntregado dropdown-item" name="entregado" value="%s">Entregado</button>
+                                                            <button type="submit" class="labeltablaCancelar dropdown-item" name="cancelado" value="%s">Cancelar</button>
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>',
-                                                    $fila["fecha_realizacion"],
-                                                    $fila["fecha_entrega"],
-                                                    $fila["nombre"],
-                                                    $fila["descripcion_pedido"],
-                                                    $fila["estatus"]
-                                                );
+                                                        $fila["fecha_realizacion"],
+                                                        $fila["fecha_entrega"],
+                                                        $fila["nombre"],
+                                                        $fila["descripcion_pedido"],
+                                                        $fila["id_pedido"],
+                                                        $fila["id_pedido"]
+                                                    );
+                                                }
                                             }
-                                        }
-                                        ?>
-                                        
-                                    </tbody>
-                                </table>
+                                            ?>
+
+                                        </tbody>
+                                    </table>
+                                    <?php
+                                    include('control/modificarestatus.php');
+                                    ?>
+                                </form>
                             </div>
                         </div>
                     </div>

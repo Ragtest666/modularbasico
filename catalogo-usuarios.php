@@ -183,10 +183,10 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class="row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoColaborador()">Nuevo Usuario</button></div>
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Usuario</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Usuario</button></div>
+                                        <div class="col"><button id="btnNuevo" type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoColaborador()">Nuevo Usuario</button></div>
+                                        <div class="col"><button id="btnAgregar" type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Usuario</button></div>
+                                        <div class="col"><button id="btnGuardar" type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar Cambios</button></div>
+                                        <div class="col"><button id="btnEliminar" type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Usuario</button></div>
                                     </div>
                                 </div>
                                 <?php
@@ -196,6 +196,16 @@ $usuario = $_SESSION["nombre_usuario"];
                                 ?>
 
                                 <script>
+                                    var btnNuevo, btnAgregar, btnGuardar, btnEliminar;
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        btnNuevo = document.getElementById("btnNuevo");
+                                        btnAgregar = document.getElementById("btnAgregar");
+                                        btnGuardar = document.getElementById("btnGuardar");
+                                        btnEliminar = document.getElementById("btnEliminar");
+                                        btnNuevo.disabled = true;
+                                        btnGuardar.disabled = true;
+                                        btnEliminar.disabled = true;});
+
                                     function seleccionarColaborador() {
                                         var colaboradorSeleccionado = document.getElementById("ColaboradorInput").value;
                                         var xhr = new XMLHttpRequest();
@@ -219,22 +229,13 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementById("img").src = datosColaborador.imagen || "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
                                                         document.getElementsByName("eliminar")[0].value = datosColaborador.id_trabajador || "";
                                                         document.getElementsByName("update")[0].value = datosColaborador.id_trabajador || "";
+
+                                                        btnNuevo.disabled = false;
+                                                        btnAgregar.disabled = true;
+                                                        btnGuardar.disabled = false;
+                                                        btnEliminar.disabled = false;
                                                     } else {
-                                                        document.getElementsByName("telefono")[0].value = "";
-                                                        document.getElementsByName("correo")[0].value = "";
-                                                        document.getElementsByName("nss")[0].value = "";
-                                                        document.getElementsByName("curp")[0].value = "";
-                                                        document.getElementsByName("calle")[0].value = "";
-                                                        document.getElementsByName("colonia")[0].value = "";
-                                                        document.getElementsByName("codigo_postal")[0].value = "";
-                                                        document.getElementsByName("num_interior")[0].value = "";
-                                                        document.getElementsByName("num_exterior")[0].value = "";
-                                                        document.getElementsByName("nombre_usuario")[0].value = "";
-                                                        document.getElementsByName("tipo_usuario")[0].value = "";
-                                                        document.getElementsByName("contrasena")[0].value = "";
-                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
-                                                        document.getElementsByName("eliminar")[0].value = "";
-                                                        document.getElementsByName("update")[0].value = "";
+                                                        nuevoColaborador();
                                                     }
                                                 } else {
                                                     console.error("Error al obtener datos del colaborador");
@@ -246,6 +247,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                     }
 
                                     function nuevoColaborador() {
+                                        btnNuevo.removeAttribute("disabled");
+                                        btnAgregar.removeAttribute("disabled");
+                                        btnGuardar.removeAttribute("disabled");
+                                        btnEliminar.removeAttribute("disabled");
                                         document.getElementsByName("nombre")[0].value = "";
                                         document.getElementsByName("telefono")[0].value = "";
                                         document.getElementsByName("correo")[0].value = "";
@@ -262,6 +267,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                         document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
                                         document.getElementsByName("eliminar")[0].value = "";
                                         document.getElementsByName("update")[0].value = "";
+                                        btnNuevo.disabled = true;
+                                        btnAgregar.disabled = false;
+                                        btnGuardar.disabled = true;
+                                        btnEliminar.disabled = true;
                                     }
                                 </script>
 

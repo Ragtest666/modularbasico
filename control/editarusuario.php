@@ -38,8 +38,30 @@ if (isset($_POST['update'])) {
     // Verifica si el trabajador existe
     $trabajadorExistente = $conexion->query("SELECT * FROM Trabajadores WHERE id = '$id'");
     if ($trabajadorExistente->num_rows > 0) {
-        // Actualiza la tabla Trabajadores
-        $sqlTrabajadores = "UPDATE Trabajadores SET
+        // Verifica si se cargó una nueva imagen
+        if ($_FILES["imagen"]["name"] !== "") {
+            $carpeta_imagenes = "img/clientes/";
+            $nombre_imagen = $_FILES["imagen"]["name"];
+            $ruta_imagen = $carpeta_imagenes . $nombre_imagen;
+
+            // Mueve la nueva imagen al directorio de imágenes
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta_imagen);
+
+            // Actualiza la tabla Trabajadores
+            $sqlTrabajadores = "UPDATE Trabajadores SET
+            telefono = '$telefono',
+            correo = '$correo',
+            nss = '$nss',
+            curp = '$curp',
+            calle = '$calle',
+            colonia = '$colonia',
+            cp = '$cp',
+            numero_interior = '$num_interior',
+            numero_exterior = '$num_exterior',
+            imagen='$ruta_imagen'
+            WHERE id='$id';";
+        }else{
+            $sqlTrabajadores = "UPDATE Trabajadores SET
             telefono = '$telefono',
             correo = '$correo',
             nss = '$nss',
@@ -50,6 +72,7 @@ if (isset($_POST['update'])) {
             numero_interior = '$num_interior',
             numero_exterior = '$num_exterior'
             WHERE id='$id';";
+        }
 
         if ($conexion->query($sqlTrabajadores) === TRUE) {
             $usuarioExistente = $conexion->query("SELECT * FROM Usuarios WHERE id_trabajador = '$id'");
@@ -58,6 +81,7 @@ if (isset($_POST['update'])) {
                     tipo_usuario = '$tipo_usuario',
                     contrasena = '$contrasena'
                     WHERE id_trabajador = '$id';";
+
 
                 if ($conexion->query($sqlUsuarios) === TRUE) {
                     printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
@@ -104,4 +128,5 @@ if (isset($_POST['update'])) {
             </div>');
     }
 }
+
 ?>
