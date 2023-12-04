@@ -144,7 +144,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         </table>
                                     </div>
                                     <div>
-                                        <button class="btn" type="button" onclick="agregarProductos()">Agregar producto</button>
+                                        <button class="btn" type="button" onclick="agregarProductos()">Agregar un Producto</button>
                                     </div>
                                 </div>
 
@@ -252,125 +252,31 @@ $usuario = $_SESSION["nombre_usuario"];
                                         xhr.send();
                                     }
                                 </script>
-                        </div>
+                        
 
 
                         <div class="col-sm-12 col-xl-12">
-                            <div class="">
+                                
 
-                                <div class="mb-3 ">
-                                    <label for="floatingTextarea" class="Text">Productos Agregados</label>
-                                    <div class="scrollBarr">
-                                        <table class="table  table-bordered table-hover p-4 scrollBarr" id="tablaProductos" name="tablaProductos" style="height: 55px;">
-                                            <thead class="ssss" style="border-top: 1px;">
-                                                <tr class="">
-                                                    <th scope="col"><input class="form-check-input" type="checkbox" onclick="toggleCheckAll()"></th>
-                                                    <th class="" scope="col">Producto</th>
-                                                    <th scope="col">Cantidad</th>
-                                                    <th scope="col">Precio</th>
-                                                    <th scope="col">Costo Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="">
-                                                <tr>
-                                                    <td>Dato 1-1</td>
-                                                    <td>Dato 1-2</td>
-                                                    <td>Dato 1-3</td>
-                                                    <td>Dato 1-4</td>
-                                                    <td>Dato 1-5</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Dato 2-1</td>
-                                                    <td>Dato 2-2</td>
-                                                    <td>Dato 2-3</td>
-                                                    <td>Dato 2-4</td>
-                                                    <td>Dato 2-5</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <script>
-                                            function toggleCheckAll() {
-                                                // Referencia a la segunda tabla
-                                                var tablaProductos = document.getElementById('tablaProductos');
-
-                                                // Obtener el checkbox del encabezado
-                                                var checkboxEncabezado = tablaProductos.querySelector('thead input[type="checkbox"]');
-
-                                                // Obtener todas las filas de la tabla
-                                                var filas = tablaProductos.rows;
-
-                                                // Obtener el estado actual del checkbox del encabezado
-                                                var isChecked = checkboxEncabezado.checked;
-
-                                                // Iterar sobre las filas y actualizar los checkboxes
-                                                for (var i = 0; i < filas.length; i++) {
-                                                    var checkbox = filas[i].cells[0].querySelector('.form-check-input');
-
-                                                    // Marcar o desmarcar el checkbox según el estado actual del checkbox del encabezado
-                                                    checkbox.checked = isChecked;
-                                                }
-                                            }
-
-                                            function enviarPedido() {
-                                                // Obtén la referencia de la tabla
-                                                var tablaProductos = document.getElementById('tablaProductos');
-
-                                                // Obtén todas las filas de la tabla, excluyendo la primera que es el encabezado
-                                                var filas = Array.from(tablaProductos.getElementsByTagName('tr')).slice(1);
-
-                                                // Crea un array para almacenar los datos de cada fila
-                                                var datos = [];
-
-                                                // Recorre las filas y obtén los datos de cada celda
-                                                filas.forEach(function(fila) {
-                                                    var celdas = fila.getElementsByTagName('td');
-                                                    var datosFila = Array.from(celdas).map(function(celda) {
-                                                        return celda.textContent.trim(); // Puedes ajustar según tu estructura HTML
-                                                    });
-                                                    datos.push(datosFila);
-                                                });
-
-                                                // Realiza la solicitud AJAX al script PHP
-                                                var xhr = new XMLHttpRequest();
-                                                xhr.onreadystatechange = function() {
-                                                    if (xhr.readyState == 4) {
-                                                        if (xhr.status == 200) {
-                                                            // Manejar la respuesta del servidor si es necesario
-                                                            console.log(xhr.responseText);
-                                                        } else {
-                                                            console.error("Error al realizar la solicitud AJAX. Estado:", xhr.status);
-                                                            console.error("Respuesta del servidor:", xhr.responseText); // Agregamos esta línea para obtener más detalles sobre el error
-                                                        }
-                                                    }
-                                                };
-
-                                                // Configura la solicitud
-                                                var url = "control/prueba.php";
-                                                xhr.open("POST", url, true);
-                                                xhr.setRequestHeader("Content-Type", "application/json");
-
-                                                // Convierte los datos a formato JSON y envíalos
-                                                var datosJSON = JSON.stringify({
-                                                    filas: datos
-                                                });
-                                                xhr.send(datosJSON);
-                                            }
-                                        </script>
-
-
-                                    </div>
+                        <div class="mb-3 ">
+                                    <label for="floatingTextarea" class="Text mt-2">Productos Agregados</label>               
+                                    <textarea readonly class="form-control grispan mt-2" name="descripcion" placeholder="Agrega un Producto" id="floatingTextarea" style="height: 100px;background: #9c886f;"></textarea>
+                              
+                                 </div>
                                     <div>
-                                        <button class="btn" type="button" onclick="eliminarProductos()">Eliminar Producto</button>
+                                        <button class="btn" type="button" onclick="eliminarProductos()">Eliminar un Producto</button>
 
                                     </div>
-                                </div>
 
                                 <div class="mb-3">
-                                    <label for="floatingTextarea" class="Text">Descripción</label>
-                                    <textarea class="form-control grispan" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
-                                </div>
+                                    <label for="floatingTextarea" class="Text mt-2">Descripción</label>
+                                    <textarea class="form-control grispan mt-2" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
+                                 </div>
+                               
 
-                            </div>
+                                
+
+                            
 
                             <div class="pt-4">
                                 <div class="row">
