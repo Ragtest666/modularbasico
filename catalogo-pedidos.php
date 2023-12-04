@@ -219,7 +219,8 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script>
-        var costo_total=0
+        var costo_total=0;
+        var total=0;
         function obtenerPrecios() {
             var productoSeleccionado = document.getElementById("productoInput").value;
             var xhr = new XMLHttpRequest();
@@ -271,15 +272,17 @@ $usuario = $_SESSION["nombre_usuario"];
 
             // Actualiza el contenido del textarea
             txt.value = lineas.join('\n');
+            costo_total=parseFloat(costo_total)-parseFloat(total);
+            document.getElementById('costo_total').value =costo_total;
         }
         
 
         function agregarProductos() {
-            // Captura de valores de la primera tabla
             var producto = document.getElementById('productoInput').value;
             var cantidad = document.getElementById('cantidad').value;
             var costo = document.getElementById('costo').value;
-            var total = document.querySelector('[name="total"]').value;
+             total = document.querySelector('[name="total"]').value;
+            
             costo_total=parseFloat(costo_total)+parseFloat(total);
             var textoCosto = "";
             if (costo == 1) {
