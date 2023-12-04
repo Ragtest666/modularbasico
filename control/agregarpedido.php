@@ -8,7 +8,6 @@ if (isset($_POST['agregar'])) {
     $descripcion = $_POST["descripcion"];
     $fechaRegisto = $_POST["fechaRegistro"];
     $fechaEntrega=$_POST["fechaEntrega"];
-    $costo_total=$_POST["costo_total"];
     
 
     // Obtener el ID del trabajador
@@ -36,14 +35,40 @@ if (isset($_POST['agregar'])) {
             mysqli_stmt_close($stmt_cliente);
 
             // Insertar pedido
-            $consulta_insertar_pedido = "INSERT INTO Pedidos (id_cliente, descripcion_pedido, fecha_realizacion, fecha_entrega, estatus, id_trabajador,costo_total)
-                                        VALUES (?, ?, ?, ?, 'Pendiente', ?,')";
+            $consulta_insertar_pedido = "INSERT INTO Pedidos (id_cliente, descripcion_pedido, fecha_realizacion, fecha_entrega, estatus, id_trabajador)
+                                        VALUES (?, ?, ?, ?, 'Pendiente', ?)";
             $stmt_insertar_pedido = mysqli_prepare($conexion, $consulta_insertar_pedido);
-            mysqli_stmt_bind_param($stmt_insertar_pedido, "isssi", $id_cliente, $descripcion, $fechaRegisto, $fechaRegisto, $id_trabajador,$costo_total);
+            mysqli_stmt_bind_param($stmt_insertar_pedido, "isssi", $id_cliente, $descripcion, $fechaRegisto, $fechaRegisto, $id_trabajador);
             $resultado_insertar_pedido = mysqli_stmt_execute($stmt_insertar_pedido);
 
             if ($resultado_insertar_pedido) {
-                
+                $id_pedido = mysqli_insert_id($conexion);
+                $productos = json_decode($_POST['productos'], true);
+
+                // Realizar el insert en la tabla de tickets
+                // Aquí debes adaptar la lógica según la estructura de tu base de datos
+                // Además, asegúrate de sanitizar y validar los datos antes de utilizarlos en la consulta SQL
+            
+                // Ejemplo básico:
+                foreach ($productos as $producto) {
+                    $nombre_producto = $producto['producto'];
+                    $cantidad = $producto['cantidad'];
+                    $precio = $producto['precio'];
+                    $costoTotal = $producto['costoTotal'];
+
+                    // Insertar ticket
+                    $consulta_insertar_ticket = "INSERT INTO Tickets (id_pedidos, producto, cantidad, costo, total)
+                                                VALUES (?, ?, ?, ?, ?)";
+                    $stmt_insertar_ticket = mysqli_prepare($conexion, $consulta_insertar_ticket);
+                    mysqli_stmt_bind_param($stmt_insertar_ticket, "isidd", $id_pedido, $nombre_producto, $cantidad, $precio, $total);
+                    $resultado_insertar_ticket = mysqli_stmt_execute($stmt_insertar_ticket);
+
+                    if (!$resultado_insertar_ticket) {
+                        echo "Error al insertar ticket: " . mysqli_error($conexion);
+                    }
+                }
+
+                if ($resultado_insertar_ticket) {
                     printf('<div class="alert alert-success fixed-top position-absolute d-flex align-items-center alert-dismissible fade show" role="alert">
                     <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                     <div>
@@ -51,7 +76,11 @@ if (isset($_POST['agregar'])) {
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>');
-                
+                } else {
+                    // Manejar error en la inserción del ticket
+                }
+
+                mysqli_stmt_close($stmt_insertar_ticket);
             } else {
                 echo "Error al insertar pedido: " . mysqli_error($conexion);
             }
