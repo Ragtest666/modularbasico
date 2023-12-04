@@ -124,40 +124,147 @@ $usuario = $_SESSION["nombre_usuario"];
                                             while ($fila = mysqli_fetch_array($sql)) {
                                                 if ($fila['estatus'] == "Pendiente") {
                                                     printf(
-                                                        '<tr class="">
-                                                        <td><button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button></td>
-                                                        
-                                                    <td>%s</td>
-                                                    <td>%s</td>
-                                                    <td>%s</td>
-                                                    <td>%s</td>
-                                                    <td>%s</td>
-                                                    <td>$%s</td>
-                                                    <td>
-                                                        <div>
-                                                            <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
-                                                            <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
-                                                                <button type="submit" class="labeltablaProgreso dropdown-item" name="proceso" value="%s">En proceso</button>
-                                                                <button type="submit" class="labeltablaEntregado dropdown-item" name="entregado" value="%s">Entregado</button>
-                                                                <button type="submit" class="labeltablaCancelar dropdown-item" name="cancelado" value="%s">Cancelar</button>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                              <?php include("modulos/modal.php");?>',
-                                                        $fila["id_pedido"],
+                                                        '<tr>
+                                                            <td>
+                                                                <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button>
+                                                            </td>
+                                                            <td>%s</td>
+                                                            <td>%s</td>
+                                                            <td>%s</td>
+                                                            <td>%s</td>
+                                                            <td>%s</td>
+                                                            <td>$%s</td>
+                                                            <td>
+                                                                <div class="BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown">
+                                                                    <label>%s</label>
+                                                                </div>
+                                                                <div class="dropdown-menu bg-transparent col-1 TablaStatus border-0">
+                                                                    <button type="submit" class="labeltablaProgreso dropdown-item" name="proceso" value="%s">En proceso</button>
+                                                                    <button type="submit" class="labeltablaEntregado dropdown-item" name="entregado" value="%s">Entregado</button>
+                                                                    <button type="submit" class="labeltablaCancelar dropdown-item" name="cancelado" value="%s">Cancelar</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <div class="modal fade" id="exampleModal%s" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-xl">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Editar Pedido</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <!-- Contenido del formulario modal -->
+                                                                        <div class="container-fluid pt-3 px-3">
+                                                                            <div class="cafeclaro rounded p-4">
+                                                                                <div class="naranja BarraEtiqueta pb-1 mt-2 rounded">
+                                                                                    <h5 class="pt-2 text-center">EDITAR PEDIDO</h5>
+                                                                                </div>
+                                                                                <!-- Form Start -->
+                                                                                <div class="container-fluid px-4">
+                                                                                    <div class="cafeoscuro rounded h-100 p-3 pt-3 pb-1 w-100">
+                                                                                        <form class="row" method="post" name="formularioPedido">
+                                                                                            <div class="col-sm-12 col-xl-12">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="cliente" class="Text">Nombre del cliente</label>
+                                                                                                    <select class="form-select mb-3 grispan" name="nombre" id="cliente" aria-label="Default select example" oninput="obtenerPrecios()">
+                                                                                                        <option selected>Seleccionar cliente</option>',
+                                                                                                            
+                                                                                                            $fila["id_pedido"],
                                                         $fila["fecha_realizacion"],
                                                         $fila["fecha_entrega"],
                                                         $fila["nombre"],
                                                         $fila["productos"],
                                                         $fila["descripcion_pedido"],
                                                         $fila["costo_total"],
+                                                        $fila["estatus"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],
-                                                        $fila["nombre"]
-                                                    );
+                                                        $fila["nombre"],
+                                                                                                        );
+                                                
+                                                                                                        $nomCliente = "SELECT nombre FROM Clientes;";
+                                                                                                        $conNom = mysqli_query($conexion, $nomCliente);
+                                                                                                        while ($filaCliente = mysqli_fetch_array($conNom)) {
+                                                                                                            printf("<option class=\"naranja\" value=\"%s\" %s>%s</option>",
+                                                                                                                $filaCliente["nombre"],
+                                                                                                                ($filaCliente["nombre"] == $fila["nombre"]) ? "selected" : "",
+                                                                                                                $filaCliente["nombre"]
+                                                                                                            );
+                                                                                                        }
+                                                
+                                                                                                        echo '</select>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-lg-3">
+                                                                                                        <label style="color: white;">Producto</label>
+                                                                                                        <input type="text" name="producto" class="form-control input-sm">
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-3">
+                                                                                                        <label style="color: white;">Cantidad</label>
+                                                                                                        <input type="text" name="cantidad" class="form-control input-sm">
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-3">
+                                                                                                        <label style="color: white;">Precio</label>
+                                                                                                        <input type="text" name="precio" class="form-control input-sm">
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-3">
+                                                                                                        <label style="color: white;">Costo Total</label>
+                                                                                                        <input type="text" name="costo_total" class="form-control input-sm">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <button class="btn" type="button" onclick="agregarProductos()">Agregar producto</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-12 col-xl-12">
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="productosAgregados" class="Text mt-2">Productos Agregados</label>
+                                                                                                    <textarea readonly style="background: #9c886f;" class="form-control grispan mt-2 rea" name="productosAgregados" id="productosAgregados" placeholder="Agrega un Producto" style="height: 100px;"></textarea>
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <button class="btn" type="button" onclick="eliminarProductos()">Eliminar Producto</button>
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="descripcion" class="Text mt-2">Descripción del Pedido</label>
+                                                                                                    <textarea class="form-control grispan mt-2" name="descripcion" id="descripcion" placeholder="Descripción" style="height: 100px;"></textarea>
+                                                                                                </div>
+                                                                                                <div class="col-lg-4">
+                                                                                                    <h6>Costo Total:</h6>
+                                                                                                    <div><label class="display-4" style="color: white;">$</label></div>
+                                                                                                </div>
+                                                                                                <div class="pt-4 pb-4">
+                                                                                                    <div class="row">
+                                                                                                        <label class="Text col-6">Fecha Realizado</label>
+                                                                                                        <label class="Text col-6">Fecha Entrega</label>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-6">
+                                                                                                            <input type="date" id="fechaActual" name="fechaRegistro" value="2023-12-04" readonly>
+                                                                                                        </div>
+                                                                                                        <div class="col-6">
+                                                                                                            <input type="date" name="fechaEntrega" class="date col-9">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- Form End -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>';
+                                                        
+                                                                                                    
                                                 } elseif ($fila['estatus'] == "En proceso") {
                                                     printf(
                                                         '<tr class="">
