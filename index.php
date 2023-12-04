@@ -116,7 +116,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <tbody class="CursorPointerTabla text-center">
                                             <?php
                                             require('control/conexion.php');
-                                            $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
+                                            $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus,productos,costo_total FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
 
                                             while ($fila = mysqli_fetch_array($sql)) {
                                                 if ($fila['estatus'] == "Pendiente") {
@@ -127,9 +127,9 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
-                                                    <td>Productos</td>
                                                     <td>%s</td>
-                                                    <td>$123</td>
+                                                    <td>%s</td>
+                                                    <td>%s</td>
                                                     <td>
                                                         <div>
                                                             <div class=" BtnStatus nav-item dropdown dropdown-toggle" data-bs-toggle="dropdown"><label>Pendiente</label></div>
@@ -161,7 +161,9 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         $fila["fecha_realizacion"],
                                                         $fila["fecha_entrega"],
                                                         $fila["nombre"],
+                                                        $fila["productos"],
                                                         $fila["descripcion_pedido"],
+                                                        $fila["costo_total"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],
                                                         $fila["id_pedido"],

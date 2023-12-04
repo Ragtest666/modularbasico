@@ -192,7 +192,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
                                         
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar"">Agregar Pedido</button></div>
+                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Pedido</button></div>
                                         
 
                                     </div>
@@ -244,7 +244,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                     var result = cantidad * men;
                                     totalInput.value = result;
                                 } else {
-                                    alert('Selecciona un costo válido (1 para Mayoreo, 2 para Menudeo).');
+                        
                                 }
                             } else {
                                 alert('Ingresa una cantidad válida.');
@@ -305,7 +305,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
             // Referencia a la segunda tabla
 
-            document.getElementById('costo_total').value = "$ "+costo_total;
+            document.getElementById('costo_total').value ="$"+ costo_total;
 
             document.getElementById('productoInput').value = "Seleccionar producto";
             document.getElementById('cantidad').value = "";
