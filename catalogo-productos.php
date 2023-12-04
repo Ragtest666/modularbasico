@@ -128,14 +128,25 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="BarraBtn rounded border col-sm-12 col-lg-12 p-3 mt-3">
                                     <div class=" row ">
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoProducto()">Nuevo Producto</button></div>
-                                        <div class="col"><button type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Producto</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar cambios</button></div>
-                                        <div class="col"><button type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Producto</button></div>
+                                        <div class="col"><button id="btnNuevo" type="submit" class="btn col-sm-12 col-lg-12" name="nuevo" onclick="nuevoProducto()">Nuevo Producto</button></div>
+                                        <div class="col"><button id="btnAgregar" type="submit" class="btn col-sm-12 col-lg-12" name="agregar">Agregar Producto</button></div>
+                                        <div class="col"><button id="btnGuardar" type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Guardar cambios</button></div>
+                                        <div class="col"><button id="btnEliminar" type="button" class="btn col-sm-12 col-lg-12" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eliminar Producto</button></div>
 
                                     </div>
                                 </div>
                                 <script>
+                                     var btnNuevo, btnAgregar, btnGuardar, btnEliminar;
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        btnNuevo = document.getElementById("btnNuevo");
+                                        btnAgregar = document.getElementById("btnAgregar");
+                                        btnGuardar = document.getElementById("btnGuardar");
+                                        btnEliminar = document.getElementById("btnEliminar");
+                                        btnNuevo.disabled = true;
+                                        btnGuardar.disabled = true;
+                                        btnEliminar.disabled = true;
+
+                                    });
                                     function seleccionarProducto() {
                                         var productoSeleccionado = document.getElementById("productoInput").value;
                                         var xhr = new XMLHttpRequest();
@@ -151,14 +162,13 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         document.getElementsByName("agregar")[0].value = datosProducto.id;
                                                         document.getElementsByName("update")[0].value = datosProducto.id;
                                                         document.getElementsByName("eliminar")[0].value = datosProducto.id;
+
+                                                        btnNuevo.disabled = false;
+                                                        btnAgregar.disabled = true;
+                                                        btnGuardar.disabled = false;
+                                                        btnEliminar.disabled = false;
                                                     } else {
-                                                        document.getElementsByName("precio_menudeo")[0].value = "";
-                                                        document.getElementsByName("precio_mayoreo")[0].value = "";
-                                                        document.getElementsByName("descripcion")[0].value = "";
-                                                        document.getElementById("img").src = "https://st2.depositphotos.com/1104517/11967/v/600/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg";
-                                                        document.getElementsByName("agregar")[0].value = "";
-                                                        document.getElementsByName("update")[0].value = "";
-                                                        document.getElementsByName("eliminar")[0].value = "";
+                                                        nuevoProducto();
                                                     }
                                                 } else {
                                                     console.error("Error al obtener datos del producto");
@@ -170,6 +180,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                     }
 
                                     function nuevoProducto() {
+                                        btnNuevo.removeAttribute("disabled");
+                                        btnAgregar.removeAttribute("disabled");
+                                        btnGuardar.removeAttribute("disabled");
+                                        btnEliminar.removeAttribute("disabled");
                                         document.getElementsByName("nombre_producto")[0].value = "";
                                         document.getElementsByName("precio_menudeo")[0].value = "";
                                         document.getElementsByName("precio_mayoreo")[0].value = "";
@@ -178,6 +192,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                         document.getElementsByName("agregar")[0].value = "";
                                         document.getElementsByName("update")[0].value = "";
                                         document.getElementsByName("eliminar")[0].value = "";
+                                        btnNuevo.disabled = true;
+                                        btnAgregar.disabled = false;
+                                        btnGuardar.disabled = true;
+                                        btnEliminar.disabled = true;
                                     }
                                 </script>
                                 <?php
