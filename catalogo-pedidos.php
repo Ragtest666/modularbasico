@@ -161,7 +161,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="floatingTextarea" class="Text mt-2">Descripción</label>
+                                        <label for="floatingTextarea" class="Text mt-2">Descripción del pedido</label>
                                         <textarea class="form-control grispan mt-2" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
                                     </div>
                                 
@@ -172,10 +172,10 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <div class="row">
                                             <h6> Costo Total:</h6>
                                                 <div class="col-lg-1">
-                                                   <label class="display-4" style="color: white;">$</label>
+                                                   <label class="display-4 pt-3" style="color: white;">$</label>
                                                 </div>
                                                 <div class="col-lg-6 " >
-                                                    <input type="text" id="costo_total"  name="costo_total" class="display-4 form-control-plaintext white"value="" readonly>
+                                                    <input type="text" id="costo_total"  name="costo_total" ready class="display-4 form-control-plaintext white"value="">
                                                 </div>
 
                                                 </div>
@@ -307,10 +307,10 @@ $usuario = $_SESSION["nombre_usuario"];
 
             var textArea = document.getElementById('floatingTextarea').value;
             if(textArea==""){
-                textArea = textArea + producto + '-' + cantidad + '-' + textoCosto + '- $' + total;
+                textArea = textArea + producto + '-' + cantidad + '-' + textoCosto + '-' + total;
 
             }else{
-                textArea = textArea + '\n' + producto + '-' + cantidad + '-' + textoCosto + '- $' + total;
+                textArea = textArea + '\n' + producto + '-' + cantidad + '-' + textoCosto + '-' + total;
             }
            
 

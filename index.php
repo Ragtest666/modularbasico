@@ -86,9 +86,9 @@ $usuario = $_SESSION["nombre_usuario"];
                             <h5 class="text-center pt-2 px-4">PEDIDOS PENDIENTES</h5>
                         </div>
                         <div class="cafeoscuro   rounded p-1  ">
-                            <div class=" col-sm-6 container-fluid text-center pt-2 ">
+                            <div class=" col-lg-6 container-fluid  pt-2 ">
                                 <form class=" d-md-flex ">
-                                    <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
+                                    <input class="col-sm-12 col-lg-12 text-center searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
                                 </form>
                             </div>
                         </div>
@@ -122,7 +122,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 if ($fila['estatus'] == "Pendiente") {
                                                     printf(
                                                         '<tr class="">
-                                                        <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">En proceso</button></td>
+                                                        <td><button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button></td>
                                                         
                                                     <td>%s</td>
                                                     <td>%s</td>
@@ -281,7 +281,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 } elseif ($fila['estatus'] == "En proceso") {
                                                     printf(
                                                         '<tr class="">
-                                                        <td><button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">En proceso</button></td>
+                                                        <td><button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button></td>
                                                         <td>%s</td>
                                                         <td>%s</td>
                                                         <td>%s</td>

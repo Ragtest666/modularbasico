@@ -91,7 +91,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                             <div class=" col-sm-6 container-fluid pt-2 ">
                                 <form class=" d-md-flex ">
-                                    <input class="col-sm-12 col-lg-6 searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
+                                    <input class="col-sm-12 col-lg-12 text-center searchSize search grispan border-0 rounded" type="search" id="searchInput" placeholder="Buscar un pedido">
 
                                 </form>
                             </div>
