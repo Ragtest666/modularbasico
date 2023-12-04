@@ -165,6 +165,11 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <textarea class="form-control grispan mt-2" name="descripcion" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
                                     </div>
 
+                                    <div class=" col-lg-4">
+                                   <h6> Costo Total:</h6>
+                                    <div ><label class="display-4" style="color: white;">$</label></div>
+                                </div>
+
                                     <div class="pt-4">
                                         <div class="row">
                                             <label class="Text col-6">Fecha Realizado</label>
