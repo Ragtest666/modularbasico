@@ -107,6 +107,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                     <th scope="col"></th>
                                                     <th scope="col">Fecha Registro</th>
                                                     <th scope="col">Fecha Entrega</th>
+                                                    <th scope="col">Folio</th>
                                                     <th scope="col">Cliente</th>
                                                     <th scope="col">Productos</th>
                                                     <th scope="col">Descripcion</th>
@@ -119,7 +120,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
                                                 <?php
                                                 require('control/conexion.php');
-                                                $sql = mysqli_query($conexion, "SELECT Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus,productos,costo_total FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
+                                                $sql = mysqli_query($conexion, "SELECT Clientes.id AS ID,Pedidos.id AS id_pedido,fecha_realizacion,fecha_entrega,nombre,descripcion_pedido, estatus,productos,costo_total FROM Pedidos, Clientes WHERE Pedidos.id_cliente = Clientes.id AND Pedidos.estatus IN ('Pendiente', 'En proceso');");
 
                                                 while ($fila = mysqli_fetch_array($sql)) {
                                                        if ($fila['estatus'] == "Pendiente") {
@@ -130,6 +131,7 @@ $usuario = $_SESSION["nombre_usuario"];
                 </td>
                 <td>%s</td>
                 <td>%s</td>
+                <td>%s%s</td>
                 <td>%s</td>
                 <td>%s</td>
                 <td>%s</td>
@@ -172,6 +174,8 @@ $usuario = $_SESSION["nombre_usuario"];
         $fila["id_pedido"],
         $fila["fecha_realizacion"],
         $fila["fecha_entrega"],
+        $fila["ID"],
+        $fila["id_pedido"],
         $fila["nombre"],
         $fila["productos"],
         $fila["descripcion_pedido"],
@@ -302,6 +306,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                                         <td><button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal%s">Editar</button></td>
                                                         <td>%s</td>
                                                         <td>%s</td>
+                                                        <td>%s%s</td>
                                                         <td>%s</td>
                                                         <td>%s</td>
                                                         <td>%s</td>
@@ -336,6 +341,8 @@ $usuario = $_SESSION["nombre_usuario"];
                                                             $fila["id_pedido"],
                                                             $fila["fecha_realizacion"],
                                                             $fila["fecha_entrega"],
+                                                            $fila["ID"],
+                                                            $fila["id_pedido"],
                                                             $fila["nombre"],
                                                             $fila["productos"],
                                                             $fila["descripcion_pedido"],

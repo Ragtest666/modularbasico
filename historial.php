@@ -116,6 +116,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <tr>
                                             <th scope="col">Fecha Registro</th>
                                             <th scope="col">Fecha Entrega</th>
+                                            <th scope="col">Folio</th>
                                             <th scope="col">Cliente</th>
                                             <th scope="col">Productos</th>
                                             <th scope="col">Descripcion</th>
@@ -126,13 +127,14 @@ $usuario = $_SESSION["nombre_usuario"];
                                     <tbody class="CursorPointerTabla text-center">
                                         <?php
                                         require('control/conexion.php');
-                                        $sql = mysqli_query($conexion, "SELECT * FROM Pedidos,Clientes WHERE Pedidos.id_cliente=Clientes.id AND Pedidos.estatus='Entregado';");
+                                        $sql = mysqli_query($conexion, "SELECT *, Pedidos.id AS pedidosID FROM Pedidos,Clientes WHERE Pedidos.id_cliente=Clientes.id AND Pedidos.estatus='Entregado';");
 
                                         while ($fila = mysqli_fetch_array($sql)) {
                                             printf(
                                                 "<tr>
                                                     <td>%s</td>
                                                     <td>%s</td>
+                                                    <td>%s%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
                                                     <td>%s</td>
@@ -141,6 +143,8 @@ $usuario = $_SESSION["nombre_usuario"];
                                                 </tr>",
                                                 $fila["fecha_realizacion"],
                                                 $fila["fecha_entrega"],
+                                                $fila["id"],
+                                                $fila["pedidosID"],
                                                 $fila["nombre"],
                                                 $fila["productos"],
                                                 $fila["descripcion_pedido"],
