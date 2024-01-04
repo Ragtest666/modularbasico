@@ -53,8 +53,46 @@ include("control/validarusuario.php");
                                 <input type="password" class="cafeclaro form-control" id="floatingPassword" name="contra" placeholder="color:#66260b Password">
                                 <label for="floatingPassword">Contraseña</label>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between mb-4">
-                            </div>
+                            <!-- inicio recuperar contraseña -->
+
+                        <div class=" container-fluid ">
+                                   
+                                   <!-- Button trigger modal -->
+                  
+                                   <div class=" text-center justify-content-between mb-4"  >
+                                       <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">¿Olvidaste la contraseña?</a>
+                                   </div>
+                                   
+                                   <!-- Modal -->
+                                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                       <div class="modal-content">
+                                           <div class="modal-header">
+                                           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                           </div>
+                                           <div class="modal-body">
+                                                <!-- Container Agregar Producto Start -->
+                                                               <div class=" rounded h-100 p-4   row " >
+                                                                   <div class="form-floating mb-3">
+                                                                       <input type="text" class="cafeclaro form-control" id="floatingInput" placeholder="name@example.com">
+                                                                       <label for="floatingInput">Ingresa Usuario</label>
+                                                                   </div>
+                                                               </div>
+                                                <!-- Container Agregar Producto Start -->               
+                                           </div>
+                                           <div class="modal-footer">
+                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                           <button type="button" class="btn btn-primary" name="recuperar" >Solicitar contraseña</button>
+                                           </div>
+                                       </div>
+                                       </div>
+                                   </div>
+                             
+                      
+                   </div>
+
+              <!-- end recuperar contraseña -->
                             <button type="submit" name="entrar" class="btn button py-3 w-100 mb-4">Iniciar Sesión</button>
                         </form>
                     </div>
@@ -63,5 +101,19 @@ include("control/validarusuario.php");
         </div>
 
 </body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+
+    <script src="js/main.js"></script>
 
 </html>
