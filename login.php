@@ -38,6 +38,7 @@ include("control/validarusuario.php");
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class="cafeoscuro rounded p-4 p-sm-5 my-4 mx-3">
+                        <?php include_once("control/recuperarcontrasena.php");?>
                         <form action="" method="POST">
                             <div class="d-flex align-items-center justify-content-center between mb-5">
                                 <img src="img/Logo.png" alt="" height="125" width="300">
@@ -75,7 +76,7 @@ include("control/validarusuario.php");
                                                 <!-- Container Agregar Producto Start -->
                                                                <div class=" rounded h-100 p-4   row " >
                                                                    <div class="form-floating mb-3">
-                                                                       <input type="text" class="cafeclaro form-control" id="floatingInput" placeholder="name@example.com">
+                                                                       <input type="text" class="cafeclaro form-control" id="floatingInput" name="usuarios">
                                                                        <label for="floatingInput">Ingresa Usuario</label>
                                                                    </div>
                                                                </div>
@@ -83,7 +84,7 @@ include("control/validarusuario.php");
                                            </div>
                                            <div class="modal-footer">
                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                           <button type="button" class="btn btn-primary" name="recuperar" >Solicitar contraseña</button>
+                                           <button type="submit" class="btn btn-primary" name="recuperar" >Solicitar contraseña</button>
                                            </div>
                                        </div>
                                        </div>
