@@ -1,5 +1,5 @@
 
- ![Logo](https://link.storjsatelliteshare.io/s/jvy4ymrnqqpeo4q5iykomgheumqq/modular-basico%2Flogo.png?view=1)
+ ![Logo](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/logo.png?wrap=0)
  # **Sistema de Gestión de Pedidos para la Panadería Luna**
 
 Proyecto Modular 
@@ -82,17 +82,17 @@ Debido a que es una pequeña empresa local de tipo panadería que no cuenta con 
 
 ### **Diagrama de Casos de Uso**
 
-![Diagrama casos de uso](https://link.storjsatelliteshare.io/s/jupafqn36xlq53lq2o6oacyh45oq/modular-basico%2Fdiagrama-de-casos-de-uso.png?view=1p)
+![Diagrama casos de uso](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/diagrama-de-casos-de-uso.png?wrap=0)
 
 Aquí podemos observar a los actores Colaborador, Administrador y cómo interactúan con el actor de Base de Datos.
 
 ### **Diagrama de Secuencia**
-![Diagrama de secuencia](https://link.storjsatelliteshare.io/s/jvdga3tw5ybmvzd72oh7ajjccd6a/modular-basico%2Fdiagrama-de-secuencia.png?view=1)
+![Diagrama de secuencia](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/diagrama-de-secuencia.png?wrap=0)
 En este diagrama podemos observar la secuencia y acciones de las diferentes interfaces, así como la relación que tienen con la Base de Datos.
 
 ### **Diagrama de entidad relación**
 
-![Diagrama entidad relacion](https://link.storjsatelliteshare.io/s/jvupclonvga4kxtc5l5yf5avr4eq/modular-basico%2Fdiagrama-de-entidad-relacion.png?view=1)
+![Diagrama entidad relacion](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/diagrama-de-entidad-relacion.png?wrap=0)
 
 Aquí este diagrama visualiza la información y la correlación que existen entre cada una de las tablas que se utilizarán en el sistema.
 
@@ -130,7 +130,7 @@ Se considera que la metodología actual se adapta a las necesidades del proyecto
 ### **Ciclo de vida del sistema**
 El sistema implementará un ciclo de vida de desarrollo de software basado en el método cascada modificado. Este modelo permite la realimentación entre fases, lo que lo hace más flexible que el método de cascada tradicional.
 
-![Ciclo de vida](https://link.storjsatelliteshare.io/s/jwhpciuiq34inpdmzzfrvuj6s4pa/modular-basico%2Fciclo-de-vida.png?view=1)
+![Ciclo de vida](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/ciclo-de-vida.png?wrap=0)
 
 ### **Comparativo del sistema**
 |**Descripción/Sistema**|**Janis**|**OpenBravo**|**SGP Luna**|
@@ -167,10 +167,10 @@ Cada interfaz de sistema tendrá un aspecto y una sensación únicas gracias a C
 
 ### Aplicación: Interfaz de Ingreso
 
-![login](https://link.storjsatelliteshare.io/s/jxrv7ssvezty3scewgzuzr5btheq/modular-basico%2Finterfaz-login.png?view=1)
-![Catalogo-colaborador](https://link.storjsatelliteshare.io/s/juci2jrdf2ddzwoltoozml2ysmdq/modular-basico%2Fcatalogo-colaboradores.png?view=1)
-![catalogo-clientes](https://link.storjsatelliteshare.io/s/jvjgg3jspis6ekf3evrerctawcya/modular-basico%2Fcatalogo-clientes.png?view=1)
-![Catalogo-productos](https://link.storjsatelliteshare.io/s/jv7iv4ww4t5nzfxg7tctzgtwmmpa/modular-basico%2Fcatalogo-productos.png?view=1)
+![login](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/interfaz-login.png?wrap=0)
+![Catalogo-colaborador](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/catalogo-colaboradores.png?wrap=0)
+![catalogo-clientes](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/catalogo-clientes.png?wrap=0)
+![Catalogo-productos](https://link.storjshare.io/s/jxeo62lpyrsygchsxs66jdt2qqba/modular-basico/catalogo-productos.png?wrap=0)
 ## Referencias
 
 *	[Ken, S. y Jeff, S. (septiembre del 2013). scrumguides. Obtenido de La Guía de Scrum:](https://scrumguides.org/docs/scrumguide/v1/Scrum-Guide-ES.pdf)
