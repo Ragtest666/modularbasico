@@ -1,5 +1,6 @@
 
-# ![Logo](https://link.storjsatelliteshare.io/s/jvy4ymrnqqpeo4q5iykomgheumqq/modular-basico%2Flogo.png?view=1)**Sistema de Gestión de Pedidos para la Panadería Luna**
+# ![Logo](https://link.storjsatelliteshare.io/s/jvy4ymrnqqpeo4q5iykomgheumqq/modular-basico%2Flogo.png?view=1)
+**Sistema de Gestión de Pedidos para la Panadería Luna**
 
 Proyecto Modular 
 "Arquitectura y Programación de Sistemas"
