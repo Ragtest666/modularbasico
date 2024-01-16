@@ -16,7 +16,7 @@ Proyecto Modular
 - [José Manuel Testela Chávez](https://github.com/Ragtest666)
 
 ##### ASESOR
-- [Mtro. César Froylán Andrade Cervantes](https://github.com/Ragtest666)
+- Mtro. César Froylán Andrade Cervantes
 
 
 ## **Introducción**
